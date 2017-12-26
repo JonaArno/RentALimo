@@ -1,0 +1,2 @@
+C:\Users\Administrator\Desktop\RentALimo\RentALimo.EF\obj\Debug\RentALimo.EF.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\RentALimo\RentALimo.EF\obj\Debug\RentALimo.EF.csproj.CoreCompileInputs.cache
