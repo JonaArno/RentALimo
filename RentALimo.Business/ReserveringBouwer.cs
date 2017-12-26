@@ -3,6 +3,10 @@ using System.Text;
 
 namespace RentALimo.Business
 {
+
+    //in frontend new ReserveringBouwer
+    //laag tussen EF en businesslaag
+
     public class ReserveringBouwer
     {
         private IReserveringRepo _repo;
@@ -15,7 +19,8 @@ namespace RentALimo.Business
         public Locatie? EindLocatie { get; set; }
         public Limo Limo { get; set; }
 
-        
+
+        //laag boven dbcontext
         public ReserveringBouwer(IReserveringRepo repo)
         {
             _repo = repo;
@@ -27,6 +32,7 @@ namespace RentALimo.Business
             {
                 throw new InvalidOperationException(Status());
             }
+
             var result = new Reservering
             {
                 Arrangement = Arrangement.Value,
@@ -57,11 +63,10 @@ namespace RentALimo.Business
                    Arrangement.HasValue &&
                    StartLocatie.HasValue &&
                    EindLocatie.HasValue &&
-                   Limo.HeeftArrangement(Arrangement.Value) &&
+                   Limo.MogelijkBinnenArrangement(Arrangement.Value) &&
                    Periode.Duur <= Periode.MaximaleDuur &&
                    // Arrangement.Value.IsGeldigStartUur(Periode.StartUur) &&
                    LimoIsVrij();
-
 
         }
 
@@ -70,10 +75,7 @@ namespace RentALimo.Business
             // dit is slechts 1 mogelijke (uit vele) en 
             // een onvolledige implementatie
             var buffer = 6; // komt waarschijnlijk uit Locatie
-            var reserveringen = _repo.ReserveringenVoorLimoInPeriode(
-                        Limo,
-                        Periode.Begin.AddHours(buffer),
-                        Periode.Einde.AddHours(buffer));
+            var reserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, Periode.Begin.AddHours(buffer), Periode.Einde.AddHours(buffer));
             return true;
         }
     }

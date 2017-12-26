@@ -17,17 +17,16 @@ namespace RentALimo.Business.Test
 
     internal class NepRepo : IReserveringRepo
     {
-        public List<Reservering> Reserveringen { get; set; } =
-            new List<Reservering>();
-     
+        public List<Reservering> Reserveringen { get; set; } = new List<Reservering>();
+
         public int AantalReserveringenVoorKlantInJaar(Klant klant, int jaar)
         {
-           var ditjaar = DateTime.Today.Year;
+            var ditjaar = DateTime.Today.Year;
             if (klant.Naam == "Dirk Andries") return 100;
             if (klant.Naam == "Sven") return 2;
             if (klant.Naam == "Tom" && jaar == ditjaar) return 3;
             return Reserveringen.Count(
-                r => r.Klant.Equals(klant) && r.Datum.Year == jaar);
+                r => r.Klant.Equals(klant) && r.ReserveringsDatum.Year == jaar);
         }
 
         public void Nieuw(Reservering reservering)

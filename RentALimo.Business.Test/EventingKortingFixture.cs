@@ -33,5 +33,6 @@ namespace RentALimo.Business.Test
             Assert.AreEqual(target.KortingVoorAantal(15), 10.0);
             Assert.AreEqual(target.KortingVoorAantal(2), 5.0);
         }
+
     }
 }

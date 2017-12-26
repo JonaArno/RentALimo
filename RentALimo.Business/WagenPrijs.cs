@@ -8,16 +8,15 @@ namespace RentALimo.Business
 
         public WagenPrijs() { }
 
-        public Dictionary<Arrangement,decimal> PrijsOverzicht = new Dictionary<Arrangement, decimal>();
+        public Dictionary<Arrangement, decimal> PrijsOverzicht = new Dictionary<Arrangement, decimal>();
 
-       
+
         //dit opsplitsen met items
         public void Toevoegen(Arrangement arr, decimal prijs)
         {
-            PrijsOverzicht.Add(arr,prijs);
+            PrijsOverzicht.Add(arr, prijs);
         }
-
     }
 
-    
+
 }

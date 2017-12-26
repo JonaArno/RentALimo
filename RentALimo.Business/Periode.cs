@@ -11,6 +11,11 @@ namespace RentALimo.Business
         public DateTime Begin { get; internal set; }
         public DateTime Einde { get; internal set; }
 
+        //denkpiste
+        public int normaleUren { get; set; }
+        public int aantalOverUren { get; set; }
+        public int aantalNachtUren { get; set; }
+
         protected Periode() { }
 
         public Periode(DateTime begin, DateTime einde)
@@ -18,11 +23,27 @@ namespace RentALimo.Business
             Begin = begin;
             Einde = einde;
             Duur = einde - begin;
+            IndelingInUren();
+        }
+
+        private void IndelingInUren()
+        {
+            //#nachturen berekenen
+            var copy = Begin;
+            do
+            {
+                copy = copy.AddHours(1);
+                if (copy.Hour >= 22 || copy.Hour >= 0 && copy.Hour <= 6)
+                {
+                    aantalNachtUren += 1;
+                }
+
+            } while (copy < Einde);
         }
 
         public bool RespecteertMaxDuur()
         {
-            if (Duur.Hours > MaximaleDuur - 1)
+            if (Duur > TimeSpan.FromHours(MaximaleDuur))
             {
                 return false;
             }
@@ -62,11 +83,24 @@ namespace RentALimo.Business
         //                else return false;
         //            }
         //    }
+
+
+        public bool BevatOverUren(Arrangement arr)
+        {
+            bool bevatOveruren = false;
+
+            if (arr == Arrangement.NightLife || arr == Arrangement.Wedding)
+            {
+                bevatOveruren = this.Duur > TimeSpan.FromHours(7);
+            }
+            return bevatOveruren;
         }
 
-        public bool PeriodeBevatOveruren()
+        //is dit nodig indien we denkpiste volgen?
+        public bool BevatNachtUren()
         {
 
         }
+
     }
 }
