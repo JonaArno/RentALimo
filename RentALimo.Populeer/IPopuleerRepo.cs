@@ -10,5 +10,10 @@ namespace RentALimo.Populeer
         // Categorieen
         // Klanten
         // ....
+        
+        void NieuweKlantCategorieen(IEnumerable<KlantCategorie> klantcategoriën);
+        void NieuweKlanten(IEnumerable<Klant> klanten);
+        void NieuweLimos(IEnumerable<Limo> limos);
+        
     }
 }
