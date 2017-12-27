@@ -4,6 +4,12 @@ namespace RentALimo.Business
 {
     public class Limo
     {
+        public int WagenId { get; set; }
+        public string Merk { get; set; }
+        public string Type { get; set; }
+        public string Kleur { get; set; }
+        public WagenPrijs WagenPrijs { get; set; }
+
         protected Limo() { }
 
         public Limo(string merk, string type, string kleur, WagenPrijs wagenPrijs)
@@ -13,12 +19,6 @@ namespace RentALimo.Business
             Kleur = kleur;
             WagenPrijs = wagenPrijs;
         }
-
-        public int WagenId { get; set; }
-        public string Merk { get; set; }
-        public string Type { get; set; }
-        public string Kleur { get; set; }
-        public WagenPrijs WagenPrijs { get; set; }
 
 
         public bool MogelijkBinnenArrangement(Arrangement arr)
