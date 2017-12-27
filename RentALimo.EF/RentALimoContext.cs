@@ -15,6 +15,11 @@ namespace RentALimo.EF
         {
             if (!Database.Exists()) Database.Create();
             Database.Log = s => Debug.WriteLine(s);
+            
+            //wat doet dit?
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+            
             // ...
         }
 
@@ -22,13 +27,14 @@ namespace RentALimo.EF
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
-            //...
-
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            
+            
+            //modelBuilder.Entity<EventingKorting>();
             // alle mappings toevoegen in deze assembly
 
-            modelBuilder
-                .Configurations
-                .AddFromAssembly(GetType().Assembly);
+            modelBuilder.Configurations.AddFromAssembly(GetType().Assembly);
         }
 
         public DbSet<Adres> Adressen { get; set; }
