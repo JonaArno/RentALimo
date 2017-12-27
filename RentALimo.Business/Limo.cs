@@ -23,14 +23,33 @@ namespace RentALimo.Business
 
         public bool MogelijkBinnenArrangement(Arrangement arr)
         {
-            //controle inbouwen voor mocht arrangement niet bestaan voor wagen?
-            //dan moet er niet met nullen gewerkt worden
+            bool isMogelijk = false;
 
-            if (WagenPrijs.PrijsOverzicht[arr] != 0)
+            if (arr == Arrangement.Airport || arr == Arrangement.Business)
             {
-                return true;
+                isMogelijk = WagenPrijs.EersteUurPrijs != 0;
             }
-            else return false;
+
+            else if (arr == Arrangement.Wedding)
+            {
+                isMogelijk = WagenPrijs.WeddingArrangementPrijs != 0;
+            }
+
+            else if (arr == Arrangement.NightLife)
+            {
+                isMogelijk = WagenPrijs.NightLifeArrangementPrijs != 0;
+
+            }
+            return isMogelijk;
+
+            ////controle inbouwen voor mocht arrangement niet bestaan voor wagen?
+            ////dan moet er niet met nullen gewerkt worden
+
+            //if (WagenPrijs.PrijsOverzicht[arr] != 0)
+            //{
+            //    return true;
+            //}
+            //else return false;
         }
 
         public bool ReedsBeschikbaarNaLaatsteReservering(DateTime startNieuweReservering, Reservering laatsteReservering)

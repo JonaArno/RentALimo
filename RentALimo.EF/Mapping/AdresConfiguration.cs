@@ -8,9 +8,9 @@ using RentALimo.Business;
 
 namespace RentALimo.EF.Mapping
 {
-    public class AdresMapping : EntityTypeConfiguration<Adres>
+    public class AdresConfiguration : EntityTypeConfiguration<Adres>
     {
-        public AdresMapping()
+        public AdresConfiguration()
         {
             HasKey(i => i.Id);
             Property(i => i.Straat).IsRequired();

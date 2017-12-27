@@ -8,7 +8,7 @@ using RentALimo.Business;
 
 namespace RentALimo.EF.Mapping
 {
-    public class ReserveringMapping : EntityTypeConfiguration<Reservering>
+    public class ReserveringConfiguration : EntityTypeConfiguration<Reservering>
     {
 
     }

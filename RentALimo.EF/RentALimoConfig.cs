@@ -7,8 +7,7 @@ namespace RentALimo.EF
     {
         public RentALimoConfig()
         {
-            SetProviderServices(SqlProviderServices.ProviderInvariantName,
-                SqlProviderServices.Instance);
+            SetProviderServices(SqlProviderServices.ProviderInvariantName, SqlProviderServices.Instance);
         }
     }
 }

@@ -12,9 +12,9 @@ namespace RentALimo.Business
         public DateTime Einde { get; internal set; }
 
         //denkpiste
-        public int normaleUren { get; set; }
-        public int aantalOverUren { get; set; }
-        public int aantalNachtUren { get; set; }
+        public int NormaleUren { get; set; }
+        public int AantalOverUren { get; set; }
+        public int AantalNachtUren { get; set; }
 
         protected Periode() { }
 
@@ -35,7 +35,7 @@ namespace RentALimo.Business
                 copy = copy.AddHours(1);
                 if (copy.Hour >= 22 || copy.Hour >= 0 && copy.Hour <= 6)
                 {
-                    aantalNachtUren += 1;
+                    AantalNachtUren += 1;
                 }
 
             } while (copy < Einde);

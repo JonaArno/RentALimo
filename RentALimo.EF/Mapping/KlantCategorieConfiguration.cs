@@ -8,9 +8,9 @@ using RentALimo.Business;
 
 namespace RentALimo.EF.Mapping
 {
-    public class KlantCategorieMapping : EntityTypeConfiguration<KlantCategorie>
+    public class KlantCategorieConfiguration : EntityTypeConfiguration<KlantCategorie>
     {
-        public KlantCategorieMapping()
+        public KlantCategorieConfiguration()
         {
             HasKey(i => i.CategorieId);
             Property(i => i.Naam).IsRequired();

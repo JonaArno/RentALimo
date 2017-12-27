@@ -47,13 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mapping\AdresMapping.cs" />
-    <Compile Include="Mapping\KlantCategorieMapping.cs" />
-    <Compile Include="Mapping\KlantMapping.cs" />
-    <Compile Include="Mapping\KortingItemMapping.cs" />
-    <Compile Include="Mapping\KortingMapping.cs" />
-    <Compile Include="Mapping\LimoMapping.cs" />
-    <Compile Include="Mapping\ReserveringMapping.cs" />
+    <Compile Include="Mapping\AdresConfiguration.cs" />
+    <Compile Include="Mapping\KlantCategorieConfiguration.cs" />
+    <Compile Include="Mapping\KlantConfiguration.cs" />
+    <Compile Include="Mapping\EventingKortingItemConfiguration.cs" />
+    <Compile Include="Mapping\EventingKortingConfiguration.cs" />
+    <Compile Include="Mapping\LimoConfiguration.cs" />
+    <Compile Include="Mapping\ReserveringConfiguration.cs" />
+    <Compile Include="Mapping\WagenPrijsConfiguration.cs" />
     <Compile Include="PopuleerRepo.cs" />
     <Compile Include="RentALimoConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

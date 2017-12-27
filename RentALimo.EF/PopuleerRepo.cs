@@ -26,6 +26,7 @@ namespace RentALimo.EF
             Context.SaveChanges();      
         }
 
+        //hieronder ook WagenPrijsItems
         public void NieuweKlanten(IEnumerable<Klant> klanten)
         {
             Context.Set<Klant>().AddRange(klanten);

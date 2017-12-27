@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RentALimo.EF.Mapping
 {
-    public class KortingMapping: EntityTypeConfiguration<EventingKorting>
+    public class EventingKortingConfiguration: EntityTypeConfiguration<EventingKorting>
     {
-        public KortingMapping()
+        public EventingKortingConfiguration()
         {
             HasKey(k => k.Id);
             Property(k => k.Id)

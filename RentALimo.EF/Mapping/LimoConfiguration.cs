@@ -8,9 +8,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace RentALimo.EF.Mapping
 {
-    public class LimoMapping : EntityTypeConfiguration<Limo>
+    public class LimoConfiguration : EntityTypeConfiguration<Limo>
     {
-        public LimoMapping()
+        public LimoConfiguration()
         {
             HasKey(i => i.WagenId);
             Property(i => i.Merk).IsRequired();

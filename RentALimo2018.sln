@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentALimo", "RentALimo\RentALimo.csproj", "{E3C862AC-B5E1-4F4A-9648-B29AE3713C37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentALimo.GUI", "RentALimo\RentALimo.GUI.csproj", "{E3C862AC-B5E1-4F4A-9648-B29AE3713C37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentALimo.Business", "RentALimo.Business\RentALimo.Business.csproj", "{589D7B21-0DBD-4B8C-A260-94AAC65D1C9B}"
 EndProject

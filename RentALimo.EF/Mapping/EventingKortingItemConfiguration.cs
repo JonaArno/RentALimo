@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace RentALimo.EF.Mapping
 {
-    public class KortingItemMapping: EntityTypeConfiguration<EventingKortingItem>
+    public class EventingKortingItemConfiguration: EntityTypeConfiguration<EventingKortingItem>
     {
-        public KortingItemMapping()
+        public EventingKortingItemConfiguration()
         {
             HasKey(i => i.Id);
             Property(i => i.Aantal).IsRequired();
