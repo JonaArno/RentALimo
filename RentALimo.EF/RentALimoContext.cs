@@ -38,7 +38,7 @@ namespace RentALimo.EF
             modelBuilder.Configurations.AddFromAssembly(GetType().Assembly);
         }
 
-        //is dit allemaal optioneel?? (zie contactManager)
+        //Allemaal niet nodig
         //public DbSet<Adres> Adressen { get; set; }
         //public DbSet<EventingKorting> EventingKortingen { get; set; }
         //public DbSet<EventingKortingItem> EventinkortingItems { get; set; }
