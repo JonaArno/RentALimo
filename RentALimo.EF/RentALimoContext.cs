@@ -27,6 +27,7 @@ namespace RentALimo.EF
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
+            //wat doen de twee hieronder?
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             
@@ -37,13 +38,14 @@ namespace RentALimo.EF
             modelBuilder.Configurations.AddFromAssembly(GetType().Assembly);
         }
 
-        public DbSet<Adres> Adressen { get; set; }
-        public DbSet<EventingKorting> EventingKortingen { get; set; }
-        public DbSet<EventingKortingItem> EventinkortingItems { get; set; }
-        public DbSet<Klant> Klanten { get; set; }
-        public DbSet<KlantCategorie> KlantCategorieën { get; set; }
-        public DbSet<Limo> Limos { get; set; }
-        public DbSet<Reservering> Reserveringen { get; set; }
-        public DbSet<WagenPrijs> WagenPrijzen { get; set; }
+        //is dit allemaal optioneel?? (zie contactManager)
+        //public DbSet<Adres> Adressen { get; set; }
+        //public DbSet<EventingKorting> EventingKortingen { get; set; }
+        //public DbSet<EventingKortingItem> EventinkortingItems { get; set; }
+        //public DbSet<Klant> Klanten { get; set; }
+        //public DbSet<KlantCategorie> KlantCategorieën { get; set; }
+        //public DbSet<Limo> Limos { get; set; }
+        //public DbSet<Reservering> Reserveringen { get; set; }
+        //public DbSet<WagenPrijs> WagenPrijzen { get; set; }
     }
 }
