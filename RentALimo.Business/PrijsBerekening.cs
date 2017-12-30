@@ -13,6 +13,8 @@ namespace RentALimo.Business
         public decimal BedragExclusiefBtw { get; set; }
         public decimal BtwBedrag { get; set; }
         public decimal TotaalTeBetalenBedrag { get; set; }
+        public Reservering Reservering { get; set; }
+        Dictionary<int,decimal> PrijsPerUur = new Dictionary<int, decimal>();
 
         protected PrijsBerekening() { }
 
@@ -20,7 +22,71 @@ namespace RentALimo.Business
         //opmerking: is reservering wel al geïnstantieerd op dit punt?
         public PrijsBerekening(Reservering res)
         {
+            Reservering = res;
+        }
 
+        public decimal BerekenPrijsExclBtw()
+        {
+            //wat als er extra minuten zijn?
+            for (int i = 0; i < Reservering.Periode.Duur.Hours; i++)
+            {
+                DateTime huidigeTijd = Reservering.Periode.Begin.AddHours(i);
+
+                if (IsEersteUur(huidigeTijd))
+                {
+                    PrijsPerUur.Add(i+1,Reservering.Limo.WagenPrijs.EersteUurPrijs);
+                }
+
+                else if (IsNachtUur(huidigeTijd))
+                {
+                    PrijsPerUur.Add(i+1,NachtUurPrijs(Reservering.Limo.WagenPrijs.EersteUurPrijs));
+                }
+
+                else
+                {
+                    PrijsPerUur.Add(i+1,TweedeUurPrijs(Reservering.Limo.WagenPrijs.EersteUurPrijs));
+                }
+                
+            }
+
+
+            //dit eigen method geven?
+            decimal prijsVoorKortingen = 0;
+            foreach (KeyValuePair<int,decimal> prijsVoorUur in PrijsPerUur)
+            {
+                prijsVoorKortingen = prijsVoorKortingen + prijsVoorUur.Value;
+            }
+
+            //toepassen eventingKorting
+            //...
+
+
+        }
+
+        public decimal BerekenPrijsInclBtw(decimal prijsExclBtw)
+        {
+
+        }
+
+        public bool IsEersteUur(DateTime tijdStip)
+        {
+            if (tijdStip <= Reservering.Periode.Begin.AddHours(1))
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public bool IsNachtUur(DateTime tijdStip)
+        {
+            bool returnWaarde = tijdStip.Hour >= 22 || tijdStip.Hour >= 0 && tijdStip.Hour <= 6;
+            return returnWaarde;
+        }
+
+        public bool IsOverUur(DateTime tijdStip)
+        {
+            bool returnWaarde = (tijdStip > Reservering.Periode.Begin.AddHours(7));
+            return returnWaarde;
         }
 
         public decimal NachtUurPrijs(decimal prijs)

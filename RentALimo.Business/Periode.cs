@@ -85,6 +85,7 @@ namespace RentALimo.Business
         //    }
 
 
+        //schrappen?
         public bool BevatOverUren(Arrangement arr)
         {
             bool bevatOveruren = false;
@@ -96,11 +97,12 @@ namespace RentALimo.Business
             return bevatOveruren;
         }
 
-        //is dit nodig indien we denkpiste volgen?
-        public bool BevatNachtUren()
-        {
+        //schrappen?
+        //public bool BevatNachtUren()
+        //{
 
-        }
+        //}
 
+        
     }
 }
