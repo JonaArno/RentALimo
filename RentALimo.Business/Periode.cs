@@ -4,7 +4,8 @@ namespace RentALimo.Business
 {
     public class Periode
     {
-        public static readonly int MaximaleDuur = 11;
+        //public static readonly int MaximaleDuur = 11;
+        public static readonly TimeSpan MaximaleDuur = new TimeSpan(11,0,0);
 
         public int Id { get; set; }
         public TimeSpan Duur { get; internal set; }
@@ -43,7 +44,7 @@ namespace RentALimo.Business
 
         public bool RespecteertMaxDuur()
         {
-            if (Duur > TimeSpan.FromHours(MaximaleDuur))
+            if (Duur > TimeSpan.FromHours(MaximaleDuur.Hours))
             {
                 return false;
             }

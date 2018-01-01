@@ -1,0 +1,15 @@
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\bin\Debug\RentALimo.exe.config
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\bin\Debug\RentALimo.exe
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\bin\Debug\RentALimo.pdb
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo.GUI.csprojResolveAssemblyReference.cache
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\MainWindow.g.cs
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\App.g.cs
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo_MarkupCompile.cache
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo_MarkupCompile.lref
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\MainWindow.baml
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo.g.resources
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo.Properties.Resources.resources
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo.GUI.csproj.GenerateResource.Cache
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo.GUI.csproj.CoreCompileInputs.cache
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo.exe
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\RentALimo.pdb

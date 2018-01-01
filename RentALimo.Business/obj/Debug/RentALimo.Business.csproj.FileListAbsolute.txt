@@ -1,2 +1,4 @@
 C:\Users\Administrator\Desktop\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csproj.CoreCompileInputs.cache
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csprojResolveAssemblyReference.cache
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csproj.CoreCompileInputs.cache

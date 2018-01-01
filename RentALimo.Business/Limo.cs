@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RentALimo.Business
 {
@@ -9,6 +10,9 @@ namespace RentALimo.Business
         public string Type { get; set; }
         public string Kleur { get; set; }
         public WagenPrijs WagenPrijs { get; set; }
+
+        //lijst van reserveringen per limo bijhouden?
+        public List<Reservering> Reserveringen = new List<Reservering>();
 
         protected Limo() { }
 

@@ -25,8 +25,10 @@ namespace RentALimo.Business
             Reservering = res;
         }
 
-        public decimal BerekenPrijsExclBtw()
+        public decimal BerekenKostPrijs()
         {
+            decimal returnWaarde =0;
+
             //wat als er extra minuten zijn?
             for (int i = 0; i < Reservering.Periode.Duur.Hours; i++)
             {
@@ -51,21 +53,26 @@ namespace RentALimo.Business
 
 
             //dit eigen method geven?
-            decimal prijsVoorKortingen = 0;
             foreach (KeyValuePair<int,decimal> prijsVoorUur in PrijsPerUur)
             {
-                prijsVoorKortingen = prijsVoorKortingen + prijsVoorUur.Value;
+                returnWaarde += prijsVoorUur.Value;
             }
 
             //toepassen eventingKorting
-            //...
+            double eventingKortingVoorAantal = Reservering.Klant.KlantCategorie.EventingKorting.KortingVoorAantal(Reservering.Klant.ReserveringenDitJaar());
+            returnWaarde = BerekenPrijsNaEventingKorting(returnWaarde, eventingKortingVoorAantal);
+
+            //berekenenPrijsInclBtw
+            returnWaarde = BerekenPrijsInclBtw(returnWaarde);
 
 
+            //return
+            return returnWaarde;
         }
 
         public decimal BerekenPrijsInclBtw(decimal prijsExclBtw)
         {
-
+            return (prijsExclBtw / 100) * (100 + BtwPercentage);
         }
 
         public bool IsEersteUur(DateTime tijdStip)
@@ -102,6 +109,12 @@ namespace RentALimo.Business
             //prijs * 60%
             var returnWaarde = prijs * (decimal)0.6;
             returnWaarde = Afronder(returnWaarde);
+            return returnWaarde;
+        }
+
+        public decimal BerekenPrijsNaEventingKorting(decimal voorKorting, double kortingsPercentage)
+        {
+            decimal returnWaarde = (voorKorting / 100) * (100 - (decimal)kortingsPercentage);
             return returnWaarde;
         }
 
