@@ -54,6 +54,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="BestaandeReserveringen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Klanten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Limos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NieuweReservering.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -61,6 +77,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BestaandeReserveringen.xaml.cs">
+      <DependentUpon>BestaandeReserveringen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Klanten.xaml.cs">
+      <DependentUpon>Klanten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Limos.xaml.cs">
+      <DependentUpon>Limos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NieuweReservering.xaml.cs">
+      <DependentUpon>NieuweReservering.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -92,6 +120,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RentALimo.EF\RentALimo.EF.csproj">
+      <Project>{BB1A8E73-5AAA-4F08-A8D0-EEBE4538E380}</Project>
+      <Name>RentALimo.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RentALimo.Populeer\RentALimo.Populeer.csproj">
+      <Project>{6EF6A9E9-0890-4660-B0B0-3F1AE3328E2A}</Project>
+      <Name>RentALimo.Populeer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

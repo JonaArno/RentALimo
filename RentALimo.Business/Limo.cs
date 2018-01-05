@@ -8,20 +8,33 @@ namespace RentALimo.Business
         public int WagenId { get; set; }
         public string Merk { get; set; }
         public string Type { get; set; }
-        public string Kleur { get; set; }
-        public WagenPrijs WagenPrijs { get; set; }
+        //public WagenPrijs WagenPrijs { get; set; }
+
+        public decimal EersteUurPrijs { get; set; }
+        public decimal NightLifeArrangementPrijs { get; set; }
+        public decimal WeddingArrangementPrijs { get; set; }
 
         //lijst van reserveringen per limo bijhouden?
         public List<Reservering> Reserveringen = new List<Reservering>();
 
         protected Limo() { }
 
-        public Limo(string merk, string type, string kleur, WagenPrijs wagenPrijs)
+        //public Limo(string merk, string type, WagenPrijs wagenPrijs)
+        //{
+        //    Merk = merk;
+        //    Type = type;
+        //    WagenPrijs = wagenPrijs;
+        //}
+
+
+        public Limo(string merk, string type, decimal eersteUurPrijs,decimal nightLifeArrangementPrijs, decimal weddingArrangementPrijs)
         {
             Merk = merk;
             Type = type;
-            Kleur = kleur;
-            WagenPrijs = wagenPrijs;
+            EersteUurPrijs = eersteUurPrijs;
+            NightLifeArrangementPrijs = nightLifeArrangementPrijs;
+            WeddingArrangementPrijs = weddingArrangementPrijs;
+
         }
 
 
@@ -31,29 +44,21 @@ namespace RentALimo.Business
 
             if (arr == Arrangement.Airport || arr == Arrangement.Business)
             {
-                isMogelijk = WagenPrijs.EersteUurPrijs != 0;
+                isMogelijk = EersteUurPrijs != 0;
             }
 
             else if (arr == Arrangement.Wedding)
             {
-                isMogelijk = WagenPrijs.WeddingArrangementPrijs != 0;
+                isMogelijk = WeddingArrangementPrijs != 0;
             }
 
             else if (arr == Arrangement.NightLife)
             {
-                isMogelijk = WagenPrijs.NightLifeArrangementPrijs != 0;
+                isMogelijk = NightLifeArrangementPrijs != 0;
 
             }
+
             return isMogelijk;
-
-            ////controle inbouwen voor mocht arrangement niet bestaan voor wagen?
-            ////dan moet er niet met nullen gewerkt worden
-
-            //if (WagenPrijs.PrijsOverzicht[arr] != 0)
-            //{
-            //    return true;
-            //}
-            //else return false;
         }
 
         public bool ReedsBeschikbaarNaLaatsteReservering(DateTime startNieuweReservering, Reservering laatsteReservering)

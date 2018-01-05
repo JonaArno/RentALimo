@@ -10,22 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using RentALimo.EF;
-using RentALimo.Populeer;
 
 namespace RentALimo
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BestaandeReserveringen.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BestaandeReserveringen : Window
     {
-        public MainWindow()
+        public BestaandeReserveringen()
         {
-            var pop = new Populator(new PopuleerRepo());
-            pop.Populeer();
             InitializeComponent();
         }
     }

@@ -30,23 +30,25 @@ namespace RentALimo.Business
             decimal returnWaarde =0;
 
             //wat als er extra minuten zijn?
+            // 23 => 0 oplossing
+            //how to iterate over time
             for (int i = 0; i < Reservering.Periode.Duur.Hours; i++)
             {
                 DateTime huidigeTijd = Reservering.Periode.Begin.AddHours(i);
 
                 if (IsEersteUur(huidigeTijd))
                 {
-                    PrijsPerUur.Add(i+1,Reservering.Limo.WagenPrijs.EersteUurPrijs);
+                    PrijsPerUur.Add(i+1,Reservering.Limo.EersteUurPrijs);
                 }
 
                 else if (IsNachtUur(huidigeTijd))
                 {
-                    PrijsPerUur.Add(i+1,NachtUurPrijs(Reservering.Limo.WagenPrijs.EersteUurPrijs));
+                    PrijsPerUur.Add(i+1,NachtUurPrijs(Reservering.Limo.EersteUurPrijs));
                 }
 
                 else
                 {
-                    PrijsPerUur.Add(i+1,TweedeUurPrijs(Reservering.Limo.WagenPrijs.EersteUurPrijs));
+                    PrijsPerUur.Add(i+1,TweedeUurPrijs(Reservering.Limo.EersteUurPrijs));
                 }
                 
             }
@@ -59,7 +61,7 @@ namespace RentALimo.Business
             }
 
             //toepassen eventingKorting
-            double eventingKortingVoorAantal = Reservering.Klant.KlantCategorie.EventingKorting.KortingVoorAantal(Reservering.Klant.ReserveringenDitJaar());
+            double eventingKortingVoorAantal = Reservering.Klant.KlantCategorie.EventingKorting.KortingVoorAantal(Reservering.Klant.ReserveringenInJaar(DateTime.Now.Year));
             returnWaarde = BerekenPrijsNaEventingKorting(returnWaarde, eventingKortingVoorAantal);
 
             //berekenenPrijsInclBtw

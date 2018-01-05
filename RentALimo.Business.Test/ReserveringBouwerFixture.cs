@@ -38,5 +38,10 @@ namespace RentALimo.Business.Test
         {
             throw new NotImplementedException();
         }
+
+        IEnumerable<Reservering> IReserveringRepo.ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

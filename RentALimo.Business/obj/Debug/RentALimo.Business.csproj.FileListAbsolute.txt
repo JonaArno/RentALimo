@@ -2,3 +2,9 @@ C:\Users\Administrator\Desktop\RentALimo\RentALimo.Business\obj\Debug\RentALimo.
 C:\Users\Administrator\Desktop\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csproj.CoreCompileInputs.cache
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csprojResolveAssemblyReference.cache
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\bin\Debug\RentALimo.Business.dll
+C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\bin\Debug\RentALimo.Business.pdb
+C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.dll
+C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.pdb

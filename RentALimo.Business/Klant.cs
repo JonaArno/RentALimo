@@ -12,7 +12,7 @@ namespace RentALimo.Business
         public string BtwNummer { get; set; }
 
         public KlantCategorie KlantCategorie { get; set; }
-        public ICollection<Reservering> Reserveringen = new List<Reservering>();
+        //public ICollection<Reservering> Reserveringen = new List<Reservering>();
 
         protected Klant() { }
 
@@ -28,17 +28,20 @@ namespace RentALimo.Business
             BtwNummer = btwNummer;
         }
 
-        public int ReserveringenDitJaar()
+        //dit moet in de repo gebeuren
+        public int ReserveringenInJaar(int jaarTal)
         {
-            int returnWaarde = 0;
-            foreach (Reservering res in Reserveringen)
-            {
-                if (res.ReserveringsDatum.Year == DateTime.Now.Year)
-                {
-                    returnWaarde += 1;
-                }
-            }
-            return returnWaarde;
+            //int returnWaarde = 0;
+            //foreach (Reservering res in Reserveringen)
+            //{
+            //    if (res.ReserveringsDatum.Year == jaarTal)
+            //    {
+            //        returnWaarde += 1;
+            //    }
+            //}
+            //return returnWaarde;
+
+            return 0;
         }
     }
 

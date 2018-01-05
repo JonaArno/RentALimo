@@ -14,12 +14,14 @@ namespace RentALimo.EF.Mapping
         {
             HasKey(i => i.KlantId);
             Property(i => i.Naam).IsRequired();
-            Property(i => i.Adres).IsRequired();
+            HasRequired(i => i.Adres);
             Property(i => i.BtwNummer).IsOptional();
-            Property(i => i.KlantCategorie).IsRequired();
-            HasMany(i => i.Reserveringen)
-                .WithOptional()
-                .WillCascadeOnDelete(true);
+            HasRequired(i => i.KlantCategorie);
+
+            //als dit al gebeurt bij Reserveringen (Klant mandatory bij Reservering), dan is dit niet meer nodig
+            //HasMany(i => i.Reserveringen)
+            //    .WithOptional()
+            //    .WillCascadeOnDelete(true);
         }
     }
 }
