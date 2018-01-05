@@ -12,6 +12,7 @@ namespace RentALimo.EF.Mapping
     {
         public KlantCategorieConfiguration()
         {
+            ToTable("KlantCategorie");
             HasKey(i => i.CategorieId);
             Property(i => i.Naam).IsRequired();
             //klopt dit?

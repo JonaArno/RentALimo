@@ -7,6 +7,7 @@ namespace RentALimo.EF.Mapping
     {
         public EventingKortingItemConfiguration()
         {
+            ToTable("EventingKortingItem");
             HasKey(i => i.Id);
             Property(i => i.Aantal).IsRequired();
             Property(i => i.Korting).IsRequired();

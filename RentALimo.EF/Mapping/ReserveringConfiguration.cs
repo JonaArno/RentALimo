@@ -13,6 +13,7 @@ namespace RentALimo.EF.Mapping
     {
         public ReserveringConfiguration()
         {
+            ToTable("Reservering");
             HasKey(i => i.ReserveringsId);
             Property(i => i.ReserveringsId)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
@@ -20,6 +21,7 @@ namespace RentALimo.EF.Mapping
             Property(i => i.StartLocatie).IsRequired();
             Property(i => i.EindLocatie).IsRequired();
             Property(i => i.ReserveringsDatum).IsRequired();
+            //HasRequired(i => i.Periode);
             HasRequired(i => i.Limo);
             HasRequired(i => i.Klant);
         }

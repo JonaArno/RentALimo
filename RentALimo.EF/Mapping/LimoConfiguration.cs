@@ -12,6 +12,7 @@ namespace RentALimo.EF.Mapping
     {
         public LimoConfiguration()
         {
+            ToTable("Limo");
             HasKey(i => i.WagenId);
             Property(i => i.Merk)
                 .IsRequired();

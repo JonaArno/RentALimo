@@ -12,8 +12,12 @@ namespace RentALimo.EF.Mapping
     {
         public PeriodeConfiguration()
         {
-            Property(i => i.Begin).IsRequired();
-            Property(i => i.Einde).IsRequired();
+            Property(i => i.Begin)
+                .HasColumnName("Begin")
+                .IsRequired();
+            Property(i => i.Einde)
+                .HasColumnName("Einde")
+                .IsRequired();
         }
     }
 }

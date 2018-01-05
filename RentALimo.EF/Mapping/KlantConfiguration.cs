@@ -12,6 +12,7 @@ namespace RentALimo.EF.Mapping
     {
         public KlantConfiguration()
         {
+            ToTable("Klant");
             HasKey(i => i.KlantId);
             Property(i => i.Naam).IsRequired();
             HasRequired(i => i.Adres);

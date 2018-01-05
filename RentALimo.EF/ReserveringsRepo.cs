@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using RentALimo.Business;
+using System.Data.Entity;
 
 namespace RentALimo.EF
 {
@@ -15,20 +16,27 @@ namespace RentALimo.EF
         //dit moet herbekeken worden
         public IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
         {
-            List<Reservering> returnWaarde = new List<Reservering>();
-
-            foreach (var res in limo.Reserveringen)
-            {
-                if (res.Periode.Begin > begin && res.Periode.Einde<einde)
-                    returnWaarde.Add(res);
-            }
-
-            return returnWaarde;
+          //  bool overlap = a.start < b.end && b.start < a.end;
+            return Context.Set<Reservering>()
+                .Include(r => r.Limo)
+                .Where(r => r.Limo.WagenId == limo.WagenId &&
+                            r.Periode.Begin <= begin &&
+                            r.Periode.Einde >= einde);
         }
 
         public int AantalReserveringenVoorKlantInJaar(Klant klant, int jaar)
         {
-           return klant.ReserveringenInJaar(jaar);
+           //return klant.ReserveringenInJaar(jaar);
+            int returnwaarde = 0;
+
+            //moet uit reserveringen komen
+            List <Klant> rw =
+            //Context.Set<Klant>()
+            //    .Where(kl => kl.KlantId == klant.KlantId)
+            //    .ToList();
+
+
+
         }
 
         //??
