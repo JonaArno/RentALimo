@@ -5,13 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentALimo"
         mc:Ignorable="d"
-        Title="NieuweReservering" Height="350" Width="525">
+        Title="Nieuwe Reservering Aanmaken" Height="350" Width="525">
     <Grid>
-        <Label Name="KlantLabel" Content="Klant:" HorizontalAlignment="Left" Margin="21,19,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="115,23,0,0" VerticalAlignment="Top" Width="120"/>
-        
-        <Label Name="StartDatumLabel" Content="Start: " HorizontalAlignment="Left" Margin="22,45,0,0" VerticalAlignment="Top"/>
-        <Label Name="EindDatumLabel" Content="Einde: " HorizontalAlignment="Left" Margin="22,71,0,0" VerticalAlignment="Top"/>
+        <Label Name="KlantLabel" Content="Klant:" HorizontalAlignment="Left" Margin="31,23,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="KlantComboBox" HorizontalAlignment="Left" Margin="90,23,0,0" VerticalAlignment="Top" Width="120"/>
+
+
+        <Label Name="ArrangementLabel" Content="Arrangement: " HorizontalAlignment="Left" Margin="264,23,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="355,23,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Name="Business">Business</ComboBoxItem>
+            <ComboBoxItem Name="Airport">Airport</ComboBoxItem>
+            <ComboBoxItem Name="Wedding">Wedding</ComboBoxItem>
+            <ComboBoxItem Name="Nightlife">Nightlife</ComboBoxItem>
+        </ComboBox>
+
+
+        <Label Name="StartLabel" Content="Start: " HorizontalAlignment="Left" Margin="90,48,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="StartDatePicker" HorizontalAlignment="Left" Margin="90,74,0,0" VerticalAlignment="Top"/>
+        <Label Name="StartDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="29,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.235,1.593"/>
+        <Label Name="StartUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="31,98,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.58,1.812"/>
+        <ComboBox Name="StartUurComboBox" HorizontalAlignment="Left" Margin="90,102,0,0" VerticalAlignment="Top" Width="102">
+            <ComboBoxItem Name="ComboBoxStartItem1">00</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem2">01</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem3">02</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem4">03</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem5">04</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem6">05</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem7">06</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem8">07</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem9">08</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem10">09</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem11">10</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem12">11</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem13">12</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem14">13</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem15">14</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem16">15</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem17">16</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem18">17</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem19">18</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem20">19</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem21">20</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem22">21</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem23">22</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxStartItem24">23</ComboBoxItem>
+        </ComboBox>
+
+        <Label Name="EindLabel" Content="Einde: " HorizontalAlignment="Left" Margin="325,48,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.926,-0.251"/>
+        <DatePicker Name="EndDatePicker" HorizontalAlignment="Left" Margin="325,74,0,0" VerticalAlignment="Top"/>
+        <Label Name="EindDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="264,73,0,0" VerticalAlignment="Top"/>
+        <Label Name="EindUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="264,98,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="EindUurComboBox" HorizontalAlignment="Left" Margin="325,103,0,0" VerticalAlignment="Top" Width="102">
+            <ComboBoxItem Name="ComboBoxEindItem1">00</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem2">01</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem3">02</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem4">03</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem5">04</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem6">05</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem7">06</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem8">07</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem9">08</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem10">09</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem11">10</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem12">11</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem13">12</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem14">13</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem15">14</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem16">15</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem17">16</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem18">17</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem19">18</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem20">19</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem21">20</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem22">21</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem23">22</ComboBoxItem>
+            <ComboBoxItem Name="ComboBoxEindItem24">23</ComboBoxItem>
+        </ComboBox>
+
+        <Label Name="BeschikbareWagensLabel" Content="Beschikbare Wagens" HorizontalAlignment="Left" Margin="31,142,0,0" VerticalAlignment="Top"/>
+        <ListView HorizontalAlignment="Left" Height="100" Margin="31,168,0,0" VerticalAlignment="Top" Width="179">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
+        </ListView>
+
+
+
+        <Button Name="MaakButton" Content="Maak" HorizontalAlignment="Left" Margin="352,289,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="AnnuleerButton" Content="Annuleer" HorizontalAlignment="Left" Margin="432,289,0,0" VerticalAlignment="Top" Width="75" Click="AnnuleerButton_Click"/>
+       
+
 
     </Grid>
 </Window>

@@ -43,6 +43,11 @@ namespace RentALimo.Business
 
             return 0;
         }
+
+        public override string ToString()
+        {
+            return Naam;
+        }
     }
 
 }

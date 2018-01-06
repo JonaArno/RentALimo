@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RentALimo.Business;
+using RentALimo.EF;
 
 namespace RentALimo
 {
@@ -22,6 +24,19 @@ namespace RentALimo
         public NieuweReservering()
         {
             InitializeComponent();
+            var rr = new ReserveringsRepo();
+            var rb = new ReserveringBouwer(rr);
+
+            foreach (var kl in rr.OphalenKlanten())
+            {
+                KlantComboBox.Items.Add(kl);
+            }
+
+        }
+
+        private void AnnuleerButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

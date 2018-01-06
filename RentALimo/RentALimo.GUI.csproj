@@ -62,7 +62,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Limos.xaml">
+    <Page Include="LimoBeschikbaarheid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -84,8 +84,8 @@
     <Compile Include="Klanten.xaml.cs">
       <DependentUpon>Klanten.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Limos.xaml.cs">
-      <DependentUpon>Limos.xaml</DependentUpon>
+    <Compile Include="LimoBeschikbaarheid.xaml.cs">
+      <DependentUpon>LimoBeschikbaarheid.xaml</DependentUpon>
     </Compile>
     <Compile Include="NieuweReservering.xaml.cs">
       <DependentUpon>NieuweReservering.xaml</DependentUpon>
@@ -122,6 +122,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RentALimo.Business\RentALimo.Business.csproj">
+      <Project>{589D7B21-0DBD-4B8C-A260-94AAC65D1C9B}</Project>
+      <Name>RentALimo.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RentALimo.EF\RentALimo.EF.csproj">
       <Project>{BB1A8E73-5AAA-4F08-A8D0-EEBE4538E380}</Project>
       <Name>RentALimo.EF</Name>

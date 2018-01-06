@@ -24,9 +24,33 @@ namespace RentALimo
     {
         public MainWindow()
         {
-            var pop = new Populator(new PopuleerRepo());
-            pop.Populeer();
+            //var pop = new Populator(new PopuleerRepo());
+            //pop.Populeer();
             InitializeComponent();
+        }
+
+        private void NieuweReserveringButton_Click(object sender, RoutedEventArgs e)
+        {
+            var nr = new NieuweReservering();
+            nr.ShowDialog();
+        }
+
+        private void BestaandeReserveringButton_Click(object sender, RoutedEventArgs e)
+        {
+            var br = new BestaandeReserveringen();
+            br.ShowDialog();
+        }
+
+        private void BeschikbaarheidLimosButton_Click(object sender, RoutedEventArgs e)
+        {
+            var lb = new LimoBeschikbaarheid();
+            lb.ShowDialog();
+        }
+
+        private void KlantenButton_Click(object sender, RoutedEventArgs e)
+        {
+            var kl = new Klanten();
+            kl.ShowDialog();
         }
     }
 }

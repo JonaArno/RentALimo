@@ -8,3 +8,7 @@ C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\obj\Debug\RentA
 C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.dll
 C:\Users\Administrator\Source\Repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.pdb
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo.Business\bin\Debug\RentALimo.Business.dll
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo.Business\bin\Debug\RentALimo.Business.pdb
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.dll
+C:\Users\Jonathan\source\repos\RentALimo\RentALimo.Business\obj\Debug\RentALimo.Business.pdb

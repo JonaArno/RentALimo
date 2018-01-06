@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="RentALimo" Height="350" Width="525">
     <Grid>
-        <Button Name="NieuweReserveringButton" Content="Nieuwe Reservering" HorizontalAlignment="Center" Margin="140,45,127,0" VerticalAlignment="Top" Width="250" Height="35"/>
-        <Button Name="BestaandeReserveringButton" Content="Bestaande Reservering Opzoeken" HorizontalAlignment="Left" Margin="140,115,0,0" VerticalAlignment="Top" Width="250" Height="35"/>
-        <Button Name="BeschikbaarheidLimosButton" Content="Beschikbaarheid Limo's bekijken" HorizontalAlignment="Left" Margin="140,180,0,0" VerticalAlignment="Top" Width="250" Height="35"/>
-        <Button Name="KlantenButton" Content="Klantenbestand Doorzoeken" HorizontalAlignment="Left" Margin="140,245,0,0" VerticalAlignment="Top" Width="250" Height="35"/>
+        <Button Name="NieuweReserveringButton" Content="Nieuwe Reservering" HorizontalAlignment="Center" Margin="140,45,127,0" VerticalAlignment="Top" Width="250" Height="35" Click="NieuweReserveringButton_Click"/>
+        <Button Name="BestaandeReserveringButton" Content="Bestaande Reservering Opzoeken" HorizontalAlignment="Left" Margin="140,115,0,0" VerticalAlignment="Top" Width="250" Height="35" Click="BestaandeReserveringButton_Click"/>
+        <Button Name="BeschikbaarheidLimosButton" Content="Beschikbaarheid Limo's bekijken" HorizontalAlignment="Left" Margin="140,180,0,0" VerticalAlignment="Top" Width="250" Height="35" Click="BeschikbaarheidLimosButton_Click"/>
+        <Button Name="KlantenButton" Content="Klantenbestand Doorzoeken" HorizontalAlignment="Left" Margin="140,245,0,0" VerticalAlignment="Top" Width="250" Height="35" Click="KlantenButton_Click"/>
 
     </Grid>
 </Window>

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace RentALimo
 {
     /// <summary>
-    /// Interaction logic for Limos.xaml
+    /// Interaction logic for LimoBeschikbaarheid.xaml
     /// </summary>
-    public partial class Limos : Window
+    public partial class LimoBeschikbaarheid : Window
     {
-        public Limos()
+        public LimoBeschikbaarheid()
         {
             InitializeComponent();
         }

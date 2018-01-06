@@ -51,6 +51,7 @@
     <Compile Include="Locatie.cs" />
     <Compile Include="Periode.cs" />
     <Compile Include="PrijsBerekening.cs" />
+    <Compile Include="PrijsInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservering.cs" />
     <Compile Include="ReserveringBouwer.cs" />
