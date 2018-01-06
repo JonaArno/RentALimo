@@ -26,7 +26,7 @@ namespace RentALimo.Business
             _repo = repo;
         }
 
-        public Reservering Maak()
+        public void Maak()
         {
             if (!IsGeldig())
             {
@@ -42,7 +42,8 @@ namespace RentALimo.Business
                 // enz ...
                 // PrijsInfo = PrijsBerekenaarFabriek.Berekenaar(Arrangement).PrijsInfo()
             };
-            return result;
+            _repo.Nieuw(result);
+            //return result;
         }
 
         private string Status()

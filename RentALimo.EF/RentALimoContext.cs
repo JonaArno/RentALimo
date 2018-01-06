@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using RentALimo.Business;
@@ -15,37 +16,19 @@ namespace RentALimo.EF
         {
             if (!Database.Exists()) Database.Create();
             Database.Log = s => Debug.WriteLine(s);
-            
-            //wat doet dit?
             Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
-            
+            Configuration.ProxyCreationEnabled = false;           
             // ...
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
-            //wat doen de twee hieronder?
+            //base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-            
-            
-            //modelBuilder.Entity<EventingKorting>();
-            // alle mappings toevoegen in deze assembly
-
+            modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnName("datetime2"));
             modelBuilder.Configurations.AddFromAssembly(GetType().Assembly);
         }
-
-        //Allemaal niet nodig
-        //public DbSet<Adres> Adressen { get; set; }
-        //public DbSet<EventingKorting> EventingKortingen { get; set; }
-        //public DbSet<EventingKortingItem> EventinkortingItems { get; set; }
-        //public DbSet<Klant> Klanten { get; set; }
-        //public DbSet<KlantCategorie> KlantCategorieën { get; set; }
-        //public DbSet<Limo> Limos { get; set; }
-        //public DbSet<Reservering> Reserveringen { get; set; }
-        //public DbSet<WagenPrijs> WagenPrijzen { get; set; }
     }
 }

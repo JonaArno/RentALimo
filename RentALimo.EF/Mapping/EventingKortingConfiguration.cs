@@ -8,6 +8,7 @@ namespace RentALimo.EF.Mapping
     {
         public EventingKortingConfiguration()
         {
+            ToTable("EventingKorting");
             HasKey(k => k.Id);
             Property(k => k.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);

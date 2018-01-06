@@ -53,12 +53,13 @@
     <Compile Include="Mapping\EventingKortingItemConfiguration.cs" />
     <Compile Include="Mapping\EventingKortingConfiguration.cs" />
     <Compile Include="Mapping\LimoConfiguration.cs" />
+    <Compile Include="Mapping\PeriodeConfiguration.cs" />
     <Compile Include="Mapping\ReserveringConfiguration.cs" />
-    <Compile Include="Mapping\WagenPrijsConfiguration.cs" />
     <Compile Include="PopuleerRepo.cs" />
     <Compile Include="RentALimoConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RentALimoContext.cs" />
+    <Compile Include="ReserveringsRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

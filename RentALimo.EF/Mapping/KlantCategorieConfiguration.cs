@@ -12,14 +12,15 @@ namespace RentALimo.EF.Mapping
     {
         public KlantCategorieConfiguration()
         {
+            ToTable("KlantCategorie");
             HasKey(i => i.CategorieId);
             Property(i => i.Naam).IsRequired();
             //klopt dit?
-            HasMany(i => i.Klanten)
-                .WithOptional()
-                .Map(m => m.MapKey("KlantCategorie"))
-                //true?? - als klantcategorie verwijdert wordt, moet de FK ook leeg komen te staan bij de klanten
-                .WillCascadeOnDelete(true);
+            //HasMany(i => i.Kl)
+            //    .WithOptional()
+            //    .Map(m => m.MapKey("KlantCategorie"))
+            //    //true?? - als klantcategorie verwijdert wordt, moet de FK ook leeg komen te staan bij de klanten
+            //    .WillCascadeOnDelete(true);
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿<Window x:Class="RentALimo.NieuweReservering"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RentALimo"
+        mc:Ignorable="d"
+        Title="NieuweReservering" Height="350" Width="525">
+    <Grid>
+        <Label Name="KlantLabel" Content="Klant:" HorizontalAlignment="Left" Margin="21,19,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="115,23,0,0" VerticalAlignment="Top" Width="120"/>
+        
+        <Label Name="StartDatumLabel" Content="Start: " HorizontalAlignment="Left" Margin="22,45,0,0" VerticalAlignment="Top"/>
+        <Label Name="EindDatumLabel" Content="Einde: " HorizontalAlignment="Left" Margin="22,71,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

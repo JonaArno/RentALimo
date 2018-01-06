@@ -12,6 +12,7 @@ namespace RentALimo.EF.Mapping
     {
         public AdresConfiguration()
         {
+            ToTable("Adres");
             HasKey(i => i.Id);
             Property(i => i.Straat).IsRequired();
             Property(i => i.PostCode).IsRequired();

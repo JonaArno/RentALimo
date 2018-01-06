@@ -9,9 +9,9 @@ namespace RentALimo.EF
 
         public RentALimoContext Context { get; private set; }
 
-        public PopuleerRepo(RentALimoContext context)
+        public PopuleerRepo()
         {
-            Context = context;
+            Context = new RentALimoContext();
         }
 
         public void NieuweKortingen(IEnumerable<EventingKorting> kortingen)

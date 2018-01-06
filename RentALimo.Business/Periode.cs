@@ -7,15 +7,16 @@ namespace RentALimo.Business
         //public static readonly int MaximaleDuur = 11;
         public static readonly TimeSpan MaximaleDuur = new TimeSpan(11,0,0);
 
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public TimeSpan Duur { get; internal set; }
         public DateTime Begin { get; internal set; }
         public DateTime Einde { get; internal set; }
 
         //denkpiste
-        public int NormaleUren { get; set; }
-        public int AantalOverUren { get; set; }
-        public int AantalNachtUren { get; set; }
+        ////niet meer nodig
+        //public int NormaleUren { get; set; }
+        //public int AantalOverUren { get; set; }
+        //public int AantalNachtUren { get; set; }
 
         protected Periode() { }
 
@@ -24,23 +25,24 @@ namespace RentALimo.Business
             Begin = begin;
             Einde = einde;
             Duur = einde - begin;
-            IndelingInUren();
+            //IndelingInUren();
         }
 
-        private void IndelingInUren()
-        {
-            //#nachturen berekenen
-            var copy = Begin;
-            do
-            {
-                copy = copy.AddHours(1);
-                if (copy.Hour >= 22 || copy.Hour >= 0 && copy.Hour <= 6)
-                {
-                    AantalNachtUren += 1;
-                }
+        //niet meer nodig
+        //private void IndelingInUren()
+        //{
+        //    //#nachturen berekenen
+        //    var copy = Begin;
+        //    do
+        //    {
+        //        copy = copy.AddHours(1);
+        //        if (copy.Hour >= 22 || copy.Hour >= 0 && copy.Hour <= 6)
+        //        {
+        //            AantalNachtUren += 1;
+        //        }
 
-            } while (copy < Einde);
-        }
+        //    } while (copy < Einde);
+        //}
 
         public bool RespecteertMaxDuur()
         {
