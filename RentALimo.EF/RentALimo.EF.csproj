@@ -55,6 +55,7 @@
     <Compile Include="Mapping\LimoConfiguration.cs" />
     <Compile Include="Mapping\PeriodeConfiguration.cs" />
     <Compile Include="Mapping\ReserveringConfiguration.cs" />
+    <Compile Include="OphaalRepo.cs" />
     <Compile Include="PopuleerRepo.cs" />
     <Compile Include="RentALimoConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

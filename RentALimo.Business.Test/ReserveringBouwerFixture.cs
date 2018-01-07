@@ -34,6 +34,11 @@ namespace RentALimo.Business.Test
             Reserveringen.Add(reservering);
         }
 
+        public IEnumerable<Klant> OphalenKlanten()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Limo> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
         {
             throw new NotImplementedException();

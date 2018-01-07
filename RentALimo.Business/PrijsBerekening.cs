@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,77 +10,136 @@ namespace RentALimo.Business
     public class PrijsBerekening
     {
         private const decimal BtwPercentage = 6;
-        public decimal AangerekendeEventingKorting { get; set; }
-        public decimal BedragExclusiefBtw { get; set; }
-        public decimal BtwBedrag { get; set; }
-        public decimal TotaalTeBetalenBedrag { get; set; }
-        public Reservering Reservering { get; set; }
-        Dictionary<int,decimal> PrijsPerUur = new Dictionary<int, decimal>();
+        public PrijsInfo PrijsInfo = new PrijsInfo();
+        public Limo Limo { get; set; }
+        public Arrangement Arrangement { get; set; }
+        public EventingKorting EventingKorting { get; set; }
+        public int AantalReserveringen { get; set; }
+        public Periode Periode { get; set; }
+        Dictionary<int, decimal> PrijsPerUur = new Dictionary<int, decimal>();
 
         protected PrijsBerekening() { }
 
-        //limo, arrangement, klant, eventingkorting en aantalreservaties kunnen we uit reservering halen
-        //opmerking: is reservering wel al geïnstantieerd op dit punt?
-        public PrijsBerekening(Reservering res)
+        public PrijsBerekening(Limo limo, Arrangement arr, EventingKorting evtKorting, int aantalReserveringen,
+            DateTime startTijd, DateTime eindTijd)
         {
-            Reservering = res;
+            Limo = limo;
+            Arrangement = arr;
+            EventingKorting = evtKorting;
+            AantalReserveringen = aantalReserveringen;
+            Periode = new Periode(startTijd, eindTijd);
         }
 
-        public decimal BerekenKostPrijs()
+        public void BerekenKostPrijs()
         {
-            decimal returnWaarde =0;
+            //deze onder elif steken?
+            int teller = 0;
 
-            //wat als er extra minuten zijn?
-            // 23 => 0 oplossing
-            //how to iterate over time
-            for (int i = 0; i < Reservering.Periode.Duur.Hours; i++)
+            //controle op Nightlife / wedding
+            //splitberekening
+            if (Arrangement == Arrangement.NightLife || Arrangement == Arrangement.Wedding)
             {
-                DateTime huidigeTijd = Reservering.Periode.Begin.AddHours(i);
-
-                if (IsEersteUur(huidigeTijd))
+                if (Arrangement == Arrangement.NightLife)
                 {
-                    PrijsPerUur.Add(i+1,Reservering.Limo.EersteUurPrijs);
-                }
+                    PrijsPerUur.Add(teller, Limo.NightLifeArrangementPrijs);
 
-                else if (IsNachtUur(huidigeTijd))
-                {
-                    PrijsPerUur.Add(i+1,NachtUurPrijs(Reservering.Limo.EersteUurPrijs));
-                }
+                    if (Periode.BevatOverUren(Arrangement))
+                    {
+                        DateTime startTijd = Periode.Begin.AddHours(7);
+                        while (startTijd < Periode.Einde)
+                        {
+                            if (Arrangement == Arrangement.NightLife)
+                            {
+                                PrijsPerUur.Add(teller+1,NachtUurPrijs(Limo.EersteUurPrijs));
+                            }
+                            else if (Arrangement == Arrangement.Wedding)
+                            {
+                                if (IsNachtUur(startTijd))
+                                {
+                                    PrijsPerUur.Add(teller + 1, NachtUurPrijs(Limo.EersteUurPrijs));
+                                }
+                                else
+                                {
+                                    PrijsPerUur.Add(teller +1,TweedeUurPrijs(Limo.EersteUurPrijs));
+                                }
+                            }
+                            teller += 1;
+                        }
 
-                else
-                {
-                    PrijsPerUur.Add(i+1,TweedeUurPrijs(Reservering.Limo.EersteUurPrijs));
+                    }
                 }
-                
             }
 
-
-            //dit eigen method geven?
-            foreach (KeyValuePair<int,decimal> prijsVoorUur in PrijsPerUur)
+            else if (Arrangement == Arrangement.Airport || Arrangement == Arrangement.Business)
             {
-                returnWaarde += prijsVoorUur.Value;
+                while (teller < Periode.Duur.Hours)
+                {
+                    DateTime huidigeTijd = Periode.Begin.AddHours(teller);
+
+                    if (IsEersteUur(huidigeTijd))
+                    {
+                        PrijsPerUur.Add(teller, Limo.EersteUurPrijs);
+                        if (IsNachtUur(huidigeTijd))
+                        {
+                            PrijsInfo.AantalNachtUren += 1;
+                        }
+                        else
+                        {
+                            PrijsInfo.AantalGewoneUren += 1;
+                        }
+                    }
+
+                    else if (IsNachtUur(huidigeTijd))
+                    {
+                        PrijsPerUur.Add(teller, NachtUurPrijs(Limo.EersteUurPrijs));
+                        PrijsInfo.AantalNachtUren += 1;
+                    }
+
+                    else if (IsOverUur(huidigeTijd))
+                    {
+                        PrijsPerUur.Add(teller, TweedeUurPrijs(Limo.EersteUurPrijs));
+                        PrijsInfo.AantalOverUren += 1;
+                    }
+
+                    teller += 1;
+                }
+            }
+            //optellen van bedragen om prijs exclusief btw VOOR eventingkorting te bekomen
+            foreach (KeyValuePair<int, decimal> prijsVoorUur in PrijsPerUur)
+            {
+                PrijsInfo.BedragExclusiefBtwVoorEventingKorting = +prijsVoorUur.Value;
             }
 
-            //toepassen eventingKorting
-            double eventingKortingVoorAantal = Reservering.Klant.KlantCategorie.EventingKorting.KortingVoorAantal(Reservering.Klant.ReserveringenInJaar(DateTime.Now.Year));
-            returnWaarde = BerekenPrijsNaEventingKorting(returnWaarde, eventingKortingVoorAantal);
+            //eventingkorting berekenen en toekennen aan PrijsInfowaarde
+            PrijsInfo.AangerekendeEventingKorting = (PrijsInfo.BedragExclusiefBtwVoorEventingKorting / 100) * (decimal)EventingKorting.KortingVoorAantal(AantalReserveringen);
 
-            //berekenenPrijsInclBtw
-            returnWaarde = BerekenPrijsInclBtw(returnWaarde);
+            //Berekening BedragExclBtwNaEventingKorting
+            PrijsInfo.BedragExclusiefBtwNaEventingKorting =
+                PrijsInfo.BedragExclusiefBtwVoorEventingKorting - PrijsInfo.AangerekendeEventingKorting;
 
+            //Berekening BtwBedrag
+            PrijsInfo.BtwBedrag = (PrijsInfo.BedragExclusiefBtwNaEventingKorting / 100) * BtwPercentage;
 
-            //return
-            return returnWaarde;
+            //Berekening totaalbedrag
+            PrijsInfo.TotaalTeBetalenBedrag = PrijsInfo.BedragExclusiefBtwNaEventingKorting + PrijsInfo.BtwBedrag;
         }
+
 
         public decimal BerekenPrijsInclBtw(decimal prijsExclBtw)
         {
             return (prijsExclBtw / 100) * (100 + BtwPercentage);
         }
 
+        public bool IsNightLife()
+        {
+            bool returnWaarde = Arrangement == Arrangement.NightLife;
+            return returnWaarde;
+
+        }
+
         public bool IsEersteUur(DateTime tijdStip)
         {
-            if (tijdStip <= Reservering.Periode.Begin.AddHours(1))
+            if (tijdStip <= Periode.Begin.AddHours(1))
             {
                 return true;
             }
@@ -94,9 +154,10 @@ namespace RentALimo.Business
 
         public bool IsOverUur(DateTime tijdStip)
         {
-            bool returnWaarde = (tijdStip > Reservering.Periode.Begin.AddHours(7));
+            bool returnWaarde = (tijdStip > Periode.Begin.AddHours(7));
             return returnWaarde;
         }
+
 
         public decimal NachtUurPrijs(decimal prijs)
         {

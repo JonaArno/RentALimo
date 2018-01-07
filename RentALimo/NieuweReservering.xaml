@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentALimo"
         mc:Ignorable="d"
-        Title="Nieuwe Reservering Aanmaken" Height="350" Width="525">
+        Title="Nieuwe Reservering Aanmaken" Height="500" Width="800">
     <Grid>
         <Label Name="KlantLabel" Content="Klant:" HorizontalAlignment="Left" Margin="31,23,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="KlantComboBox" HorizontalAlignment="Left" Margin="90,23,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="KlantComboBox" HorizontalAlignment="Left" Margin="122,23,0,0" VerticalAlignment="Top" Width="150"/>
 
 
-        <Label Name="ArrangementLabel" Content="Arrangement: " HorizontalAlignment="Left" Margin="264,23,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="355,23,0,0" VerticalAlignment="Top" Width="120">
+        <Label Name="ArrangementLabel" Content="Arrangement: " HorizontalAlignment="Left" Margin="31,203,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="ArrangementComboBox" HorizontalAlignment="Left" Margin="122,207,0,0" VerticalAlignment="Top" Width="150">
             <ComboBoxItem Name="Business">Business</ComboBoxItem>
             <ComboBoxItem Name="Airport">Airport</ComboBoxItem>
             <ComboBoxItem Name="Wedding">Wedding</ComboBoxItem>
@@ -20,11 +20,11 @@
         </ComboBox>
 
 
-        <Label Name="StartLabel" Content="Start: " HorizontalAlignment="Left" Margin="90,48,0,0" VerticalAlignment="Top"/>
-        <DatePicker Name="StartDatePicker" HorizontalAlignment="Left" Margin="90,74,0,0" VerticalAlignment="Top"/>
-        <Label Name="StartDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="29,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.235,1.593"/>
-        <Label Name="StartUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="31,98,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.58,1.812"/>
-        <ComboBox Name="StartUurComboBox" HorizontalAlignment="Left" Margin="90,102,0,0" VerticalAlignment="Top" Width="102">
+        <Label Name="StartLabel" Content="Start: " HorizontalAlignment="Left" Margin="122,56,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="StartDatePicker" HorizontalAlignment="Left" Margin="122,87,0,0" VerticalAlignment="Top"/>
+        <Label Name="StartDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="31,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.235,1.593"/>
+        <Label Name="StartUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="31,118,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.58,1.812"/>
+        <ComboBox Name="StartUurComboBox" HorizontalAlignment="Left" Margin="122,122,0,0" VerticalAlignment="Top" Width="102">
             <ComboBoxItem Name="ComboBoxStartItem1">00</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxStartItem2">01</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxStartItem3">02</ComboBoxItem>
@@ -51,11 +51,11 @@
             <ComboBoxItem Name="ComboBoxStartItem24">23</ComboBoxItem>
         </ComboBox>
 
-        <Label Name="EindLabel" Content="Einde: " HorizontalAlignment="Left" Margin="325,48,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.926,-0.251"/>
-        <DatePicker Name="EndDatePicker" HorizontalAlignment="Left" Margin="325,74,0,0" VerticalAlignment="Top"/>
-        <Label Name="EindDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="264,73,0,0" VerticalAlignment="Top"/>
-        <Label Name="EindUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="264,98,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="EindUurComboBox" HorizontalAlignment="Left" Margin="325,103,0,0" VerticalAlignment="Top" Width="102">
+        <Label Name="EindLabel" Content="Einde: " HorizontalAlignment="Left" Margin="395,56,0,0" VerticalAlignment="Top" RenderTransformOrigin="5.926,-0.251"/>
+        <DatePicker Name="EndDatePicker" HorizontalAlignment="Left" Margin="395,87,0,0" VerticalAlignment="Top"/>
+        <Label Name="EindDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="312,86,0,0" VerticalAlignment="Top"/>
+        <Label Name="EindUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="312,118,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.276,0.462"/>
+        <ComboBox Name="EindUurComboBox" HorizontalAlignment="Left" Margin="395,118,0,0" VerticalAlignment="Top" Width="102">
             <ComboBoxItem Name="ComboBoxEindItem1">00</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxEindItem2">01</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxEindItem3">02</ComboBoxItem>
@@ -82,8 +82,30 @@
             <ComboBoxItem Name="ComboBoxEindItem24">23</ComboBoxItem>
         </ComboBox>
 
-        <Label Name="BeschikbareWagensLabel" Content="Beschikbare Wagens" HorizontalAlignment="Left" Margin="31,142,0,0" VerticalAlignment="Top"/>
-        <ListView HorizontalAlignment="Left" Height="100" Margin="31,168,0,0" VerticalAlignment="Top" Width="179">
+
+        <Label Name="StartLocatieLabel" Content="Startlocatie" HorizontalAlignment="Left" Margin="29,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="0,0"/>
+        <ComboBox Name="StartLocatieComboBox" HorizontalAlignment="Left" Margin="122,164,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Name="Gent">Gent</ComboBoxItem>
+            <ComboBoxItem Name="Antwerpen">Antwerpen</ComboBoxItem>
+            <ComboBoxItem Name="Brussel">Brussel</ComboBoxItem>
+            <ComboBoxItem Name="Hasselt">Hasselt</ComboBoxItem>
+            <ComboBoxItem Name="Charleroi">Charleroi</ComboBoxItem>
+        </ComboBox>
+
+
+        <Label Name="EindLocatieLabel" Content="Eindlocatie" HorizontalAlignment="Left" Margin="312,160,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="EindLocatieComboBox" HorizontalAlignment="Left" Margin="395,164,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Name="Gent2">Gent</ComboBoxItem>
+            <ComboBoxItem Name="Antwerpen2">Antwerpen</ComboBoxItem>
+            <ComboBoxItem Name="Brussel2">Brussel</ComboBoxItem>
+            <ComboBoxItem Name="Hasselt2">Hasselt</ComboBoxItem>
+            <ComboBoxItem Name="Charleroi2">Charleroi</ComboBoxItem>
+        </ComboBox>
+
+
+
+        <Label Name="BeschikbareWagensLabel" Content="Beschikbare Wagens:" HorizontalAlignment="Left" Margin="31,254,0,0" VerticalAlignment="Top"/>
+        <ListView Name="BeschikbareWagensListView" HorizontalAlignment="Left" Height="150" Margin="31,285,0,0" VerticalAlignment="Top" Width="279">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -96,11 +118,30 @@
             </ListView.Resources>
         </ListView>
 
+        <Label Name="PrijsInfoLabel" Content="Prijsinfo:" HorizontalAlignment="Left" Margin="419,254,0,0" VerticalAlignment="Top"/>
+        <Button Name="BerekenPrijsInfoButton" Content="Bereken" HorizontalAlignment="Left" Margin="510,257,0,0" VerticalAlignment="Top" Width="75" Click="BerekenPrijsInfoButton_Click"/>
+
+        <Label Name="BedrExclBtwVoorEvtKrtLabel" Content="Bedrag exclusief BTW (voor eventingkorting)" HorizontalAlignment="Left" Margin="436,300,0,0" VerticalAlignment="Top"/>
+        <Label Name="BedrExclBtwVoorEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,300,0,0" VerticalAlignment="Top" Width="96" Height="23" />
+
+        <Label Name="AangerekendeEvtKrtLabel" Content="Aangerekende eventingkorting" HorizontalAlignment="Left" Margin="436,326,0,0" VerticalAlignment="Top"/>
+        <Label Name="AangerekendeEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,328,0,0" VerticalAlignment="Top" Width="96" Height="23"/>
+
+        <Label Name="BedrExclBtwNaEvtKrtLabel" Content="Bedrag exclusief BTW (na eventingkorting)" HorizontalAlignment="Left" Margin="436,352,0,0" VerticalAlignment="Top" Width="245"/>
+        <Label Name="BedrExclBtwNaEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,356,0,0" VerticalAlignment="Top" Width="96" Height="22"/>
+
+        <Label Name="BtwBedragLabel" Content="BTW-bedrag (BTW: 6%)" HorizontalAlignment="Left" Margin="436,378,0,0" VerticalAlignment="Top" Width="229"/>
+        <Label Name="BtwBedragValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,383,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,-0.346" Width="96" Height="21"/>
+
+        <Label Name="TotaalbedragInclBtwLabel" Content="Totaalbedrag inclusief BTW" HorizontalAlignment="Left" Margin="436,404,0,0" VerticalAlignment="Top" Width="174"/>
+        <Label Name="TotaalbedragInclBtwValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,409,0,0" VerticalAlignment="Top" Width="96" Height="21"/>
 
 
-        <Button Name="MaakButton" Content="Maak" HorizontalAlignment="Left" Margin="352,289,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="AnnuleerButton" Content="Annuleer" HorizontalAlignment="Left" Margin="432,289,0,0" VerticalAlignment="Top" Width="75" Click="AnnuleerButton_Click"/>
-       
+
+
+        <Button Name="MaakButton" Content="Maak" HorizontalAlignment="Left" Margin="627,439,0,0" VerticalAlignment="Top" Width="75" Click="MaakButton_Click"/>
+        <Button Name="AnnuleerButton" Content="Annuleer" HorizontalAlignment="Left" Margin="707,439,0,0" VerticalAlignment="Top" Width="75" Click="AnnuleerButton_Click"/>
+
 
 
     </Grid>

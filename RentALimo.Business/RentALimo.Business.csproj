@@ -44,6 +44,7 @@
     <Compile Include="Arrangement.cs" />
     <Compile Include="EventingKorting.cs" />
     <Compile Include="EventingKortingItems.cs" />
+    <Compile Include="IOphaalRepo.cs" />
     <Compile Include="IReserveringRepo.cs" />
     <Compile Include="Klant.cs" />
     <Compile Include="KlantCategorie.cs" />

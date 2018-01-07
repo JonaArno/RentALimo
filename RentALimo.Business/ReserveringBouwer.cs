@@ -11,12 +11,12 @@ namespace RentALimo.Business
     {
         private IReserveringRepo _repo;
 
-        public DateTime? Datum { get; set; }
+        //public DateTime? Datum { get; set; }
         public Klant Klant { get; set; }
         public Periode Periode { get; set; }
-        public Arrangement? Arrangement { get; set; }
-        public Locatie? StartLocatie { get; set; }
-        public Locatie? EindLocatie { get; set; }
+        public Arrangement Arrangement { get; set; }
+        public Locatie StartLocatie { get; set; }
+        public Locatie EindLocatie { get; set; }
         public Limo Limo { get; set; }
 
 
@@ -33,15 +33,16 @@ namespace RentALimo.Business
                 throw new InvalidOperationException(Status());
             }
 
-            var result = new Reservering
-            {
-                Arrangement = Arrangement.Value,
-                Periode = Periode,
-                Limo = Limo
+            var result = new Reservering(Arrangement, Periode, StartLocatie, EindLocatie,
+                Limo, Klant);
+            //{
+            //    Arrangement = Arrangement.Value,
+            //    Periode = Periode,
+            //    Limo = Limo
 
-                // enz ...
-                // PrijsInfo = PrijsBerekenaarFabriek.Berekenaar(Arrangement).PrijsInfo()
-            };
+            //    // enz ...
+            //    // PrijsInfo = PrijsBerekenaarFabriek.Berekenaar(Arrangement).PrijsInfo()
+            //};
             _repo.Nieuw(result);
             //return result;
         }
@@ -60,16 +61,17 @@ namespace RentALimo.Business
             return Klant != null &&
                    Periode != null &&
                    Limo != null &&
-                   Datum.HasValue &&
-                   Arrangement.HasValue &&
-                   StartLocatie.HasValue &&
-                   EindLocatie.HasValue &&
-                   Limo.MogelijkBinnenArrangement(Arrangement.Value) &&
+                   //Datum.HasValue &&
+                   //Arrangement != null &&
+                   //StartLocatie.HasValue &&
+                   //EindLocatie.HasValue &&
+                   Limo.MogelijkBinnenArrangement(Arrangement) &&
                    Periode.Duur <= Periode.MaximaleDuur &&
                    // Arrangement.Value.IsGeldigStartUur(Periode.StartUur) &&
                    LimoIsVrij();
 
         }
+
 
         private bool LimoIsVrij()
         {
@@ -79,5 +81,6 @@ namespace RentALimo.Business
             var reserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, Periode.Begin.AddHours(buffer), Periode.Einde.AddHours(buffer));
             return true;
         }
+
     }
 }

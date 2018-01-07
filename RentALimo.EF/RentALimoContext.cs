@@ -37,5 +37,9 @@ namespace RentALimo.EF
             modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnName("datetime2"));
             modelBuilder.Configurations.AddFromAssembly(GetType().Assembly);
         }
+
+    
     }
+
+
 }

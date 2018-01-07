@@ -27,6 +27,7 @@ namespace RentALimo
             //var pop = new Populator(new PopuleerRepo());
             //pop.Populeer();
             InitializeComponent();
+            var context = new RentALimoContext();
         }
 
         private void NieuweReserveringButton_Click(object sender, RoutedEventArgs e)

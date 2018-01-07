@@ -11,18 +11,22 @@ namespace RentALimo.Business
         public Locatie StartLocatie { get; set; }
         public Locatie EindLocatie { get; set; }
         public Klant Klant { get; set; }
+        public PrijsInfo PrijsInfo { get; set;}
         public DateTime ReserveringsDatum { get; set; }
 
-        //enige nodig? Open gezet ikv ReserveringBouwer
-        public Reservering() { }
 
-        public Reservering(Arrangement arrangement, Periode periode, Limo limo, Klant klant, DateTime datum)
+        protected Reservering() { }
+
+        public Reservering(Arrangement arrangement, Periode periode, Locatie startLocatie, Locatie eindLocatie, Limo limo, Klant klant,PrijsInfo prijsInfo)
         {
             Arrangement = arrangement;
             Periode = periode;
+            StartLocatie = startLocatie;
+            EindLocatie = eindLocatie;
             Limo = limo;
             Klant = klant;
-            ReserveringsDatum = datum;
+            PrijsInfo = prijsInfo;
+            ReserveringsDatum = DateTime.Now;
         }
 
     }

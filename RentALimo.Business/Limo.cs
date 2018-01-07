@@ -78,5 +78,11 @@ namespace RentALimo.Business
 
             return reedsBeschikbaar;
         }
+
+        public override string ToString()
+        {
+            return $"{Merk} {Type}";
+
+        }
     }
 }

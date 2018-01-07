@@ -13,12 +13,6 @@ namespace RentALimo.EF
     {
         public RentALimoContext Context = new RentALimoContext();
         
-        public IEnumerable<Klant> OphalenKlanten()
-        {
-            return Context.Set<Klant>()
-                .ToList();
-        }
-
         //dit moet herbekeken worden
         public IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
         {
@@ -32,24 +26,15 @@ namespace RentALimo.EF
 
         public int AantalReserveringenVoorKlantInJaar(Klant klant, int jaar)
         {
-           //return klant.ReserveringenInJaar(jaar);
-            //int returnwaarde = 0;
+            int returnWaarde = 0;
+            List<Reservering> opzoekWerk = Context.Set<Reservering>()
+                .Where(res => res.Klant.KlantId == klant.KlantId
+                              && res.ReserveringsDatum.Year == jaar)
+                .ToList();
 
-            //moet uit reserveringen komen
+            returnWaarde = opzoekWerk.Count;
 
-            //hieronder aanvullen
-            //List<Klant> rw = ;
-            
-            //Context.Set<Klant>()
-            //    .Where(kl => kl.KlantId == klant.KlantId)
-            //    .ToList();
-
-            return 5;
-        }
-
-        public IEnumerable<Limo> BeschikbareLimosInPeriode(DateTime begin, DateTime einde)
-        {
-
+            return returnWaarde;
         }
 
 
@@ -59,5 +44,7 @@ namespace RentALimo.EF
             Context.Set<Reservering>().Add(res);
             Context.SaveChanges();
         }
+
+        
     }
 }
