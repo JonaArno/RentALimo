@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="Klanten" Height="500" Width="800">
     <Grid>
-        
+        <DataGrid Name="KlantenOverzicht" HorizontalAlignment="Left" AutoGenerateColumns="False" Height="428" VerticalAlignment="Top" Width="800">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naam" Binding="{Binding Naam}" Width="200"></DataGridTextColumn>
+                <DataGridTextColumn Header="Klantcategorie" Binding="{Binding KlantCategorie.Naam}" Width="120"></DataGridTextColumn>
+                <DataGridTextColumn Header="Straat" Binding="{Binding Adres.Straat}" Width="120"></DataGridTextColumn>
+                <DataGridTextColumn Header="Postcode" Binding="{Binding Adres.PostCode}" Width="120"></DataGridTextColumn>
+                <DataGridTextColumn Header="Stad" Binding="{Binding Adres.Stad}" Width="120"></DataGridTextColumn>
+                <DataGridTextColumn Header="Land" Binding="{Binding Adres.Land}" Width="120"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Name="KlantNaamLabel"  Content="Naam: " HorizontalAlignment="Left" Height="31" Margin="10,428,0,0" VerticalAlignment="Top" Width="54"/>
+        <TextBox Name="ZoekKlantTextBox" HorizontalAlignment="Left" Height="23" Margin="69,432,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296" TextChanged="ZoekKlantTextBox_TextChanged"/>
+
     </Grid>
 </Window>

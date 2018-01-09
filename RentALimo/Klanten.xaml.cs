@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RentALimo.EF;
 
 namespace RentALimo
 {
@@ -22,6 +23,16 @@ namespace RentALimo
         public Klanten()
         {
             InitializeComponent();
+            var repo = new OphaalRepo();
+
+            KlantenOverzicht.ItemsSource = repo.OphalenKlanten();
+            
+        }
+
+        private void ZoekKlantTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var repo = new OphaalRepo();
+            KlantenOverzicht.ItemsSource = repo.OphalenKlantenMetFilter(ZoekKlantTextBox.Text);
         }
     }
 }

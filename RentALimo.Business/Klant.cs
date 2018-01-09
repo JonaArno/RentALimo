@@ -10,7 +10,6 @@ namespace RentALimo.Business
         public string Naam { get; set; }
         public Adres Adres { get; set; }
         public string BtwNummer { get; set; }
-
         public KlantCategorie KlantCategorie { get; set; }
         //public ICollection<Reservering> Reserveringen = new List<Reservering>();
 

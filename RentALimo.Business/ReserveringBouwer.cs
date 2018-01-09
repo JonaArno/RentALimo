@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace RentALimo.Business
@@ -33,8 +34,9 @@ namespace RentALimo.Business
                 throw new InvalidOperationException(Status());
             }
 
+            //DEZE CONSTRUCTOR MOET ZEKER HERBEKEKEN WORDEN
             var result = new Reservering(Arrangement, Periode, StartLocatie, EindLocatie,
-                Limo, Klant);
+                Limo, Klant,new PrijsBerekening(Limo,Arrangement,Klant.KlantCategorie.EventingKorting,_repo.AantalReserveringenVoorKlantInJaar(Klant,DateTime.Now.Year),Periode.Begin,Periode.Einde).PrijsInfo);
             //{
             //    Arrangement = Arrangement.Value,
             //    Periode = Periode,
@@ -61,19 +63,40 @@ namespace RentALimo.Business
             return Klant != null &&
                    Periode != null &&
                    Limo != null &&
-                   //Datum.HasValue &&
                    //Arrangement != null &&
                    //StartLocatie.HasValue &&
                    //EindLocatie.HasValue &&
                    Limo.MogelijkBinnenArrangement(Arrangement) &&
                    Periode.Duur <= Periode.MaximaleDuur &&
-                   // Arrangement.Value.IsGeldigStartUur(Periode.StartUur) &&
+                   IsGeldigStartUur(Arrangement, Periode.Begin) &&
                    LimoIsVrij();
 
         }
 
+        public bool IsGeldigStartUur(Arrangement arrangement, DateTime periodeBegin)
+        {
+            bool returnWaarde = true;
 
-        private bool LimoIsVrij()
+            if (arrangement == Arrangement.Wedding)
+            {
+                if (periodeBegin.Hour < 7 || periodeBegin.Hour > 15)
+                {
+                    returnWaarde = false;
+                }
+            }
+
+            else if (arrangement == Arrangement.NightLife)
+            {
+                if (periodeBegin.Hour > 0 && periodeBegin.Hour < 20)
+                {
+                    returnWaarde = false;
+                }
+            }
+            return returnWaarde;
+        }
+
+
+        public bool LimoIsVrij()
         {
             // dit is slechts 1 mogelijke (uit vele) en 
             // een onvolledige implementatie

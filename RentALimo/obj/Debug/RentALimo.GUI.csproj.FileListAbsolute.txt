@@ -46,7 +46,6 @@ C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\MainWindow.g.c
 C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\MainWindow.baml
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\BestaandeReserveringen.g.cs
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\Klanten.g.cs
-C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\Limos.g.cs
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\NieuweReservering.g.cs
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\bin\Debug\RentALimo.EF.dll
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\bin\Debug\RentALimo.Populeer.dll
@@ -60,7 +59,8 @@ C:\Users\Jonathan\source\repos\RentALimo\RentALimo\bin\Debug\EntityFramework.xml
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\BestaandeReserveringen.baml
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\Klanten.baml
-C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\Limos.baml
 C:\Users\Jonathan\source\repos\RentALimo\RentALimo\obj\Debug\NieuweReservering.baml
 C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\LimoBeschikbaarheid.g.cs
 C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\LimoBeschikbaarheid.baml
+C:\Users\Jonathan\Source\Repos\RentALimo\RentALimo\obj\Debug\LimoBeschikbaarheid.g.cs
+C:\Users\Jonathan\Source\Repos\RentALimo\RentALimo\obj\Debug\LimoBeschikbaarheid.baml

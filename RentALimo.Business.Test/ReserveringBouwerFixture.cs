@@ -13,6 +13,65 @@ namespace RentALimo.Business.Test
         {
             var target = new ReserveringBouwer(new NepRepo());
         }
+
+        [TestMethod]
+        public void GeldigWeddingStartUurAccepted()
+        {
+            var target = new ReserveringBouwer(new NepRepo());
+
+            var expected = true;
+            var result = target.IsGeldigStartUur(Arrangement.Wedding, new DateTime(2018, 01, 4, 7, 0, 0));
+
+            Assert.AreEqual(expected,result);
+        }
+
+        [TestMethod]
+        public void OngeldigWeddingStartUurNietAccepted()
+        {
+            var target = new ReserveringBouwer(new NepRepo());
+
+            var expected = false;
+            var result = target.IsGeldigStartUur(Arrangement.Wedding, new DateTime(2018, 01, 4, 6, 0, 0));
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void GeldigNightlifeStartUurAccepted()
+        {
+            var target = new ReserveringBouwer(new NepRepo());
+
+            var expected = true;
+            var result = target.IsGeldigStartUur(Arrangement.NightLife, new DateTime(2018, 01, 4, 20, 0, 0));
+
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void MiddernachtNightlifeStartUurAccepted()
+        {
+            var target = new ReserveringBouwer(new NepRepo());
+
+            var expected = true;
+            var result = target.IsGeldigStartUur(Arrangement.NightLife, new DateTime(2018, 01, 4, 0, 0, 0));
+
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void OngeldigNightlifeStartUurNietAccepted()
+        {
+            var target = new ReserveringBouwer(new NepRepo());
+
+            var expected = false;
+            var result = target.IsGeldigStartUur(Arrangement.NightLife, new DateTime(2018, 01, 4, 6, 0, 0));
+
+            Assert.AreEqual(expected, result);
+        }
+
+
     }
 
     internal class NepRepo : IReserveringRepo

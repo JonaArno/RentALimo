@@ -19,12 +19,19 @@ namespace RentALimo.EF
                 .ToList();
         }
 
+        public IEnumerable<Klant> OphalenKlantenMetFilter(string filter)
+        {
+            return Context.Set<Klant>()
+                .Where(kl => kl.Naam.Contains(filter))
+                .ToList();
+        }
+
         public IEnumerable<Limo> OphalenAlleLimos()
         {
             return Context.Set<Limo>()
                 .ToList();
-
         }
+        
 
 
         public IEnumerable<Limo> OphalenBeschikbareLimosInPeriode(DateTime begin, DateTime einde)
