@@ -37,34 +37,41 @@ namespace RentALimo.Business
 
             //controle op Nightlife / wedding
             //splitberekening
-            if (Arrangement == Arrangement.NightLife || Arrangement == Arrangement.Wedding)
-            {
-                if (Arrangement == Arrangement.NightLife)
-                {
-                    PrijsPerUur.Add(teller, Limo.NightLifeArrangementPrijs);
 
-                    if (Periode.BevatOverUren(Arrangement))
+            if (Arrangement == Arrangement.NightLife)
+            {
+                PrijsPerUur.Add(teller, Limo.NightLifeArrangementPrijs);
+
+                if (Periode.BevatOverUren(Arrangement))
+                {
+                    DateTime startTijd = Periode.Begin.AddHours(7);
+                    while (startTijd < Periode.Einde)
                     {
-                        DateTime startTijd = Periode.Begin.AddHours(7);
-                        while (startTijd < Periode.Einde)
+                        PrijsPerUur.Add(teller + 1, NachtUurPrijs(Limo.EersteUurPrijs));
+                        teller += 1;
+                        startTijd = Periode.Begin.AddHours(7 + teller);
+                    }
+                }
+            }
+
+            else if (Arrangement == Arrangement.Wedding)
+            {
+                if (Periode.BevatOverUren(Arrangement))
+                {
+                    DateTime startTijd = Periode.Begin.AddHours(7);
+                    while (startTijd < Periode.Einde)
+                    {
+                        if (IsNachtUur(startTijd))
                         {
-                            if (Arrangement == Arrangement.NightLife)
-                            {
-                                PrijsPerUur.Add(teller+1,NachtUurPrijs(Limo.EersteUurPrijs));
-                            }
-                            else if (Arrangement == Arrangement.Wedding)
-                            {
-                                if (IsNachtUur(startTijd))
-                                {
-                                    PrijsPerUur.Add(teller + 1, NachtUurPrijs(Limo.EersteUurPrijs));
-                                }
-                                else
-                                {
-                                    PrijsPerUur.Add(teller +1,TweedeUurPrijs(Limo.EersteUurPrijs));
-                                }
-                            }
-                            teller += 1;
+                            PrijsPerUur.Add(teller + 1, NachtUurPrijs(Limo.EersteUurPrijs));
                         }
+                        else
+                        {
+                            PrijsPerUur.Add(teller + 1, TweedeUurPrijs(Limo.EersteUurPrijs));
+                        }
+
+                        teller += 1;
+                        startTijd = Periode.Begin.AddHours(7 + teller);
 
                     }
                 }

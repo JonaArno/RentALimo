@@ -54,6 +54,10 @@ namespace RentALimo
                 BeschikbareWagensListView.Items.Add(li);
             }
 
+            ArrangementComboBox.ItemsSource = Enum.GetValues(typeof(Arrangement));
+            StartLocatieComboBox.ItemsSource = Enum.GetValues(typeof(Locatie));
+            EindLocatieComboBox.ItemsSource = Enum.GetValues(typeof(Locatie));
+
 
         }
 
@@ -86,41 +90,52 @@ namespace RentALimo
 
 
                 //arrangement toewijzen
-                Arrangement arr = Arrangement.Airport;
-                if (ArrangementComboBox.Text == "Business")
-                    arr = Arrangement.Business;
-                else if (ArrangementComboBox.Text == "Airport")
-                    arr = Arrangement.Airport;
-                else if (ArrangementComboBox.Text == "Wedding")
-                    arr = Arrangement.Wedding;
-                else if (ArrangementComboBox.Text == "Nightlife")
-                    arr = Arrangement.NightLife;
+                Arrangement arr = (Arrangement) ArrangementComboBox.SelectedItem;
 
-                Locatie startLocatie = Locatie.Antwerpen;
-                if (StartLocatieComboBox.Text != "Antwerpen")
-                {
-                    if (StartLocatieComboBox.Text == "Gent")
-                        startLocatie = Locatie.Gent;
-                    else if (StartLocatieComboBox.Text == "Brussel")
-                        startLocatie = Locatie.Brussel;
-                    else if (StartLocatieComboBox.Text == "Hasselt")
-                        startLocatie = Locatie.Hasselt;
-                    else if (StartLocatieComboBox.Text == "Charleroi")
-                        startLocatie = Locatie.Hasselt;
-                }
+                //oude code
+                //Arrangement arr = Arrangement.Airport;
+                //if (ArrangementComboBox.Text == "Business")
+                //    arr = Arrangement.Business;
+                //else if (ArrangementComboBox.Text == "Airport")
+                //    arr = Arrangement.Airport;
+                //else if (ArrangementComboBox.Text == "Wedding")
+                //    arr = Arrangement.Wedding;
+                //else if (ArrangementComboBox.Text == "Nightlife")
+                //    arr = Arrangement.NightLife;
 
-                Locatie eindLocatie = Locatie.Antwerpen;
-                if (EindLocatieComboBox.Text != "Antwerpen")
-                {
-                    if (EindLocatieComboBox.Text == "Gent")
-                        eindLocatie = Locatie.Gent;
-                    else if (EindLocatieComboBox.Text == "Brussel")
-                        eindLocatie = Locatie.Brussel;
-                    else if (EindLocatieComboBox.Text == "Hasselt")
-                        eindLocatie = Locatie.Hasselt;
-                    else if (EindLocatieComboBox.Text == "Charleroi")
-                        eindLocatie = Locatie.Hasselt;
-                }
+
+                Locatie startLocatie = (Locatie) StartLocatieComboBox.SelectedItem;
+
+                //oude code
+                //Locatie startLocatie = Locatie.Antwerpen;
+                //if (StartLocatieComboBox.Text != "Antwerpen")
+                //{
+                //    if (StartLocatieComboBox.Text == "Gent")
+                //        startLocatie = Locatie.Gent;
+                //    else if (StartLocatieComboBox.Text == "Brussel")
+                //        startLocatie = Locatie.Brussel;
+                //    else if (StartLocatieComboBox.Text == "Hasselt")
+                //        startLocatie = Locatie.Hasselt;
+                //    else if (StartLocatieComboBox.Text == "Charleroi")
+                //        startLocatie = Locatie.Hasselt;
+                //}
+
+
+                Locatie eindLocatie = (Locatie) EindLocatieComboBox.SelectedItem;
+
+                //Oude code
+                //Locatie eindLocatie = Locatie.Antwerpen;
+                //if (EindLocatieComboBox.Text != "Antwerpen")
+                //{
+                //    if (EindLocatieComboBox.Text == "Gent")
+                //        eindLocatie = Locatie.Gent;
+                //    else if (EindLocatieComboBox.Text == "Brussel")
+                //        eindLocatie = Locatie.Brussel;
+                //    else if (EindLocatieComboBox.Text == "Hasselt")
+                //        eindLocatie = Locatie.Hasselt;
+                //    else if (EindLocatieComboBox.Text == "Charleroi")
+                //        eindLocatie = Locatie.Hasselt;
+                //}
 
 
 
@@ -164,7 +179,8 @@ namespace RentALimo
                         arr = Arrangement.Wedding;
                 }
 
-                Klant kl = (Klant) KlantComboBox.SelectionBoxItem;
+                //hier ophalen klant
+                Klant kl = (Klant) KlantComboBox.SelectionBoxItem; 
                 EventingKorting evtKorting = kl.KlantCategorie.EventingKorting;
 
                 DateTime invoerStartDatum = (DateTime)StartDatePicker.SelectedDate;

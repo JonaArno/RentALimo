@@ -54,6 +54,7 @@
     <Compile Include="Mapping\EventingKortingConfiguration.cs" />
     <Compile Include="Mapping\LimoConfiguration.cs" />
     <Compile Include="Mapping\PeriodeConfiguration.cs" />
+    <Compile Include="Mapping\PrijsInfoConfiguration.cs" />
     <Compile Include="Mapping\ReserveringConfiguration.cs" />
     <Compile Include="OphaalRepo.cs" />
     <Compile Include="PopuleerRepo.cs" />

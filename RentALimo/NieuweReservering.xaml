@@ -8,23 +8,18 @@
         Title="Nieuwe Reservering Aanmaken" Height="500" Width="800">
     <Grid>
         <Label Name="KlantLabel" Content="Klant:" HorizontalAlignment="Left" Margin="31,23,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="KlantComboBox" HorizontalAlignment="Left" Margin="122,23,0,0" VerticalAlignment="Top" Width="150"/>
+        <ComboBox Name="KlantComboBox" HorizontalAlignment="Left" Margin="122,23,0,0" VerticalAlignment="Top" Width="150" SelectedIndex="0"/>
 
 
         <Label Name="ArrangementLabel" Content="Arrangement: " HorizontalAlignment="Left" Margin="31,203,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="ArrangementComboBox" HorizontalAlignment="Left" Margin="122,207,0,0" VerticalAlignment="Top" Width="150">
-            <ComboBoxItem Name="Business">Business</ComboBoxItem>
-            <ComboBoxItem Name="Airport">Airport</ComboBoxItem>
-            <ComboBoxItem Name="Wedding">Wedding</ComboBoxItem>
-            <ComboBoxItem Name="Nightlife">Nightlife</ComboBoxItem>
-        </ComboBox>
+        <ComboBox Name="ArrangementComboBox" HorizontalAlignment="Left" Margin="122,207,0,0" VerticalAlignment="Top" Width="150" SelectedIndex="0"></ComboBox>
 
 
         <Label Name="StartLabel" Content="Start: " HorizontalAlignment="Left" Margin="122,56,0,0" VerticalAlignment="Top"/>
         <DatePicker Name="StartDatePicker" HorizontalAlignment="Left" Margin="122,87,0,0" VerticalAlignment="Top"/>
         <Label Name="StartDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="31,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.235,1.593"/>
         <Label Name="StartUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="31,118,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.58,1.812"/>
-        <ComboBox Name="StartUurComboBox" HorizontalAlignment="Left" Margin="122,122,0,0" VerticalAlignment="Top" Width="102">
+        <ComboBox Name="StartUurComboBox" HorizontalAlignment="Left" Margin="122,122,0,0" VerticalAlignment="Top" Width="102" SelectedIndex="0">
             <ComboBoxItem Name="ComboBoxStartItem1">00</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxStartItem2">01</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxStartItem3">02</ComboBoxItem>
@@ -55,7 +50,7 @@
         <DatePicker Name="EndDatePicker" HorizontalAlignment="Left" Margin="395,87,0,0" VerticalAlignment="Top"/>
         <Label Name="EindDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="312,86,0,0" VerticalAlignment="Top"/>
         <Label Name="EindUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="312,118,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.276,0.462"/>
-        <ComboBox Name="EindUurComboBox" HorizontalAlignment="Left" Margin="395,118,0,0" VerticalAlignment="Top" Width="102">
+        <ComboBox Name="EindUurComboBox" HorizontalAlignment="Left" Margin="395,118,0,0" VerticalAlignment="Top" Width="102" SelectedIndex="0">
             <ComboBoxItem Name="ComboBoxEindItem1">00</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxEindItem2">01</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxEindItem3">02</ComboBoxItem>
@@ -84,23 +79,11 @@
 
 
         <Label Name="StartLocatieLabel" Content="Startlocatie" HorizontalAlignment="Left" Margin="29,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="0,0"/>
-        <ComboBox Name="StartLocatieComboBox" HorizontalAlignment="Left" Margin="122,164,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Name="Gent">Gent</ComboBoxItem>
-            <ComboBoxItem Name="Antwerpen">Antwerpen</ComboBoxItem>
-            <ComboBoxItem Name="Brussel">Brussel</ComboBoxItem>
-            <ComboBoxItem Name="Hasselt">Hasselt</ComboBoxItem>
-            <ComboBoxItem Name="Charleroi">Charleroi</ComboBoxItem>
-        </ComboBox>
+        <ComboBox Name="StartLocatieComboBox" HorizontalAlignment="Left" Margin="122,164,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"></ComboBox>
 
 
         <Label Name="EindLocatieLabel" Content="Eindlocatie" HorizontalAlignment="Left" Margin="312,160,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="EindLocatieComboBox" HorizontalAlignment="Left" Margin="395,164,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Name="Gent2">Gent</ComboBoxItem>
-            <ComboBoxItem Name="Antwerpen2">Antwerpen</ComboBoxItem>
-            <ComboBoxItem Name="Brussel2">Brussel</ComboBoxItem>
-            <ComboBoxItem Name="Hasselt2">Hasselt</ComboBoxItem>
-            <ComboBoxItem Name="Charleroi2">Charleroi</ComboBoxItem>
-        </ComboBox>
+        <ComboBox Name="EindLocatieComboBox" HorizontalAlignment="Left" Margin="395,164,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"></ComboBox>
 
 
 
