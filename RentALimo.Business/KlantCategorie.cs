@@ -11,6 +11,8 @@ namespace RentALimo.Business
         
         //public ICollection<Klant> Klanten = new List<Klant>();
 
+        protected KlantCategorie() { }
+
         //moet eventingKorting wel op deze wijze geïnstantieerd worden?
         public KlantCategorie(string naam,EventingKorting eventingKorting)
         {

@@ -19,10 +19,21 @@ namespace RentALimo.EF
                 .ToList();
         }
 
+        public IEnumerable<Klant> OphalenKlantenGrid()
+        {
+            return Context.Set<Klant>()
+                .Include(kl => kl.Adres)
+                .Include(kl => kl.KlantCategorie)
+                .ToList();
+        }
+
+
         public IEnumerable<Klant> OphalenKlantenMetFilter(string filter)
         {
             return Context.Set<Klant>()
                 .Where(kl => kl.Naam.Contains(filter))
+                .Include(kl => kl.Adres)
+                .Include(kl => kl.KlantCategorie)
                 .ToList();
         }
 

@@ -25,8 +25,7 @@ namespace RentALimo
             InitializeComponent();
             var repo = new OphaalRepo();
 
-            KlantenOverzicht.ItemsSource = repo.OphalenKlanten();
-            
+            KlantenOverzicht.ItemsSource = repo.OphalenKlantenGrid();          
         }
 
         private void ZoekKlantTextBox_TextChanged(object sender, TextChangedEventArgs e)
