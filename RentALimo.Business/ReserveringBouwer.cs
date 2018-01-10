@@ -96,13 +96,57 @@ namespace RentALimo.Business
         }
 
 
+        //DIT MOET NOG EENS GOED UITGETEKEND WORDEN
         public bool LimoIsVrij()
         {
+            var laatste = _repo.LaatsteReserveringVoorLimo(Limo, Periode.Begin);
+            var volgende = _repo.VolgendeReserveringVoorLimo(Limo, Periode.Einde);
+
+            DateTime gecorrigeerdLaatsteReservatieEinde = new DateTime();
+            DateTime gecorrigeerdHuidigeReservatieEinde = new DateTime();
+
+            //laatste corrigeren
+            if (laatste.EindLocatie == this.StartLocatie)
+            {
+                gecorrigeerdLaatsteReservatieEinde = laatste.Periode.Einde.AddHours(4);
+            }
+            else if (laatste.EindLocatie != this.StartLocatie)
+            {
+                gecorrigeerdLaatsteReservatieEinde = laatste.Periode.Einde.AddHours(6);
+            }
+
+
+            //huidige einde corrigeren
+            if (this.EindLocatie == volgende.StartLocatie)
+            {
+                gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(4);
+            }
+            else if (this.EindLocatie != volgende.StartLocatie)
+            {
+                gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(6);
+            }
+            
+
+            //ok? My brain hurts
+            bool overlapMetLaatste =
+                this.Periode.Begin < gecorrigeerdLaatsteReservatieEinde && laatste.Periode.Begin < this.Periode.Einde;
+
+            bool overlapMetVolgende =
+                this.Periode.Begin < volgende.Periode.Einde && volgende.Periode.Begin < gecorrigeerdHuidigeReservatieEinde;
+
+            if (!overlapMetLaatste && !overlapMetVolgende)
+                return true;
+            else return false;
+
+
+
+
+
             // dit is slechts 1 mogelijke (uit vele) en 
             // een onvolledige implementatie
-            var buffer = 6; // komt waarschijnlijk uit Locatie
-            var reserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, Periode.Begin.AddHours(buffer), Periode.Einde.AddHours(buffer));
-            return true;
+            //var buffer = 6; // komt waarschijnlijk uit Locatie
+            //var reserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, Periode.Begin.AddHours(buffer), Periode.Einde.AddHours(buffer));
+            //return true;
         }
 
     }

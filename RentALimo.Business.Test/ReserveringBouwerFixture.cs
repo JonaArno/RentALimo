@@ -71,6 +71,7 @@ namespace RentALimo.Business.Test
             Assert.AreEqual(expected, result);
         }
 
+      
 
     }
 
@@ -86,6 +87,11 @@ namespace RentALimo.Business.Test
             if (klant.Naam == "Tom" && jaar == ditjaar) return 3;
             return Reserveringen.Count(
                 r => r.Klant.Equals(klant) && r.ReserveringsDatum.Year == jaar);
+        }
+
+        public Reservering LaatsteReserveringVoorStartuurHuidige(Limo limo, DateTime periodeBegin)
+        {
+            throw new NotImplementedException();
         }
 
         public void Nieuw(Reservering reservering)

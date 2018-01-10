@@ -12,11 +12,11 @@ namespace RentALimo.EF
     public class ReserveringsRepo : IReserveringRepo
     {
         public RentALimoContext Context = new RentALimoContext();
-        
+
         //dit moet herbekeken worden
         public IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
         {
-          //  bool overlap = a.start < b.end && b.start < a.end;
+            //  bool overlap = a.start < b.end && b.start < a.end;
             return Context.Set<Reservering>()
                 .Include(r => r.Limo)
                 .Where(r => r.Limo.WagenId == limo.WagenId &&
@@ -37,6 +37,35 @@ namespace RentALimo.EF
             return returnWaarde;
         }
 
+        public Reservering LaatsteReserveringVoorLimo(Limo limo, DateTime periodeBegin)
+        {
+            //ordent dit wel van klein naar groot?
+            List<Reservering> res = Context.Set<Reservering>()
+                                    .Include(r => r.Limo)
+                                    .Include(r => r.Periode)
+                                    .Include(r => r.EindLocatie)
+                                    .Where(r => r.Limo == limo)
+                                    .Where(r => r.Periode.Einde <= periodeBegin)
+                                    .OrderBy(r => r.Periode.Einde)
+                                    .ToList();
+
+            return res.Last();
+        }
+
+        public Reservering VolgendeReserveringVoorLimo(Limo limo, DateTime periodeEinde)
+        {
+            //ordening ok?
+            List<Reservering> res = Context.Set<Reservering>()
+                .Include(r => r.Limo)
+                .Include(r => r.Periode)
+                .Include(r => r.StartLocatie)
+                .Where(r => r.Limo == limo)
+                .Where(r => r.Periode.Begin >= periodeEinde)
+                .OrderBy(r => r.Periode.Begin)
+                .ToList();
+
+            return res.First();
+        }
 
 
         public void Nieuw(Reservering res)
@@ -45,6 +74,6 @@ namespace RentALimo.EF
             Context.SaveChanges();
         }
 
-        
+
     }
 }

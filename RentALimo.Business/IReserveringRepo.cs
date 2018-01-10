@@ -9,5 +9,7 @@ namespace RentALimo.Business
         IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde);
         int AantalReserveringenVoorKlantInJaar(Klant klant, int jaar);
         void Nieuw(Reservering reservering);
+        Reservering LaatsteReserveringVoorLimo(Limo limo, DateTime periodeBegin);
+        Reservering VolgendeReserveringVoorLimo(Limo limo, DateTime periodeEinde);
     }
 }
