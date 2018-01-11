@@ -114,7 +114,7 @@ namespace RentALimo.Business
             //optellen van bedragen om prijs exclusief btw VOOR eventingkorting te bekomen
             foreach (KeyValuePair<int, decimal> prijsVoorUur in PrijsPerUur)
             {
-                PrijsInfo.BedragExclusiefBtwVoorEventingKorting = +prijsVoorUur.Value;
+                PrijsInfo.BedragExclusiefBtwVoorEventingKorting += prijsVoorUur.Value;
             }
 
             //eventingkorting berekenen en toekennen aan PrijsInfowaarde
@@ -146,7 +146,7 @@ namespace RentALimo.Business
 
         public bool IsEersteUur(DateTime tijdStip)
         {
-            if (tijdStip <= Periode.Begin.AddHours(1))
+            if (tijdStip.Hour == Periode.Begin.Hour)
             {
                 return true;
             }

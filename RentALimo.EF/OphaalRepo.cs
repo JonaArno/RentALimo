@@ -20,17 +20,9 @@ namespace RentALimo.EF
                 .Include(kl => kl.KlantCategorie)
                 //noodzakelijk?
                 .Include(kl=>kl.KlantCategorie.EventingKorting)
+                .Include(kl => kl.KlantCategorie.EventingKorting.Items)
                 .ToList();
         }
-
-        //public IEnumerable<Klant> OphalenKlantenGrid()
-        //{
-        //    return Context.Set<Klant>()
-        //        .Include(kl => kl.Adres)
-        //        .Include(kl => kl.KlantCategorie)
-        //        .ToList();
-        //}
-
 
         public IEnumerable<Klant> OphalenKlantenMetFilter(string filter)
         {
