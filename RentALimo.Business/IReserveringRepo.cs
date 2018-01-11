@@ -6,7 +6,8 @@ namespace RentALimo.Business
     public interface IReserveringRepo
     {
         //IEnumerable<Klant> OphalenKlanten(); 
-        IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde);
+        //IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde);
+        int ReserveringenVoorLimoInPeriode(Limo limo, DateTime beginMetMarge, DateTime eindeMetMarge);
         int AantalReserveringenVoorKlantInJaar(Klant klant, int jaar);
         void Nieuw(Reservering reservering);
         Reservering LaatsteReserveringVoorLimo(Limo limo, DateTime periodeBegin);
