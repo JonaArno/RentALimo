@@ -26,22 +26,6 @@ namespace RentALimo
         {
             InitializeComponent();
 
-            //dit moet ergens anders
-            //var rr = new ReserveringsRepo();
-            //var rb = new ReserveringBouwer(rr);
-
-            //using (var rr = new ReserveringsRepo())
-            //{
-            //    using (var rb = new ReserveringBouwer(rr))
-            //    {
-            //        foreach (var kl in rr.OphalenKlanten())
-            //        {
-            //            KlantComboBox.Items.Add(kl);
-            //        }
-            //    }
-
-            //}
-
             var repo = new OphaalRepo();
 
             foreach (var kl in repo.OphalenKlanten())
@@ -79,11 +63,11 @@ namespace RentALimo
             {
                 DateTime invoerStartDatum = (DateTime)StartDatePicker.SelectedDate;
                 DateTime invoerEindDatum = (DateTime)EndDatePicker.SelectedDate;
-
+                
                 var start = new DateTime(invoerStartDatum.Year, invoerStartDatum.Month, invoerStartDatum.Day,
-                    (int.Parse(StartUurComboBox.SelectionBoxItemStringFormat)), 0, 0);
+                    Convert.ToInt32(StartUurComboBox.SelectionBoxItem), 0, 0);
                 var eind = new DateTime(invoerEindDatum.Year, invoerEindDatum.Month, invoerEindDatum.Day,
-                    (int.Parse(EindUurComboBox.SelectionBoxItemStringFormat)), 0, 0);
+                    Convert.ToInt32(EindUurComboBox.SelectionBoxItem), 0, 0);
 
                 // Parameters ophalen uit selecties
                 Klant kl = (Klant)KlantComboBox.SelectionBoxItem;
@@ -141,15 +125,12 @@ namespace RentALimo
 
                 //volgende twee lijnen ergens anders steken?
                 var prb = new PrijsBerekening((Limo)BeschikbareWagensListView.SelectedItem, arr, evtKorting,repo.AantalReserveringenVoorKlantInJaar(kl,DateTime.Now.Year),start,eind);
-                prb.BerekenKostPrijs();
 
                 BedrExclBtwVoorEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwVoorEventingKorting;
                 AangerekendeEvtKrtValueLabel.Content = prb.PrijsInfo.AangerekendeEventingKorting;
                 BedrExclBtwNaEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
                 BtwBedragValueLabel.Content = prb.PrijsInfo.BtwBedrag;
                 TotaalbedragInclBtwValueLabel.Content = prb.PrijsInfo.TotaalTeBetalenBedrag;
-
-
             }
 
 

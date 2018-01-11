@@ -57,9 +57,7 @@ namespace RentALimo.EF
             //ordent dit wel van klein naar groot?
             List<Reservering> res = Context.Set<Reservering>()
                                     .Include(r => r.Limo)
-                                    .Include(r => r.Periode)
-                                    .Include(r => r.EindLocatie)
-                                    .Where(r => r.Limo == limo)
+                                    .Where(r => r.Limo.WagenId == limo.WagenId)
                                     .Where(r => r.Periode.Einde <= periodeBegin)
                                     .OrderBy(r => r.Periode.Einde)
                                     .ToList();
@@ -73,9 +71,7 @@ namespace RentALimo.EF
             //ordening ok?
             List<Reservering> res = Context.Set<Reservering>()
                 .Include(r => r.Limo)
-                .Include(r => r.Periode)
-                .Include(r => r.StartLocatie)
-                .Where(r => r.Limo == limo)
+                .Where(r => r.Limo.WagenId == limo.WagenId)
                 .Where(r => r.Periode.Begin >= periodeEinde)
                 .OrderBy(r => r.Periode.Begin)
                 .ToList();

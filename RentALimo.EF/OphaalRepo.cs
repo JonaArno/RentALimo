@@ -20,7 +20,7 @@ namespace RentALimo.EF
                 .Include(kl => kl.KlantCategorie)
                 //noodzakelijk?
                 .Include(kl=>kl.KlantCategorie.EventingKorting)
-                .Include(kl => kl.KlantCategorie.EventingKorting.Items)
+                .Include(kl => kl.KlantCategorie.EventingKorting)
                 .ToList();
         }
 

@@ -28,15 +28,12 @@ namespace RentALimo.Business
             EventingKorting = evtKorting;
             AantalReserveringen = aantalReserveringen;
             Periode = new Periode(startTijd, eindTijd);
+            BerekenKostPrijs();
         }
 
         public void BerekenKostPrijs()
         {
-            //deze onder elif steken?
             int teller = 0;
-
-            //controle op Nightlife / wedding
-            //splitberekening
 
             if (Arrangement == Arrangement.NightLife)
             {
@@ -56,6 +53,8 @@ namespace RentALimo.Business
 
             else if (Arrangement == Arrangement.Wedding)
             {
+                PrijsPerUur.Add(teller, Limo.WeddingArrangementPrijs);
+
                 if (Periode.BevatOverUren(Arrangement))
                 {
                     DateTime startTijd = Periode.Begin.AddHours(7);
@@ -69,7 +68,6 @@ namespace RentALimo.Business
                         {
                             PrijsPerUur.Add(teller + 1, TweedeUurPrijs(Limo.EersteUurPrijs));
                         }
-
                         teller += 1;
                         startTijd = Periode.Begin.AddHours(7 + teller);
 

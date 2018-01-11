@@ -34,19 +34,9 @@ namespace RentALimo.Business
                 throw new InvalidOperationException(Status());
             }
 
-            //DEZE CONSTRUCTOR MOET ZEKER HERBEKEKEN WORDEN
             var result = new Reservering(Arrangement, Periode, StartLocatie, EindLocatie,
-                Limo, Klant,new PrijsBerekening(Limo,Arrangement,Klant.KlantCategorie.EventingKorting,_repo.AantalReserveringenVoorKlantInJaar(Klant,DateTime.Now.Year),Periode.Begin,Periode.Einde).PrijsInfo);
-            //{
-            //    Arrangement = Arrangement.Value,
-            //    Periode = Periode,
-            //    Limo = Limo
-
-            //    // enz ...
-            //    // PrijsInfo = PrijsBerekenaarFabriek.Berekenaar(Arrangement).PrijsInfo()
-            //};
+                Limo, Klant,new PrijsBerekening(Limo,Arrangement,Klant.KlantCategorie.EventingKorting,_repo.AantalReserveringenVoorKlantInJaar(Klant,DateTime.Now.Year),Periode.Begin,Periode.Einde).PrijsInfo);         
             _repo.Nieuw(result);
-            //return result;
         }
 
         private string Status()
@@ -95,40 +85,73 @@ namespace RentALimo.Business
             return returnWaarde;
         }
 
-
+        //van aanpassen tijd kunnen twee methods gemaakt worden (refactoring)
         public bool LimoIsVrij()
         {
-            var laatste = _repo.LaatsteReserveringVoorLimo(Limo, Periode.Begin);
+            var vorige = _repo.LaatsteReserveringVoorLimo(Limo, Periode.Begin);
             var volgende = _repo.VolgendeReserveringVoorLimo(Limo, Periode.Einde);
 
             DateTime gecorrigeerdHuidigeReservatieStart = new DateTime();
-            DateTime gecorrigeerdHuidigeReservatieEinde = new DateTime();         
-            
-            //aanpassen huidige startTijd
-            if (laatste.EindLocatie == this.StartLocatie)
+            DateTime gecorrigeerdHuidigeReservatieEinde = new DateTime();
+
+            if (vorige != null && volgende != null)
             {
-                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-4);
-            }
-            else if (laatste.EindLocatie != this.StartLocatie)
-            {
-                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-6);
+                //aanpassen huidige startTijd
+                if (vorige.EindLocatie == this.StartLocatie)
+                {
+                    gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-4);
+                }
+                else if (vorige.EindLocatie != this.StartLocatie)
+                {
+                    gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-6);
+                }
+
+                //aanpassen huidige eindTijd
+                if (this.EindLocatie == volgende.StartLocatie)
+                {
+                    gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(4);
+                }
+                else if (this.EindLocatie != volgende.StartLocatie)
+                {
+                    gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(6);
+                }
             }
 
-
-            //aanpassen huidige eindTijd
-            if (this.EindLocatie == volgende.StartLocatie)
+            else if (vorige == null && volgende != null)
             {
-                gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(4);
+                //aanpassen huidige eindTijd
+                if (this.EindLocatie == volgende.StartLocatie)
+                {
+                    gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(4);
+                }
+                else if (this.EindLocatie != volgende.StartLocatie)
+                {
+                    gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(6);
+                }
             }
-            else if (this.EindLocatie != volgende.StartLocatie)
+
+            else if (vorige != null && volgende == null)
             {
-                gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(6);
+                //aanpassen huidige startTijd
+                if (vorige.EindLocatie == this.StartLocatie)
+                {
+                    gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-4);
+                }
+                else if (vorige.EindLocatie != this.StartLocatie)
+                {
+                    gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-6);
+                }
+            }
+
+            else if (vorige == null && volgende == null)
+            {
+                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin;
+                gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde;
             }
             
             int overlappendeReserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, gecorrigeerdHuidigeReservatieStart, gecorrigeerdHuidigeReservatieEinde);
-
             return overlappendeReserveringen == 0;
         }
-
+        
     }
 }

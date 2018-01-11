@@ -50,7 +50,7 @@
         <DatePicker Name="EndDatePicker" HorizontalAlignment="Left" Margin="395,87,0,0" VerticalAlignment="Top"/>
         <Label Name="EindDatumLabel" Content="Datum" HorizontalAlignment="Left" Margin="312,86,0,0" VerticalAlignment="Top"/>
         <Label Name="EindUurLabel" Content="Uur" HorizontalAlignment="Left" Margin="312,118,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.276,0.462"/>
-        <ComboBox Name="EindUurComboBox" HorizontalAlignment="Left" Margin="395,118,0,0" VerticalAlignment="Top" Width="102" SelectedIndex="0">
+        <ComboBox Name="EindUurComboBox" HorizontalAlignment="Left" Margin="395,122,0,0" VerticalAlignment="Top" Width="102" SelectedIndex="0">
             <ComboBoxItem Name="ComboBoxEindItem1">00</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxEindItem2">01</ComboBoxItem>
             <ComboBoxItem Name="ComboBoxEindItem3">02</ComboBoxItem>
