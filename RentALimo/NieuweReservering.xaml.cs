@@ -187,14 +187,20 @@ namespace RentALimo
                 DateTime invoerEindDatum = (DateTime)EndDatePicker.SelectedDate;
 
                 var start = new DateTime(invoerStartDatum.Year, invoerStartDatum.Month, invoerStartDatum.Day,
-                    (int.Parse(StartUurComboBox.SelectionBoxItemStringFormat)), 0, 0);
+                    Convert.ToInt32(StartUurComboBox.SelectionBoxItem), 0, 0);
                 var eind = new DateTime(invoerEindDatum.Year, invoerEindDatum.Month, invoerEindDatum.Day,
-                    (int.Parse(EindUurComboBox.SelectionBoxItemStringFormat)), 0, 0);
-                
+                   Convert.ToInt32(EindUurComboBox.SelectionBoxItem), 0, 0);
 
+                //volgende twee lijnen ergens anders steken?
                 var prb = new PrijsBerekening((Limo)BeschikbareWagensListView.SelectedItem, arr, evtKorting,repo.AantalReserveringenVoorKlantInJaar(kl,DateTime.Now.Year),start,eind);
+                prb.BerekenKostPrijs();
 
-                
+                BedrExclBtwVoorEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwVoorEventingKorting;
+                AangerekendeEvtKrtValueLabel.Content = prb.PrijsInfo.AangerekendeEventingKorting;
+                BedrExclBtwNaEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
+                BtwBedragValueLabel.Content = prb.PrijsInfo.BtwBedrag;
+                TotaalbedragInclBtwValueLabel.Content = prb.PrijsInfo.TotaalTeBetalenBedrag;
+
 
             }
 

@@ -16,7 +16,7 @@ namespace RentALimo.EF
 
 		public int ReserveringenVoorLimoInPeriode(Limo limo, DateTime beginMetMarge, DateTime eindeMetMarge)
 		{
-			List<Reservering>() lookup = Context.Set<Reservering>()
+            List<Reservering> lookup = Context.Set<Reservering>()
 											.Where(r => r.Limo.WagenId == limo.WagenId &&
 														r.Periode.Begin >= beginMetMarge &&
 														r.Periode.Einde <= eindeMetMarge)

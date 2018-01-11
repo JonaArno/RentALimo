@@ -96,7 +96,6 @@ namespace RentALimo.Business
         }
 
 
-        //DIT MOET NOG EENS GOED UITGETEKEND WORDEN
         public bool LimoIsVrij()
         {
             var laatste = _repo.LaatsteReserveringVoorLimo(Limo, Periode.Begin);
@@ -108,11 +107,11 @@ namespace RentALimo.Business
             //aanpassen huidige startTijd
             if (laatste.EindLocatie == this.StartLocatie)
             {
-                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.Addhours(-4);
+                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-4);
             }
             else if (laatste.EindLocatie != this.StartLocatie)
             {
-                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.Addhours(-6);
+                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-6);
             }
 
 
@@ -127,32 +126,8 @@ namespace RentALimo.Business
             }
             
             int overlappendeReserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, gecorrigeerdHuidigeReservatieStart, gecorrigeerdHuidigeReservatieEinde);
-            
-            
-            return overlappendeReserveringen == 0
-            
-            
-            
-            //oude foute implementatie
-            //bool overlapMetLaatste =
-                //this.Periode.Begin < gecorrigeerdLaatsteReservatieEinde && laatste.Periode.Begin < this.Periode.Einde;
 
-            //bool overlapMetVolgende =
-                //this.Periode.Begin < volgende.Periode.Einde && volgende.Periode.Begin < gecorrigeerdHuidigeReservatieEinde;
-
-            //if (!overlapMetLaatste && !overlapMetVolgende)
-                //return true;
-            //else return false;
-
-
-
-
-
-            // dit is slechts 1 mogelijke (uit vele) en 
-            // een onvolledige implementatie
-            //var buffer = 6; // komt waarschijnlijk uit Locatie
-            //var reserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, Periode.Begin.AddHours(buffer), Periode.Einde.AddHours(buffer));
-            //return true;
+            return overlappendeReserveringen == 0;
         }
 
     }

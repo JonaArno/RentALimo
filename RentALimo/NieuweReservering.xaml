@@ -101,23 +101,23 @@
             </ListView.Resources>
         </ListView>
 
-        <Label Name="PrijsInfoLabel" Content="Prijsinfo:" HorizontalAlignment="Left" Margin="419,254,0,0" VerticalAlignment="Top"/>
-        <Button Name="BerekenPrijsInfoButton" Content="Bereken" HorizontalAlignment="Left" Margin="510,257,0,0" VerticalAlignment="Top" Width="75" Click="BerekenPrijsInfoButton_Click"/>
+        <Label Name="PrijsInfoLabel" Content="Prijsinfo:" HorizontalAlignment="Left" Margin="420,236,0,0" VerticalAlignment="Top"/>
+        <Button Name="BerekenPrijsInfoButton" Content="Bereken" HorizontalAlignment="Left" Margin="511,239,0,0" VerticalAlignment="Top" Width="75" Click="BerekenPrijsInfoButton_Click"/>
 
-        <Label Name="BedrExclBtwVoorEvtKrtLabel" Content="Bedrag exclusief BTW (voor eventingkorting)" HorizontalAlignment="Left" Margin="436,300,0,0" VerticalAlignment="Top"/>
-        <Label Name="BedrExclBtwVoorEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,300,0,0" VerticalAlignment="Top" Width="96" Height="23" />
+        <Label Name="BedrExclBtwVoorEvtKrtLabel" Content="Bedrag exclusief BTW (voor eventingkorting)" HorizontalAlignment="Left" Margin="420,267,0,0" VerticalAlignment="Top"/>
+        <Label Name="BedrExclBtwVoorEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,264,0,0" VerticalAlignment="Top" Width="96" Height="29" />
 
-        <Label Name="AangerekendeEvtKrtLabel" Content="Aangerekende eventingkorting" HorizontalAlignment="Left" Margin="436,326,0,0" VerticalAlignment="Top"/>
-        <Label Name="AangerekendeEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,328,0,0" VerticalAlignment="Top" Width="96" Height="23"/>
+        <Label Name="AangerekendeEvtKrtLabel" Content="Aangerekende eventingkorting" HorizontalAlignment="Left" Margin="420,301,0,0" VerticalAlignment="Top"/>
+        <Label Name="AangerekendeEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,298,0,0" VerticalAlignment="Top" Width="96" Height="29"/>
 
-        <Label Name="BedrExclBtwNaEvtKrtLabel" Content="Bedrag exclusief BTW (na eventingkorting)" HorizontalAlignment="Left" Margin="436,352,0,0" VerticalAlignment="Top" Width="245"/>
-        <Label Name="BedrExclBtwNaEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,356,0,0" VerticalAlignment="Top" Width="96" Height="22"/>
+        <Label Name="BedrExclBtwNaEvtKrtLabel" Content="Bedrag exclusief BTW (na eventingkorting)" HorizontalAlignment="Left" Margin="420,335,0,0" VerticalAlignment="Top" Width="245"/>
+        <Label Name="BedrExclBtwNaEvtKrtValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,332,0,0" VerticalAlignment="Top" Width="96" Height="29"/>
 
-        <Label Name="BtwBedragLabel" Content="BTW-bedrag (BTW: 6%)" HorizontalAlignment="Left" Margin="436,378,0,0" VerticalAlignment="Top" Width="229"/>
-        <Label Name="BtwBedragValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,383,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,-0.346" Width="96" Height="21"/>
+        <Label Name="BtwBedragLabel" Content="BTW-bedrag (BTW: 6%)" HorizontalAlignment="Left" Margin="420,369,0,0" VerticalAlignment="Top" Width="229"/>
+        <Label Name="BtwBedragValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,366,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,-0.346" Width="96" Height="29"/>
 
-        <Label Name="TotaalbedragInclBtwLabel" Content="Totaalbedrag inclusief BTW" HorizontalAlignment="Left" Margin="436,404,0,0" VerticalAlignment="Top" Width="174"/>
-        <Label Name="TotaalbedragInclBtwValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,409,0,0" VerticalAlignment="Top" Width="96" Height="21"/>
+        <Label Name="TotaalbedragInclBtwLabel" Content="Totaalbedrag inclusief BTW" HorizontalAlignment="Left" Margin="420,404,0,0" VerticalAlignment="Top" Width="174"/>
+        <Label Name="TotaalbedragInclBtwValueLabel" BorderBrush="Black" BorderThickness="1" Content="" HorizontalAlignment="Left" Margin="686,401,0,0" VerticalAlignment="Top" Width="96" Height="29"/>
 
 
 
