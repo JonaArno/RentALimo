@@ -102,21 +102,21 @@ namespace RentALimo.Business
             var laatste = _repo.LaatsteReserveringVoorLimo(Limo, Periode.Begin);
             var volgende = _repo.VolgendeReserveringVoorLimo(Limo, Periode.Einde);
 
-            DateTime gecorrigeerdLaatsteReservatieEinde = new DateTime();
-            DateTime gecorrigeerdHuidigeReservatieEinde = new DateTime();
-
-            //laatste corrigeren
+            DateTime gecorrigeerdHuidigeReservatieStart = new DateTime();
+            DateTime gecorrigeerdHuidigeReservatieEinde = new DateTime();         
+            
+            //aanpassen huidige startTijd
             if (laatste.EindLocatie == this.StartLocatie)
             {
-                gecorrigeerdLaatsteReservatieEinde = laatste.Periode.Einde.AddHours(4);
+                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.Addhours(-4);
             }
             else if (laatste.EindLocatie != this.StartLocatie)
             {
-                gecorrigeerdLaatsteReservatieEinde = laatste.Periode.Einde.AddHours(6);
+                gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.Addhours(-6);
             }
 
 
-            //huidige einde corrigeren
+            //aanpassen huidige eindTijd
             if (this.EindLocatie == volgende.StartLocatie)
             {
                 gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(4);
@@ -126,17 +126,23 @@ namespace RentALimo.Business
                 gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(6);
             }
             
+            int overlappendeReserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, gecorrigeerdHuidigeReservatieStart, gecorrigeerdHuidigeReservatieEinde);
+            
+            
+            return overlappendeReserveringen == 0
+            
+            
+            
+            //oude foute implementatie
+            //bool overlapMetLaatste =
+                //this.Periode.Begin < gecorrigeerdLaatsteReservatieEinde && laatste.Periode.Begin < this.Periode.Einde;
 
-            //ok? My brain hurts
-            bool overlapMetLaatste =
-                this.Periode.Begin < gecorrigeerdLaatsteReservatieEinde && laatste.Periode.Begin < this.Periode.Einde;
+            //bool overlapMetVolgende =
+                //this.Periode.Begin < volgende.Periode.Einde && volgende.Periode.Begin < gecorrigeerdHuidigeReservatieEinde;
 
-            bool overlapMetVolgende =
-                this.Periode.Begin < volgende.Periode.Einde && volgende.Periode.Begin < gecorrigeerdHuidigeReservatieEinde;
-
-            if (!overlapMetLaatste && !overlapMetVolgende)
-                return true;
-            else return false;
+            //if (!overlapMetLaatste && !overlapMetVolgende)
+                //return true;
+            //else return false;
 
 
 
