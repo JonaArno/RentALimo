@@ -13,16 +13,31 @@ namespace RentALimo.EF
     {
         public RentALimoContext Context = new RentALimoContext();
 
-        //dit moet herbekeken worden
-        public IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
-        {
-            //  bool overlap = a.start < b.end && b.start < a.end;
-            return Context.Set<Reservering>()
-                .Include(r => r.Limo)
-                .Where(r => r.Limo.WagenId == limo.WagenId &&
-                            r.Periode.Begin <= begin &&
-                            r.Periode.Einde >= einde);
-        }
+
+		public int ReserveringenVoorLimoInPeriode(Limo limo, DateTime beginMetMarge, DateTime eindeMetMarge)
+		{
+			List<Reservering>() lookup = Context.Set<Reservering>()
+											.Where(r => r.Limo.WagenId == limo.WagenId &&
+														r.Periode.Begin >= beginMetMarge &&
+														r.Periode.Einde <= eindeMetMarge)
+											.ToList();
+			return lookup.Count;
+		}
+
+        //dit zou best een int retourneren
+        //public IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
+        //{
+           // //  bool overlap = a.start < b.end && b.start < a.end;
+            //return Context.Set<Reservering>()
+              //  .Include(r => r.Limo)
+                //.Where(r => r.Limo.WagenId == limo.WagenId &&
+                  //          r.Periode.Begin <= begin &&
+                    //        r.Periode.Einde >= einde);
+							
+							
+			//hier nakijken of er limo's binnen een bepaalde periode vallen dmv de overlap-bool			
+				
+        //}
 
         public int AantalReserveringenVoorKlantInJaar(Klant klant, int jaar)
         {
@@ -49,7 +64,8 @@ namespace RentALimo.EF
                                     .OrderBy(r => r.Periode.Einde)
                                     .ToList();
 
-            return res.Last();
+            //return res.Last();
+            return res.FirstOrDefault();
         }
 
         public Reservering VolgendeReserveringVoorLimo(Limo limo, DateTime periodeEinde)
@@ -64,7 +80,8 @@ namespace RentALimo.EF
                 .OrderBy(r => r.Periode.Begin)
                 .ToList();
 
-            return res.First();
+            //return res.First();
+            return res.FirstOrDefault();
         }
 
 
