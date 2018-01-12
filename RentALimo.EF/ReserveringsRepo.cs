@@ -83,6 +83,16 @@ namespace RentALimo.EF
 
         public void Nieuw(Reservering res)
         {
+		
+		//dubbele records vermijden:
+		Klant klant = Context.Set<Klant>()
+			.Where(k=>k.Id = res.Klant.Id);
+		res.Klant = klant;
+		
+		Limo limo = Context.Set<Limo>()
+			.Where(l => l.Id = res.Limo.Id);
+		res.Limo = limo;
+	
             Context.Set<Reservering>().Add(res);
             Context.SaveChanges();
         }
