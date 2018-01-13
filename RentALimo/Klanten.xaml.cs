@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using RentALimo.Business;
 using RentALimo.EF;
 
 namespace RentALimo
@@ -20,11 +21,13 @@ namespace RentALimo
     /// </summary>
     public partial class Klanten : Window
     {
-        public Klanten()
+        public BestaandeReserveringen BestaandeReserveringen { get; set; }
+
+        public Klanten(BestaandeReserveringen bestres)
         {
             InitializeComponent();
+            BestaandeReserveringen = bestres;
             var repo = new OphaalRepo();
-
             KlantenOverzicht.ItemsSource = repo.OphalenKlantenMetFilter("");          
         }
 
@@ -32,6 +35,18 @@ namespace RentALimo
         {
             var repo = new OphaalRepo();
             KlantenOverzicht.ItemsSource = repo.OphalenKlantenMetFilter(ZoekKlantTextBox.Text);
+        }
+
+        private void OnBevestigGeselecteerdeKlantClick(object sender, RoutedEventArgs e)
+        {
+            BestaandeReserveringen.GeselecteerdeKlant = (Klant) KlantenOverzicht.SelectedItem;
+            BestaandeReserveringen.KlantValueLabel.Content = BestaandeReserveringen.GeselecteerdeKlant;
+            this.Close();
+        }
+
+        private void OnAnnuleerKlantVensterClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

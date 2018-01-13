@@ -41,17 +41,6 @@ namespace RentALimo
             var br = new BestaandeReserveringen();
             br.ShowDialog();
         }
-
-        private void BeschikbaarheidLimosButton_Click(object sender, RoutedEventArgs e)
-        {
-            var lb = new LimoBeschikbaarheid();
-            lb.ShowDialog();
-        }
-
-        private void KlantenButton_Click(object sender, RoutedEventArgs e)
-        {
-            var kl = new Klanten();
-            kl.ShowDialog();
-        }
+        
     }
 }

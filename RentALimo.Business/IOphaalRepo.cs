@@ -12,6 +12,9 @@ namespace RentALimo.Business
         //IEnumerable<Klant> OphalenKlantenGrid();
         IEnumerable<Klant> OphalenKlantenMetFilter(string filter);
         IEnumerable<Limo> OphalenAlleLimos();
+        Reservering OphalenLaatsteReserveringVanLimo(Limo limo, DateTime startDatum);
+        IEnumerable<Limo> OphalenLimosMetFilters(DateTime startDateTime, DateTime eindDateTime, Locatie startLocatie,
+            Arrangement arrangement);
         IEnumerable<Limo> OphalenBeschikbareLimosInPeriode(DateTime begin, DateTime einde);
     }
 }

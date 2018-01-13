@@ -28,20 +28,20 @@ namespace RentALimo.Business
         }
 
         //dit moet in de repo gebeuren
-        public int ReserveringenInJaar(int jaarTal)
-        {
-            //int returnWaarde = 0;
-            //foreach (Reservering res in Reserveringen)
-            //{
-            //    if (res.ReserveringsDatum.Year == jaarTal)
-            //    {
-            //        returnWaarde += 1;
-            //    }
-            //}
-            //return returnWaarde;
+        //public int ReserveringenInJaar(int jaarTal)
+        //{
+        //    //int returnWaarde = 0;
+        //    //foreach (Reservering res in Reserveringen)
+        //    //{
+        //    //    if (res.ReserveringsDatum.Year == jaarTal)
+        //    //    {
+        //    //        returnWaarde += 1;
+        //    //    }
+        //    //}
+        //    //return returnWaarde;
 
-            return 0;
-        }
+        //    return 0;
+        //}
 
         public override string ToString()
         {

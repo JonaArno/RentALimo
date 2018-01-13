@@ -20,6 +20,8 @@
 
         <Label Name="KlantNaamLabel"  Content="Naam: " HorizontalAlignment="Left" Height="31" Margin="10,428,0,0" VerticalAlignment="Top" Width="54"/>
         <TextBox Name="ZoekKlantTextBox" HorizontalAlignment="Left" Height="23" Margin="69,432,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296" TextChanged="ZoekKlantTextBox_TextChanged"/>
+        <Button Name="BevestigGeselecteerdeKlantButton" Content="Bevestig" HorizontalAlignment="Left" Margin="547,435,0,0" VerticalAlignment="Top" Width="120" Click="OnBevestigGeselecteerdeKlantClick"/>
+        <Button Name="AnnuleerKlantVensterButton" Content="Annuleer" HorizontalAlignment="Left" Margin="672,435,0,0" VerticalAlignment="Top" Width="120" Click="OnAnnuleerKlantVensterClick"/>
 
     </Grid>
 </Window>

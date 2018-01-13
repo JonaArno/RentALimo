@@ -7,6 +7,38 @@
         mc:Ignorable="d"
         Title="LimoBeschikbaarheid" Height="500" Width="800">
     <Grid>
-        
+
+        <Label Name="StartDatumLabel" Content="Startdatum:" HorizontalAlignment="Left" Margin="60,79,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="StartDatumDatePicker" HorizontalAlignment="Left" Margin="175,80,0,0" VerticalAlignment="Top"/>
+
+        <Label Name="EindDatumLabel" Content="Einddatum:" HorizontalAlignment="Left" Margin="427,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,0.615"/>
+        <DatePicker Name="EindDatumDatePicker" HorizontalAlignment="Left" Margin="540,80,0,0" VerticalAlignment="Top"/>
+
+        <Label Name="StartLocatieLabel" Content="Startlocatie:" HorizontalAlignment="Left" Margin="60,124,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="StartLocatieComboBox" HorizontalAlignment="Left" Margin="175,128,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <Label Name="ArrangementLabel" Content="Arrangement:" HorizontalAlignment="Left" Margin="427,124,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="ArrangementComboBox" HorizontalAlignment="Left" Margin="540,128,0,0" VerticalAlignment="Top" Width="120"/>
+
+
+
+        <ListView  Name="BeschikbareLimosListView" HorizontalAlignment="Left" Height="165" Margin="60,240,0,0" VerticalAlignment="Top" Width="665">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <ListView.Resources>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
+        </ListView>
+
+        <Button Name="SelecteerButton" Content="Selecteer" HorizontalAlignment="Left" Margin="567,440,0,0" VerticalAlignment="Top" Width="75" Click="OnSelecteerButtonClick"/>
+        <Button Name="AnnuleerButton" Content="Annuleer" HorizontalAlignment="Left" Margin="700,440,0,0" VerticalAlignment="Top" Width="75" Height="19" Click="OnAnnuleerButtonClick"/>
+
+
+
     </Grid>
 </Window>

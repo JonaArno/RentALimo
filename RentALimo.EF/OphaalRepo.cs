@@ -38,12 +38,53 @@ namespace RentALimo.EF
             return Context.Set<Limo>()
                 .ToList();
         }
-        
+
+        public Reservering OphalenLaatsteReserveringVanLimo(Limo limo, DateTime startDatum)
+        {
+            return Context
+                .Set<Reservering>()
+                .Include(res => res.Limo)
+                .Last(res => res.Limo.WagenId == limo.WagenId &&
+                              res.Periode.Einde < startDatum);
+        }
+
+        public IEnumerable<Limo> OphalenLimosMetFilters(DateTime startDateTime, DateTime eindDateTime, Locatie startLocatie,
+            Arrangement arrangement)
+        {
+            IEnumerable<Limo> returnWaarde = new List<Limo>();
+            IEnumerable<Limo> filterOpPeriode = OphalenBeschikbareLimosInPeriode(startDateTime, eindDateTime);
+
+            foreach (var limo in filterOpPeriode)
+            {
+                if ()
+            }
+
+        }
 
 
         public IEnumerable<Limo> OphalenBeschikbareLimosInPeriode(DateTime begin, DateTime einde)
         {
-            throw new NotImplementedException();
+            List<Limo> alleLimos = Context.Set<Limo>().ToList();
+            List<Limo> gereserveerdeLimos = new List<Limo>();
+
+            List<Reservering> reserveringenInPeriode = Context.Set<Reservering>()
+                                                            .Include(res => res.Limo)
+                                                            .Where(res => res.Periode.Begin >= begin && res.Periode.Einde <= einde)
+                                                            .ToList();
+
+            foreach (var res in reserveringenInPeriode)
+            {
+                gereserveerdeLimos.Add(res.Limo);
+            }
+
+            foreach (var limo in gereserveerdeLimos)
+            {
+                if (alleLimos.Contains(limo))
+                {
+                    alleLimos.Remove(limo);
+                }
+            }
+            return alleLimos;
         }
     }
 }
