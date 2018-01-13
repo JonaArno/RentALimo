@@ -35,16 +35,33 @@ namespace RentALimo.Business
             }
 
             var result = new Reservering(Arrangement, Periode, StartLocatie, EindLocatie,
-                Limo, Klant,new PrijsBerekening(Limo,Arrangement,Klant.KlantCategorie.EventingKorting,_repo.AantalReserveringenVoorKlantInJaar(Klant,DateTime.Now.Year),Periode.Begin,Periode.Einde).PrijsInfo);         
+                Limo, Klant, new PrijsBerekening(Limo, Arrangement, Klant.KlantCategorie.EventingKorting, _repo.AantalReserveringenVoorKlantInJaar(Klant, DateTime.Now.Year), Periode.Begin, Periode.Einde).PrijsInfo);
             _repo.Nieuw(result);
         }
 
         private string Status()
         {
+            //extra nodig?
             var sb = new StringBuilder();
             if (Klant == null) sb.AppendLine("Geen klant voor reservering");
-            // if (Limo == null) ...
-            // alle 
+            if (Periode == null) sb.AppendLine("Geen geldige data voor reservering");
+            else if (Periode != null)
+            {
+                if (Periode.Duur > Periode.MaximaleDuur)
+                    sb.AppendLine($"De gekozen periode overschrijdt de maximale duur voor een reservering ({Periode.MaximaleDuur})");
+                else if (Periode.Duur.Hours < 0)
+                    sb.AppendLine("De einddatum moet later dan de begindatum vallen");
+            }
+            if (!IsGeldigStartUur(Arrangement, Periode.Begin))
+                sb.AppendLine("Het gekozen startuur is niet mogelijk binnen het geselecteerde arrangement");
+            if (Limo == null) sb.AppendLine("Geen limo voor reservering");
+            else if (Limo != null)
+            {
+                if (!Limo.MogelijkBinnenArrangement(Arrangement))
+                    sb.AppendLine("De gekozen limo kan niet binnen het gekozen arrangement gebruikt worden");
+            }
+
+            if (!LimoIsVrij()) sb.AppendLine("De gekozen limo is niet beschikbaar op de gekozen data");
             return sb.ToString();
         }
 
@@ -53,14 +70,11 @@ namespace RentALimo.Business
             return Klant != null &&
                    Periode != null &&
                    Limo != null &&
-                   //Arrangement != null &&
-                   //StartLocatie.HasValue &&
-                   //EindLocatie.HasValue &&
                    Limo.MogelijkBinnenArrangement(Arrangement) &&
                    Periode.Duur <= Periode.MaximaleDuur &&
+                   Periode.Duur.Hours > 0 &&
                    IsGeldigStartUur(Arrangement, Periode.Begin) &&
                    LimoIsVrij();
-
         }
 
         public bool IsGeldigStartUur(Arrangement arrangement, DateTime periodeBegin)
@@ -148,10 +162,10 @@ namespace RentALimo.Business
                 gecorrigeerdHuidigeReservatieStart = this.Periode.Begin;
                 gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde;
             }
-            
+
             int overlappendeReserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, gecorrigeerdHuidigeReservatieStart, gecorrigeerdHuidigeReservatieEinde);
             return overlappendeReserveringen == 0;
         }
-        
+
     }
 }

@@ -19,7 +19,7 @@ namespace RentALimo.EF
                 .Include(kl => kl.Adres)
                 .Include(kl => kl.KlantCategorie)
                 //noodzakelijk?
-                .Include(kl=>kl.KlantCategorie.EventingKorting)
+                .Include(kl => kl.KlantCategorie.EventingKorting)
                 .Include(kl => kl.KlantCategorie.EventingKorting)
                 .ToList();
         }
@@ -41,28 +41,44 @@ namespace RentALimo.EF
 
         public Reservering OphalenLaatsteReserveringVanLimo(Limo limo, DateTime startDatum)
         {
-            return Context
-                .Set<Reservering>()
+            return Context.Set<Reservering>()
                 .Include(res => res.Limo)
-                .Last(res => res.Limo.WagenId == limo.WagenId &&
-                              res.Periode.Einde < startDatum);
+                .Where(res => res.Limo.WagenId == limo.WagenId &&
+                              res.Periode.Einde < startDatum)
+                .LastOrDefault();
         }
 
         public IEnumerable<Limo> OphalenLimosMetFilters(DateTime startDateTime, DateTime eindDateTime, Locatie startLocatie,
             Arrangement arrangement)
         {
-            IEnumerable<Limo> returnWaarde = new List<Limo>();
-            IEnumerable<Limo> filterOpPeriode = OphalenBeschikbareLimosInPeriode(startDateTime, eindDateTime);
+            List<Limo> returnWaarde = OphalenBeschikbareLimosInPeriode(startDateTime, eindDateTime);
 
-            foreach (var limo in filterOpPeriode)
+            foreach (var limo in returnWaarde)
             {
-                if ()
+                Reservering laatstReserveringVanLimo = OphalenLaatsteReserveringVanLimo(limo, startDateTime);
+                DateTime aangepastStartUur = DateTime.Now;
+
+                if (laatstReserveringVanLimo.EindLocatie == startLocatie)
+                    aangepastStartUur = startDateTime.AddHours(-4);
+                else if (laatstReserveringVanLimo.EindLocatie != startLocatie)
+                    aangepastStartUur = startDateTime.AddHours(-6);
+
+                if (aangepastStartUur <= laatstReserveringVanLimo.Periode.Einde)
+                    returnWaarde.Remove(limo);
             }
+
+            foreach (var limo in returnWaarde)
+            {
+                if (!limo.MogelijkBinnenArrangement(arrangement))
+                    returnWaarde.Remove(limo);
+            }
+
+            return returnWaarde;
 
         }
 
 
-        public IEnumerable<Limo> OphalenBeschikbareLimosInPeriode(DateTime begin, DateTime einde)
+        public List<Limo> OphalenBeschikbareLimosInPeriode(DateTime begin, DateTime einde)
         {
             List<Limo> alleLimos = Context.Set<Limo>().ToList();
             List<Limo> gereserveerdeLimos = new List<Limo>();

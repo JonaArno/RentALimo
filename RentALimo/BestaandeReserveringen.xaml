@@ -8,22 +8,22 @@
         Title="Bestaande Reservering Opzoeken" Height="500" Width="800">
     <Grid>
         <Label Name="KlantLabel"  Content="Klant:" HorizontalAlignment="Left" Margin="45,114,0,0" VerticalAlignment="Top"/>
-        <Label Name="KlantValueLabel" Content="" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="147,112,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
+        <Label Name="KlantValueLabel" Content=""  HorizontalAlignment="Left" Margin="147,112,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
         <Button Name="KlantSelecterenButton" Background="DodgerBlue" BorderBrush="White" Foreground="White" Content="Klant selecteren" HorizontalAlignment="Left" Margin="45,45,0,0" VerticalAlignment="Top" Width="240" Height="43" Click="OnKlantSelecterenClick"/>
 
 
         <Label Name="LimoLabel" Content="Limo:" HorizontalAlignment="Left" Margin="45,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.026,4.077"/>
-        <Label Name="LimoValueLabel" Content="" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="147,273,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
+        <Label Name="LimoValueLabel" Content=""  HorizontalAlignment="Left" Margin="147,273,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
         <Button Name="LimoSelecterenButton" Background="DodgerBlue" BorderBrush="White" Foreground="White" Content="Beschikbaarheid limo's controleren" HorizontalAlignment="Left" Margin="45,210,0,0" VerticalAlignment="Top" Width="240" Click="OnBeschikbaarheidLimosControlerenClick" Height="43"/>
 
         <Label Name="ArrangementLabel" Content="Arrangement:" HorizontalAlignment="Left" Margin="45,308,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.421,-0.577"/>
-        <Label Name="ArrangementValueLabel" Content="" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="147,306,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
+        <Label Name="ArrangementValueLabel" Content=""  HorizontalAlignment="Left" Margin="147,306,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
 
         <Label Name="StartDatumLabel" Content="Startdatum: " HorizontalAlignment="Left" Margin="45,339,0,0" VerticalAlignment="Top"/>
-        <Label Name="StartDatumValueLabel" Content="" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="147,339,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
+        <Label Name="StartDatumValueLabel" Content=""  HorizontalAlignment="Left" Margin="147,339,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
 
         <Label Content="Einddatum: " HorizontalAlignment="Left" Margin="405,339,0,0" VerticalAlignment="Top"/>
-        <Label Name="EindDatumValueLabel" Content="" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Margin="495,337,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
+        <Label Name="EindDatumValueLabel" Content=""  HorizontalAlignment="Left" Margin="495,337,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
 
         <Button Content="Reserveringen Opzoeken" HorizontalAlignment="Left" Margin="480,410,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
         <Button Content="Annuleer" HorizontalAlignment="Left" Margin="645,410,0,0" VerticalAlignment="Top" Width="95" Height="30"/>

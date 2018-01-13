@@ -21,7 +21,8 @@ namespace RentALimo
     /// </summary>
     public partial class LimoBeschikbaarheid : Window
     {
-        IOphaalRepo _repo = new OphaalRepo();
+        private IOphaalRepo _repo = new OphaalRepo();
+        private IReserveringRepo _repo2 = new ReserveringsRepo();
 
         public BestaandeReserveringen BestaandeReserveringen { get; set; }
 
@@ -31,24 +32,60 @@ namespace RentALimo
             BestaandeReserveringen = bestaandeReserveringen;
 
 
-            ArrangementComboBox.ItemsSource = Enum.GetValues(typeof(Arrangement));
             StartLocatieComboBox.ItemsSource = Enum.GetValues(typeof(Locatie));
+            ArrangementComboBox.ItemsSource = Enum.GetValues(typeof(Arrangement));
 
-            //ophalen adhv OphalenLimosMetFilters 
-            //met defaultgeselecteerde waarden
+        }
+
+        private void OnZoekBeschikbareLimosClick(object sender, RoutedEventArgs e)
+        {
+            //DateTime? startDatum = StartDatumDatePicker.SelectedDate;
+            //DateTime? eindDatum = EindDatumDatePicker.SelectedDate;
+
+            DateTime startDatum;
+            DateTime eindDatum;
+
+            if (StartDatumDatePicker.SelectedDate == null)
+            {
+                startDatum = DateTime.MinValue;
+            }
+            else
+            {
+                startDatum = (DateTime)StartDatumDatePicker.SelectedDate;
+            }
+
+            if (EindDatumDatePicker.SelectedDate == null)
+            {
+                eindDatum = DateTime.MaxValue;
+            }
+            else
+            {
+                eindDatum = (DateTime)EindDatumDatePicker.SelectedDate;
+            }
+            
+            Locatie startLocatie = (Locatie)StartLocatieComboBox.SelectionBoxItem;
+            Arrangement arrangement = (Arrangement) ArrangementComboBox.SelectionBoxItem;
+
+           BeschikbareLimosListView.ItemsSource = _repo.OphalenLimosMetFilters(startDatum, eindDatum, startLocatie, arrangement);
+
+
+
+
 
 
         }
 
         private void OnSelecteerButtonClick(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void OnAnnuleerButtonClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+      
 
 
         //rekening houden met pauze

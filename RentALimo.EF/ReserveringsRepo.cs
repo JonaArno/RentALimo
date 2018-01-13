@@ -62,7 +62,6 @@ namespace RentALimo.EF
                                     .OrderBy(r => r.Periode.Einde)
                                     .ToList();
 
-            //return res.Last();
             return res.FirstOrDefault();
         }
 
@@ -76,7 +75,6 @@ namespace RentALimo.EF
                 .OrderBy(r => r.Periode.Begin)
                 .ToList();
 
-            //return res.First();
             return res.FirstOrDefault();
         }
 

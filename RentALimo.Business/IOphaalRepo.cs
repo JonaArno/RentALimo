@@ -15,6 +15,6 @@ namespace RentALimo.Business
         Reservering OphalenLaatsteReserveringVanLimo(Limo limo, DateTime startDatum);
         IEnumerable<Limo> OphalenLimosMetFilters(DateTime startDateTime, DateTime eindDateTime, Locatie startLocatie,
             Arrangement arrangement);
-        IEnumerable<Limo> OphalenBeschikbareLimosInPeriode(DateTime begin, DateTime einde);
+        List<Limo> OphalenBeschikbareLimosInPeriode(DateTime begin, DateTime einde);
     }
 }

@@ -55,15 +55,17 @@ namespace RentALimo
 
             //aanmaken dateTimes
             //moet hieronder niet met (default)DateTime gewerkt worden?
+            
             if (StartDatePicker.Text == "" || EndDatePicker.Text == "")
             {
-                throw new InvalidOperationException("Gelieve alle gegevens in te vullen");
+                var gegevens= new InvalidOperationException("Gelieve alle gegevens in te vullen");
+                MessageBox.Show(gegevens.ToString());
             }
             else
             {
                 DateTime invoerStartDatum = (DateTime)StartDatePicker.SelectedDate;
                 DateTime invoerEindDatum = (DateTime)EndDatePicker.SelectedDate;
-                
+
                 var start = new DateTime(invoerStartDatum.Year, invoerStartDatum.Month, invoerStartDatum.Day,
                     Convert.ToInt32(StartUurComboBox.SelectionBoxItem), 0, 0);
                 var eind = new DateTime(invoerEindDatum.Year, invoerEindDatum.Month, invoerEindDatum.Day,
@@ -71,9 +73,9 @@ namespace RentALimo
 
                 // Parameters ophalen uit selecties
                 Klant kl = (Klant)KlantComboBox.SelectionBoxItem;
-                Arrangement arr = (Arrangement) ArrangementComboBox.SelectedItem;
-                Locatie startLocatie = (Locatie) StartLocatieComboBox.SelectedItem;
-                Locatie eindLocatie = (Locatie) EindLocatieComboBox.SelectedItem;
+                Arrangement arr = (Arrangement)ArrangementComboBox.SelectedItem;
+                Locatie startLocatie = (Locatie)StartLocatieComboBox.SelectedItem;
+                Locatie eindLocatie = (Locatie)EindLocatieComboBox.SelectedItem;
 
                 var rb = new ReserveringBouwer(new ReserveringsRepo());
 
@@ -84,7 +86,15 @@ namespace RentALimo
                 rb.EindLocatie = eindLocatie;
                 rb.Limo = (Limo)BeschikbareWagensListView.SelectedItem;
 
-                rb.Maak();
+                try
+                {
+                    rb.Maak();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.ToString());
+                }
+
             }
 
 
@@ -92,54 +102,68 @@ namespace RentALimo
 
         private void BerekenPrijsInfoButton_Click(object sender, RoutedEventArgs e)
         {
-            //REPO
-            ReserveringsRepo repo = new ReserveringsRepo();
+            Limo li = (Limo)BeschikbareWagensListView.SelectedItem;
 
-
-            if (BeschikbareWagensListView.SelectedItem != null && StartDatePicker.SelectedDate != (default(DateTime)) &&
-                StartUurComboBox.SelectionBoxItem != null && EndDatePicker.SelectedDate != (default(DateTime)) &&
-                EindUurComboBox.SelectionBoxItem != null && StartLocatieComboBox.SelectionBoxItem != null &&
-                EindLocatieComboBox.SelectionBoxItem != null && ArrangementComboBox.SelectionBoxItem != null)
+            if (!li.MogelijkBinnenArrangement((Arrangement)ArrangementComboBox.SelectionBoxItem))
             {
-                Arrangement arr = Arrangement.Airport;
-                if (ArrangementComboBox.Text != "Airport")
-                {
-                    if (ArrangementComboBox.Text == "Business") arr = Arrangement.Business;
-                    else if (ArrangementComboBox.Text == "Nightlife")
-                        arr = Arrangement.NightLife;
-                    else if (ArrangementComboBox.Text == "Wedding")
-                        arr = Arrangement.Wedding;
-                }
-
-                //hier ophalen klant
-                Klant kl = (Klant) KlantComboBox.SelectionBoxItem; 
-                EventingKorting evtKorting = kl.KlantCategorie.EventingKorting;
-                
-                DateTime invoerStartDatum = (DateTime)StartDatePicker.SelectedDate;
-                DateTime invoerEindDatum = (DateTime)EndDatePicker.SelectedDate;
-
-                var start = new DateTime(invoerStartDatum.Year, invoerStartDatum.Month, invoerStartDatum.Day,
-                    Convert.ToInt32(StartUurComboBox.SelectionBoxItem), 0, 0);
-                var eind = new DateTime(invoerEindDatum.Year, invoerEindDatum.Month, invoerEindDatum.Day,
-                   Convert.ToInt32(EindUurComboBox.SelectionBoxItem), 0, 0);
-
-                //volgende twee lijnen ergens anders steken?
-                var prb = new PrijsBerekening((Limo)BeschikbareWagensListView.SelectedItem, arr, evtKorting,repo.AantalReserveringenVoorKlantInJaar(kl,DateTime.Now.Year),start,eind);
-
-                BedrExclBtwVoorEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwVoorEventingKorting;
-                AangerekendeEvtKrtValueLabel.Content = prb.PrijsInfo.AangerekendeEventingKorting;
-                BedrExclBtwNaEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
-                BtwBedragValueLabel.Content = prb.PrijsInfo.BtwBedrag;
-                TotaalbedragInclBtwValueLabel.Content = prb.PrijsInfo.TotaalTeBetalenBedrag;
-            }
-
-
-            else
-            {
-                var foutTekst = new InvalidOperationException("Gelieve alle velden in te vullen");
+                var foutTekst = new InvalidOperationException("Arrangement niet mogelijk voor de geselecteerde wagen");
                 MessageBox.Show(foutTekst.ToString());
             }
 
+            else
+            {
+
+
+                //REPO
+                ReserveringsRepo repo = new ReserveringsRepo();
+
+
+                if (BeschikbareWagensListView.SelectedItem != null &&
+                    StartDatePicker.SelectedDate != (default(DateTime)) &&
+                    StartUurComboBox.SelectionBoxItem != null && EndDatePicker.SelectedDate != (default(DateTime)) &&
+                    EindUurComboBox.SelectionBoxItem != null && StartLocatieComboBox.SelectionBoxItem != null &&
+                    EindLocatieComboBox.SelectionBoxItem != null && ArrangementComboBox.SelectionBoxItem != null)
+                {
+                    Arrangement arr = Arrangement.Airport;
+                    if (ArrangementComboBox.Text != "Airport")
+                    {
+                        if (ArrangementComboBox.Text == "Business") arr = Arrangement.Business;
+                        else if (ArrangementComboBox.Text == "Nightlife")
+                            arr = Arrangement.NightLife;
+                        else if (ArrangementComboBox.Text == "Wedding")
+                            arr = Arrangement.Wedding;
+                    }
+
+                    //hier ophalen klant
+                    Klant kl = (Klant)KlantComboBox.SelectionBoxItem;
+                    EventingKorting evtKorting = kl.KlantCategorie.EventingKorting;
+
+                    DateTime invoerStartDatum = (DateTime)StartDatePicker.SelectedDate;
+                    DateTime invoerEindDatum = (DateTime)EndDatePicker.SelectedDate;
+
+                    var start = new DateTime(invoerStartDatum.Year, invoerStartDatum.Month, invoerStartDatum.Day,
+                        Convert.ToInt32(StartUurComboBox.SelectionBoxItem), 0, 0);
+                    var eind = new DateTime(invoerEindDatum.Year, invoerEindDatum.Month, invoerEindDatum.Day,
+                        Convert.ToInt32(EindUurComboBox.SelectionBoxItem), 0, 0);
+
+                    //volgende twee lijnen ergens anders steken?
+                    var prb = new PrijsBerekening((Limo)BeschikbareWagensListView.SelectedItem, arr, evtKorting,
+                        repo.AantalReserveringenVoorKlantInJaar(kl, DateTime.Now.Year), start, eind);
+
+                    BedrExclBtwVoorEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwVoorEventingKorting;
+                    AangerekendeEvtKrtValueLabel.Content = prb.PrijsInfo.AangerekendeEventingKorting;
+                    BedrExclBtwNaEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
+                    BtwBedragValueLabel.Content = prb.PrijsInfo.BtwBedrag;
+                    TotaalbedragInclBtwValueLabel.Content = prb.PrijsInfo.TotaalTeBetalenBedrag;
+                }
+
+
+                else
+                {
+                    var foutTekst = new InvalidOperationException("Gelieve alle velden in te vullen");
+                    MessageBox.Show(foutTekst.ToString());
+                }
+            }
         }
 
     }

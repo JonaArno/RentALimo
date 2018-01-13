@@ -7,6 +7,7 @@ namespace RentALimo.Business
     {
         public int WagenId { get; set; }
         public string Merk { get; set; }
+
         public string Type { get; set; }
         //public WagenPrijs WagenPrijs { get; set; }
 
@@ -17,7 +18,9 @@ namespace RentALimo.Business
         //lijst van reserveringen per limo bijhouden?
         public List<Reservering> Reserveringen = new List<Reservering>();
 
-        protected Limo() { }
+        protected Limo()
+        {
+        }
 
         //public Limo(string merk, string type, WagenPrijs wagenPrijs)
         //{
@@ -27,7 +30,8 @@ namespace RentALimo.Business
         //}
 
 
-        public Limo(string merk, string type, decimal eersteUurPrijs,decimal nightLifeArrangementPrijs, decimal weddingArrangementPrijs)
+        public Limo(string merk, string type, decimal eersteUurPrijs, decimal nightLifeArrangementPrijs,
+            decimal weddingArrangementPrijs)
         {
             Merk = merk;
             Type = type;
@@ -61,23 +65,25 @@ namespace RentALimo.Business
             return isMogelijk;
         }
 
-        public bool ReedsBeschikbaarNaLaatsteReservering(DateTime startNieuweReservering, Reservering laatsteReservering)
-        {
 
-            bool reedsBeschikbaar = false;
+        ////w niet gebruikt
+        //public bool ReedsBeschikbaarNaLaatsteReservering(DateTime startNieuweReservering, Reservering laatsteReservering)
+        //{
 
-            if (laatsteReservering.StartLocatie != laatsteReservering.EindLocatie)
-            {
-                reedsBeschikbaar = startNieuweReservering > laatsteReservering.Periode.Einde.AddHours(6);
-            }
+        //    bool reedsBeschikbaar = false;
 
-            else if (laatsteReservering.StartLocatie == laatsteReservering.EindLocatie)
-            {
-                reedsBeschikbaar = startNieuweReservering > laatsteReservering.Periode.Einde.AddHours(4);
-            }
+        //    if (laatsteReservering.StartLocatie != laatsteReservering.EindLocatie)
+        //    {
+        //        reedsBeschikbaar = startNieuweReservering > laatsteReservering.Periode.Einde.AddHours(6);
+        //    }
 
-            return reedsBeschikbaar;
-        }
+        //    else if (laatsteReservering.StartLocatie == laatsteReservering.EindLocatie)
+        //    {
+        //        reedsBeschikbaar = startNieuweReservering > laatsteReservering.Periode.Einde.AddHours(4);
+        //    }
+
+        //    return reedsBeschikbaar;
+        //}
 
         public override string ToString()
         {

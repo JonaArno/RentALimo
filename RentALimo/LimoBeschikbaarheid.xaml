@@ -15,10 +15,13 @@
         <DatePicker Name="EindDatumDatePicker" HorizontalAlignment="Left" Margin="540,80,0,0" VerticalAlignment="Top"/>
 
         <Label Name="StartLocatieLabel" Content="Startlocatie:" HorizontalAlignment="Left" Margin="60,124,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="StartLocatieComboBox" HorizontalAlignment="Left" Margin="175,128,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="StartLocatieComboBox" HorizontalAlignment="Left" Margin="175,128,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
 
         <Label Name="ArrangementLabel" Content="Arrangement:" HorizontalAlignment="Left" Margin="427,124,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="ArrangementComboBox" HorizontalAlignment="Left" Margin="540,128,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="ArrangementComboBox" HorizontalAlignment="Left" Margin="540,128,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
+
+
+        <Button Name="ZoekBeschikbareLimosButton" Content="Zoek beschikbare limo's" Background="DodgerBlue" Foreground="White" HorizontalAlignment="Left" Margin="260,195,0,0" VerticalAlignment="Top" Width="270" Click="OnZoekBeschikbareLimosClick"/>
 
 
 
@@ -35,8 +38,8 @@
             </ListView.Resources>
         </ListView>
 
-        <Button Name="SelecteerButton" Content="Selecteer" HorizontalAlignment="Left" Margin="567,440,0,0" VerticalAlignment="Top" Width="75" Click="OnSelecteerButtonClick"/>
-        <Button Name="AnnuleerButton" Content="Annuleer" HorizontalAlignment="Left" Margin="700,440,0,0" VerticalAlignment="Top" Width="75" Height="19" Click="OnAnnuleerButtonClick"/>
+        <Button Name="SelecteerButton" Content="Selecteer" HorizontalAlignment="Left" Margin="567,439,0,0" VerticalAlignment="Top" Width="75" Click="OnSelecteerButtonClick"/>
+        <Button Name="AnnuleerButton" Content="Annuleer" HorizontalAlignment="Left" Margin="650,440,0,0" VerticalAlignment="Top" Width="75" Height="19" Click="OnAnnuleerButtonClick"/>
 
 
 
