@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace RentALimo
 {
     /// <summary>
-    /// Interaction logic for ReserveringenOpzoekenResultaat.xaml
+    /// Interaction logic for ReserveringResultaat.xaml
     /// </summary>
-    public partial class ReserveringenOpzoekenResultaat : Window
+    public partial class ReserveringResultaat : Window
     {
-        public ReserveringenOpzoekenResultaat()
+        public ReserveringResultaat()
         {
             InitializeComponent();
         }

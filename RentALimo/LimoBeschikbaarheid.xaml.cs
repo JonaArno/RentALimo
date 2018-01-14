@@ -62,11 +62,11 @@ namespace RentALimo
             {
                 eindDatum = (DateTime)EindDatumDatePicker.SelectedDate;
             }
-            
-            Locatie startLocatie = (Locatie)StartLocatieComboBox.SelectionBoxItem;
-            Arrangement arrangement = (Arrangement) ArrangementComboBox.SelectionBoxItem;
 
-           BeschikbareLimosListView.ItemsSource = _repo.OphalenLimosMetFilters(startDatum, eindDatum, startLocatie, arrangement);
+            Locatie startLocatie = (Locatie)StartLocatieComboBox.SelectionBoxItem;
+            Arrangement arrangement = (Arrangement)ArrangementComboBox.SelectionBoxItem;
+
+            BeschikbareLimosListView.ItemsSource = _repo.OphalenLimosMetFilters(startDatum, eindDatum, startLocatie, arrangement);
 
 
 
@@ -77,7 +77,61 @@ namespace RentALimo
 
         private void OnSelecteerButtonClick(object sender, RoutedEventArgs e)
         {
-            
+
+            BestaandeReserveringen.GeselecteerdeLimo = (Limo)BeschikbareLimosListView.SelectedItem;
+            BestaandeReserveringen.LimoValueLabel.Content = BestaandeReserveringen.GeselecteerdeLimo;
+
+            BestaandeReserveringen.Arrangement = (Arrangement)ArrangementComboBox.SelectionBoxItem;
+            BestaandeReserveringen.ArrangementValueLabel.Content = BestaandeReserveringen.Arrangement;
+
+            DateTime startDatum;
+            DateTime eindDatum;
+
+            if (StartDatumDatePicker.SelectedDate == null)
+            {
+                startDatum = DateTime.MinValue;
+            }
+            else
+            {
+                startDatum = (DateTime)StartDatumDatePicker.SelectedDate;
+            }
+
+            if (EindDatumDatePicker.SelectedDate == null)
+            {
+                eindDatum = DateTime.MaxValue;
+            }
+            else
+            {
+                eindDatum = (DateTime)EindDatumDatePicker.SelectedDate;
+            }
+
+            BestaandeReserveringen.StartDatum = startDatum;
+            //if (BestaandeReserveringen.StartDatum == null)
+            //{
+            //    BestaandeReserveringen.StartDatumValueLabel.Content = "Geen startdatum ingegeven";
+
+            //}
+            if (BestaandeReserveringen.StartDatum == DateTime.MinValue)
+            {
+                BestaandeReserveringen.StartDatumValueLabel.Content = "Geen startdatum meegegeven";
+            }
+            else
+            {
+                BestaandeReserveringen.StartDatumValueLabel.Content = BestaandeReserveringen.StartDatum;
+
+            }
+
+            BestaandeReserveringen.EindDatum = eindDatum;
+
+            if (BestaandeReserveringen.EindDatum == DateTime.MaxValue)
+            {
+                BestaandeReserveringen.EindDatumValueLabel.Content = "Geen einddatum meegegeven";
+            }
+            else
+            {
+                BestaandeReserveringen.EindDatumValueLabel.Content = BestaandeReserveringen.EindDatum;
+            }
+            this.Close();
         }
 
         private void OnAnnuleerButtonClick(object sender, RoutedEventArgs e)
@@ -85,7 +139,7 @@ namespace RentALimo
             this.Close();
         }
 
-      
+
 
 
         //rekening houden met pauze

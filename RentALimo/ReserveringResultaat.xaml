@@ -1,0 +1,30 @@
+﻿<Window x:Class="RentALimo.ReserveringResultaat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RentALimo"
+        mc:Ignorable="d"
+        Title="Gevonden Reserveringen" Height="500" Width="800">
+    <Grid>
+        <DataGrid Name="ReserveringenResultaatDataGrid" HorizontalAlignment="Left" Height="434" VerticalAlignment="Top" Width="792" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Klant" Binding="{Binding Klant.Naam}" Width="120"></DataGridTextColumn>
+                <DataGridTextColumn Header="Limousine" Binding="{Binding Limo}" Width="180"></DataGridTextColumn>
+                <DataGridTextColumn Header="Arrangement" Binding="{Binding Arrangement}" Width="100"></DataGridTextColumn>
+                <DataGridTextColumn Header="Start" Width="116" Binding="{Binding Periode.Begin}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Einde" Width="116" Binding="{Binding Periode.Einde}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Startlocatie" Width="80" Binding="{Binding StartLocatie}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Eindlocatie" Width="80" Binding="{Binding EindLocatie}"></DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+        <Button Name="DetailReserveringButton" Content="Detail" HorizontalAlignment="Left" Margin="627,439,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="AnnuleerButton" Content="Annuleer" HorizontalAlignment="Left" Margin="707,439,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</Window>

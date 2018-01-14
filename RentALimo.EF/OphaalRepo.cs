@@ -45,29 +45,38 @@ namespace RentALimo.EF
                 .Include(res => res.Limo)
                 .Where(res => res.Limo.WagenId == limo.WagenId &&
                               res.Periode.Einde < startDatum)
-                .LastOrDefault();
+                .ToList()
+                    .LastOrDefault();
         }
 
         public IEnumerable<Limo> OphalenLimosMetFilters(DateTime startDateTime, DateTime eindDateTime, Locatie startLocatie,
             Arrangement arrangement)
         {
             List<Limo> returnWaarde = OphalenBeschikbareLimosInPeriode(startDateTime, eindDateTime);
+            List<Limo> copyOfReturnWaarde = new List<Limo>(returnWaarde);
 
-            foreach (var limo in returnWaarde)
+
+
+            foreach (var limo in copyOfReturnWaarde)
             {
                 Reservering laatstReserveringVanLimo = OphalenLaatsteReserveringVanLimo(limo, startDateTime);
                 DateTime aangepastStartUur = DateTime.Now;
 
-                if (laatstReserveringVanLimo.EindLocatie == startLocatie)
-                    aangepastStartUur = startDateTime.AddHours(-4);
-                else if (laatstReserveringVanLimo.EindLocatie != startLocatie)
-                    aangepastStartUur = startDateTime.AddHours(-6);
+                if (laatstReserveringVanLimo != null)
+                {
+                    if (laatstReserveringVanLimo.EindLocatie == startLocatie)
+                        aangepastStartUur = startDateTime.AddHours(-4);
+                    else if (laatstReserveringVanLimo.EindLocatie != startLocatie)
+                        aangepastStartUur = startDateTime.AddHours(-6);
 
-                if (aangepastStartUur <= laatstReserveringVanLimo.Periode.Einde)
-                    returnWaarde.Remove(limo);
+                    if (aangepastStartUur <= laatstReserveringVanLimo.Periode.Einde)
+                        returnWaarde.Remove(limo);
+                }
             }
 
-            foreach (var limo in returnWaarde)
+            List<Limo> secondCopyOfReturnWaarde = new List<Limo>(copyOfReturnWaarde);
+            
+            foreach (var limo in secondCopyOfReturnWaarde)
             {
                 if (!limo.MogelijkBinnenArrangement(arrangement))
                     returnWaarde.Remove(limo);

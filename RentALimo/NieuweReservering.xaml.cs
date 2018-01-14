@@ -55,11 +55,11 @@ namespace RentALimo
 
             //aanmaken dateTimes
             //moet hieronder niet met (default)DateTime gewerkt worden?
-            
+
             if (StartDatePicker.Text == "" || EndDatePicker.Text == "")
             {
-                var gegevens= new InvalidOperationException("Gelieve alle gegevens in te vullen");
-                MessageBox.Show(gegevens.ToString());
+                var gegevens = new InvalidOperationException("Gelieve alle gegevens in te vullen");
+                MessageBox.Show(gegevens.Message);
             }
             else
             {
@@ -89,10 +89,11 @@ namespace RentALimo
                 try
                 {
                     rb.Maak();
+                    MessageBox.Show("Reservatie succesvol aangemaakt");
                 }
-                catch (Exception exception)
+                catch (InvalidOperationException exception)
                 {
-                    MessageBox.Show(exception.ToString());
+                    MessageBox.Show(exception.Message);
                 }
 
             }
@@ -104,64 +105,91 @@ namespace RentALimo
         {
             Limo li = (Limo)BeschikbareWagensListView.SelectedItem;
 
-            if (!li.MogelijkBinnenArrangement((Arrangement)ArrangementComboBox.SelectionBoxItem))
+            if (li == null)
             {
-                var foutTekst = new InvalidOperationException("Arrangement niet mogelijk voor de geselecteerde wagen");
-                MessageBox.Show(foutTekst.ToString());
-            }
+                var invOp = new InvalidOperationException("Gelieve een limo mee te geven");
+                MessageBox.Show(invOp.Message);
 
+            }
             else
             {
-
-
-                //REPO
-                ReserveringsRepo repo = new ReserveringsRepo();
-
-
-                if (BeschikbareWagensListView.SelectedItem != null &&
-                    StartDatePicker.SelectedDate != (default(DateTime)) &&
-                    StartUurComboBox.SelectionBoxItem != null && EndDatePicker.SelectedDate != (default(DateTime)) &&
-                    EindUurComboBox.SelectionBoxItem != null && StartLocatieComboBox.SelectionBoxItem != null &&
-                    EindLocatieComboBox.SelectionBoxItem != null && ArrangementComboBox.SelectionBoxItem != null)
+                if (!li.MogelijkBinnenArrangement((Arrangement)ArrangementComboBox.SelectionBoxItem))
                 {
-                    Arrangement arr = Arrangement.Airport;
-                    if (ArrangementComboBox.Text != "Airport")
-                    {
-                        if (ArrangementComboBox.Text == "Business") arr = Arrangement.Business;
-                        else if (ArrangementComboBox.Text == "Nightlife")
-                            arr = Arrangement.NightLife;
-                        else if (ArrangementComboBox.Text == "Wedding")
-                            arr = Arrangement.Wedding;
-                    }
-
-                    //hier ophalen klant
-                    Klant kl = (Klant)KlantComboBox.SelectionBoxItem;
-                    EventingKorting evtKorting = kl.KlantCategorie.EventingKorting;
-
-                    DateTime invoerStartDatum = (DateTime)StartDatePicker.SelectedDate;
-                    DateTime invoerEindDatum = (DateTime)EndDatePicker.SelectedDate;
-
-                    var start = new DateTime(invoerStartDatum.Year, invoerStartDatum.Month, invoerStartDatum.Day,
-                        Convert.ToInt32(StartUurComboBox.SelectionBoxItem), 0, 0);
-                    var eind = new DateTime(invoerEindDatum.Year, invoerEindDatum.Month, invoerEindDatum.Day,
-                        Convert.ToInt32(EindUurComboBox.SelectionBoxItem), 0, 0);
-
-                    //volgende twee lijnen ergens anders steken?
-                    var prb = new PrijsBerekening((Limo)BeschikbareWagensListView.SelectedItem, arr, evtKorting,
-                        repo.AantalReserveringenVoorKlantInJaar(kl, DateTime.Now.Year), start, eind);
-
-                    BedrExclBtwVoorEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwVoorEventingKorting;
-                    AangerekendeEvtKrtValueLabel.Content = prb.PrijsInfo.AangerekendeEventingKorting;
-                    BedrExclBtwNaEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
-                    BtwBedragValueLabel.Content = prb.PrijsInfo.BtwBedrag;
-                    TotaalbedragInclBtwValueLabel.Content = prb.PrijsInfo.TotaalTeBetalenBedrag;
+                    var foutTekst = new InvalidOperationException("Arrangement niet mogelijk voor de geselecteerde wagen");
+                    MessageBox.Show(foutTekst.Message);
                 }
-
 
                 else
                 {
-                    var foutTekst = new InvalidOperationException("Gelieve alle velden in te vullen");
-                    MessageBox.Show(foutTekst.ToString());
+                    //REPO
+                    ReserveringsRepo repo = new ReserveringsRepo();
+
+
+                    if (BeschikbareWagensListView.SelectedItem != null &&
+                        StartDatePicker.SelectedDate != (default(DateTime)) &&
+                        StartUurComboBox.SelectionBoxItem != null && EndDatePicker.SelectedDate != (default(DateTime)) &&
+                        EindUurComboBox.SelectionBoxItem != null && StartLocatieComboBox.SelectionBoxItem != null &&
+                        EindLocatieComboBox.SelectionBoxItem != null && ArrangementComboBox.SelectionBoxItem != null)
+                    {
+                        Arrangement arr = Arrangement.Airport;
+                        if (ArrangementComboBox.Text != "Airport")
+                        {
+                            if (ArrangementComboBox.Text == "Business") arr = Arrangement.Business;
+                            else if (ArrangementComboBox.Text == "Nightlife")
+                                arr = Arrangement.NightLife;
+                            else if (ArrangementComboBox.Text == "Wedding")
+                                arr = Arrangement.Wedding;
+                        }
+
+                        //hier ophalen klant
+                        Klant kl = (Klant)KlantComboBox.SelectionBoxItem;
+                        EventingKorting evtKorting = kl.KlantCategorie.EventingKorting;
+
+                        if (StartDatePicker.SelectedDate == null || EndDatePicker.SelectedDate == null)
+                        {
+                            var dataLeeg = new InvalidOperationException("Gelieve geldige data mee te geven.");
+                            MessageBox.Show(dataLeeg.Message);
+                        }
+
+                        else
+                        {
+                            DateTime invoerStartDatum = (DateTime)StartDatePicker.SelectedDate;
+                            DateTime invoerEindDatum = (DateTime)EndDatePicker.SelectedDate;
+
+                            var start = new DateTime(invoerStartDatum.Year, invoerStartDatum.Month, invoerStartDatum.Day,
+                                Convert.ToInt32(StartUurComboBox.SelectionBoxItem), 0, 0);
+                            var eind = new DateTime(invoerEindDatum.Year, invoerEindDatum.Month, invoerEindDatum.Day,
+                                Convert.ToInt32(EindUurComboBox.SelectionBoxItem), 0, 0);
+
+
+                            TimeSpan ts = eind - start;
+                            if (ts.TotalHours > 11 || ts.TotalHours < 0)
+                            {
+                                var tsFoutCode = new InvalidOperationException("De einddatum van een reservatie moet steeds later vallen dan de startdatum en een reservatie kan niet langer dan 11 uur duren.");
+                                MessageBox.Show(tsFoutCode.Message);
+                            }
+
+                            else
+                            {
+                                //volgende twee lijnen ergens anders steken?
+                                var prb = new PrijsBerekening((Limo)BeschikbareWagensListView.SelectedItem, arr, evtKorting,
+                                    repo.AantalReserveringenVoorKlantInJaar(kl, DateTime.Now.Year), start, eind);
+
+                                BedrExclBtwVoorEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwVoorEventingKorting;
+                                AangerekendeEvtKrtValueLabel.Content = prb.PrijsInfo.AangerekendeEventingKorting;
+                                BedrExclBtwNaEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
+                                BtwBedragValueLabel.Content = prb.PrijsInfo.BtwBedrag;
+                                TotaalbedragInclBtwValueLabel.Content = prb.PrijsInfo.TotaalTeBetalenBedrag;
+                            }
+                        }
+
+                    }
+
+                    else
+                    {
+                        var foutTekst = new InvalidOperationException("Gelieve alle velden in te vullen");
+                        MessageBox.Show(foutTekst.Message);
+                    }
                 }
             }
         }

@@ -64,5 +64,5 @@ C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\LimoBeschikbaa
 C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\LimoBeschikbaarheid.baml
 C:\Users\Jonathan\Source\Repos\RentALimo\RentALimo\obj\Debug\LimoBeschikbaarheid.g.cs
 C:\Users\Jonathan\Source\Repos\RentALimo\RentALimo\obj\Debug\LimoBeschikbaarheid.baml
-C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\ReserveringenOpzoekenResultaat.g.cs
-C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\ReserveringenOpzoekenResultaat.baml
+C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\ReserveringResultaat.g.cs
+C:\Users\Administrator\Source\Repos\RentALimo\RentALimo\obj\Debug\ReserveringResultaat.baml

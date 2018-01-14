@@ -21,7 +21,6 @@ namespace RentALimo.Business
         public Limo Limo { get; set; }
 
 
-        //laag boven dbcontext
         public ReserveringBouwer(IReserveringRepo repo)
         {
             _repo = repo;

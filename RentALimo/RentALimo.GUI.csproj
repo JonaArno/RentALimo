@@ -54,8 +54,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ReserveringenOpzoekenResultaat.xaml.cs">
-      <DependentUpon>ReserveringenOpzoekenResultaat.xaml</DependentUpon>
+    <Compile Include="ReserveringResultaat.xaml.cs">
+      <DependentUpon>ReserveringResultaat.xaml</DependentUpon>
     </Compile>
     <Page Include="BestaandeReserveringen.xaml">
       <SubType>Designer</SubType>
@@ -97,7 +97,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ReserveringenOpzoekenResultaat.xaml">
+    <Page Include="ReserveringResultaat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

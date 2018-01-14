@@ -18,8 +18,8 @@ namespace RentALimo.Populeer
             {
                 new Limo("Porsche", "Cayenne Limousine White", 300, 1500, 1000),
                 new Limo("Porsche", "Cayenne Limousine Electric Blue", 350, 1600, 1100),
-                new Limo("Mercedes", "SL 55 AMG", 175, 0, 500),
-                new Limo("Mercedes", "SL 55 AMG", 175, 0, 500),
+                new Limo("Mercedes", "SL 55 AMG Silver", 175, 0, 500),
+                new Limo("Mercedes", "SL 55 AMG Silver", 175, 0, 500),
                 new Limo("Lincoln", "White Limousine", 155, 490, 430),
                 new Limo("Lincoln", "Pink Limousine", 175, 600, 500),
                 new Limo("Lincoln", "Black Limousine", 165, 600, 500),

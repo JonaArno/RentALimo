@@ -15,19 +15,10 @@ namespace RentALimo.Business
         public decimal NightLifeArrangementPrijs { get; set; }
         public decimal WeddingArrangementPrijs { get; set; }
 
-        //lijst van reserveringen per limo bijhouden?
-        public List<Reservering> Reserveringen = new List<Reservering>();
 
         protected Limo()
         {
         }
-
-        //public Limo(string merk, string type, WagenPrijs wagenPrijs)
-        //{
-        //    Merk = merk;
-        //    Type = type;
-        //    WagenPrijs = wagenPrijs;
-        //}
 
 
         public Limo(string merk, string type, decimal eersteUurPrijs, decimal nightLifeArrangementPrijs,

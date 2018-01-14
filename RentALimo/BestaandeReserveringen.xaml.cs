@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RentALimo.Business;
+using RentALimo.EF;
 
 namespace RentALimo
 {
@@ -21,6 +22,10 @@ namespace RentALimo
     public partial class BestaandeReserveringen : Window
     {
         public Klant GeselecteerdeKlant { get; set; }
+        public Limo GeselecteerdeLimo { get; set; }
+        public DateTime StartDatum { get; set; }
+        public DateTime EindDatum { get; set; }
+        public Arrangement Arrangement { get; set; }
 
 
         public BestaandeReserveringen()
@@ -38,6 +43,34 @@ namespace RentALimo
         {
             var limobeschikbaarheidVenster = new LimoBeschikbaarheid(this);
             limobeschikbaarheidVenster.ShowDialog();
+        }
+
+        private void OnAnnuleerClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void OnReserveringenOpzoekenClick(object sender, RoutedEventArgs e)
+        {
+            var repo = new ReserveringsRepo();
+
+            var resResultaat = new ReserveringResultaat();
+
+            if (GeselecteerdeKlant != null && GeselecteerdeLimo == null)
+            {
+                resResultaat.ReserveringenResultaatDataGrid.ItemsSource = repo.AlleReserveringenVoorKlant(GeselecteerdeKlant);
+            }
+            else if (GeselecteerdeKlant == null && GeselecteerdeLimo != null)
+            {
+                resResultaat.ReserveringenResultaatDataGrid.ItemsSource =
+                    repo.ReserveringenVoorLimoTussenDataBinnenArrangement(GeselecteerdeLimo,StartDatum,EindDatum,Arrangement);
+            }
+            else if (GeselecteerdeKlant != null && GeselecteerdeLimo != null)
+            {
+                resResultaat.ReserveringenResultaatDataGrid.ItemsSource = repo.ReserveringenMetAlleGegevens(GeselecteerdeKlant,GeselecteerdeLimo,StartDatum,EindDatum,Arrangement);
+            }
+
+            resResultaat.ShowDialog();
         }
     }
 }

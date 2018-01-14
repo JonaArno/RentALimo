@@ -24,21 +24,6 @@ namespace RentALimo.EF
             return lookup.Count;
         }
 
-        //dit zou best een int retourneren
-        //public IEnumerable<Reservering> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
-        //{
-        // //  bool overlap = a.start < b.end && b.start < a.end;
-        //return Context.Set<Reservering>()
-        //  .Include(r => r.Limo)
-        //.Where(r => r.Limo.WagenId == limo.WagenId &&
-        //          r.Periode.Begin <= begin &&
-        //        r.Periode.Einde >= einde);
-
-
-        //hier nakijken of er limo's binnen een bepaalde periode vallen dmv de overlap-bool			
-
-        //}
-
         public int AantalReserveringenVoorKlantInJaar(Klant klant, int jaar)
         {
             int returnWaarde = 0;
@@ -76,6 +61,46 @@ namespace RentALimo.EF
                 .ToList();
 
             return res.FirstOrDefault();
+        }
+
+        public IEnumerable<Reservering> AlleReserveringenVoorKlant(Klant klant)
+        {
+            return Context.Set<Reservering>()
+                .Include(r => r.Limo)
+                .Include(r => r.Klant)
+                .Where(r => r.Klant.KlantId == klant.KlantId)
+                .ToList();
+        }
+
+        public IEnumerable<Reservering> ReserveringenVoorLimoTussenDataBinnenArrangement(Limo limo, DateTime startDatum, DateTime eindDatum,
+            Arrangement arrangement)
+        {
+            return Context.Set<Reservering>()
+                .Include(r => r.Limo)
+                .Include(r => r.Klant)
+                .Where(r => r.Limo.WagenId == limo.WagenId &&
+                            r.Periode.Begin >= startDatum &&
+                            //AddDays nodig anders missen we alle uren na 0h die dag
+                            r.Periode.Einde < eindDatum.AddDays(1) &&
+                            r.Arrangement == arrangement)
+                .OrderBy(res => res.Periode.Begin)
+                .ToList();
+        }
+
+        public IEnumerable<Reservering> ReserveringenMetAlleGegevens(Klant klant, Limo limo, DateTime startDatum, DateTime eindDatum,
+            Arrangement arrangement)
+        {
+            return Context.Set<Reservering>()
+                .Include(r => r.Limo)
+                .Include(r => r.Klant)
+                .Where(r => r.Klant.KlantId == klant.KlantId &&
+                            r.Limo.WagenId == limo.WagenId &&
+                            r.Periode.Begin >= startDatum &&
+                            //AddDays nodig anders missen we alle uren na 0h die dag
+                            r.Periode.Einde < eindDatum.AddDays(1) &&
+                            r.Arrangement == arrangement)
+                .OrderBy(res => res.Periode.Begin)
+                .ToList();
         }
 
 

@@ -25,8 +25,8 @@
         <Label Content="Einddatum: " HorizontalAlignment="Left" Margin="405,339,0,0" VerticalAlignment="Top"/>
         <Label Name="EindDatumValueLabel" Content=""  HorizontalAlignment="Left" Margin="495,337,0,0" VerticalAlignment="Top" Width="203" IsEnabled="False"/>
 
-        <Button Content="Reserveringen Opzoeken" HorizontalAlignment="Left" Margin="480,410,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
-        <Button Content="Annuleer" HorizontalAlignment="Left" Margin="645,410,0,0" VerticalAlignment="Top" Width="95" Height="30"/>
+        <Button Content="Reserveringen Opzoeken" HorizontalAlignment="Left" Margin="480,410,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="OnReserveringenOpzoekenClick"/>
+        <Button Content="Annuleer" HorizontalAlignment="Left" Margin="645,410,0,0" VerticalAlignment="Top" Width="95" Height="30" Click="OnAnnuleerClick" />
 
 
 

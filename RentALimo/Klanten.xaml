@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentALimo"
         mc:Ignorable="d"
-        Title="Klanten" Height="500" Width="800">
+        Title="Zoek klanten" Height="500" Width="800">
     <Grid>
         <DataGrid Name="KlantenOverzicht" HorizontalAlignment="Left" AutoGenerateColumns="False" Height="428" VerticalAlignment="Top" Width="800">
             <DataGrid.Columns>

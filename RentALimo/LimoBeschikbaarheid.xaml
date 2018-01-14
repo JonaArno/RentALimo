@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentALimo"
         mc:Ignorable="d"
-        Title="LimoBeschikbaarheid" Height="500" Width="800">
+        Title="Zoek beschikbare limo's" Height="500" Width="800">
     <Grid>
 
         <Label Name="StartDatumLabel" Content="Startdatum:" HorizontalAlignment="Left" Margin="60,79,0,0" VerticalAlignment="Top"/>
