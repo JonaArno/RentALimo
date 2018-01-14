@@ -103,6 +103,16 @@ namespace RentALimo.EF
                 .ToList();
         }
 
+        public Reservering OphalenReservering(Reservering res)
+        {
+            return Context.Set<Reservering>()
+                .Include(r => r.Limo)
+                .Include(r => r.Klant)
+                .Where(r => r.ReserveringsId == res.ReserveringsId)
+                .ToList()
+                .First();
+        }
+
 
         public void Nieuw(Reservering res)
         {

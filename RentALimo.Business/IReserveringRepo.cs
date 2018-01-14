@@ -15,5 +15,7 @@ namespace RentALimo.Business
              Arrangement arrangement);
         IEnumerable<Reservering> ReserveringenMetAlleGegevens(Klant klant, Limo limo, DateTime startDatum, DateTime eindDatum,
              Arrangement arrangement);
+
+        Reservering OphalenReservering(Reservering res);
     }
 }
