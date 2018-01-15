@@ -7,7 +7,6 @@ namespace RentALimo.Business
         //public static readonly int MaximaleDuur = 11;
         public static readonly TimeSpan MaximaleDuur = new TimeSpan(11,0,0);
 
-        //public int Id { get; set; }
         public TimeSpan Duur { get; internal set; }
         public DateTime Begin { get; internal set; }
         public DateTime Einde { get; internal set; }
