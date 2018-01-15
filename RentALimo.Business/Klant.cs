@@ -11,7 +11,6 @@ namespace RentALimo.Business
         public Adres Adres { get; set; }
         public string BtwNummer { get; set; }
         public KlantCategorie KlantCategorie { get; set; }
-        //public ICollection<Reservering> Reserveringen = new List<Reservering>();
 
         protected Klant() { }
 
@@ -26,22 +25,6 @@ namespace RentALimo.Business
         {
             BtwNummer = btwNummer;
         }
-
-        //dit moet in de repo gebeuren
-        //public int ReserveringenInJaar(int jaarTal)
-        //{
-        //    //int returnWaarde = 0;
-        //    //foreach (Reservering res in Reserveringen)
-        //    //{
-        //    //    if (res.ReserveringsDatum.Year == jaarTal)
-        //    //    {
-        //    //        returnWaarde += 1;
-        //    //    }
-        //    //}
-        //    //return returnWaarde;
-
-        //    return 0;
-        //}
 
         public override string ToString()
         {

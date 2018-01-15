@@ -16,9 +16,7 @@ namespace RentALimo.Business
         public decimal WeddingArrangementPrijs { get; set; }
 
 
-        protected Limo()
-        {
-        }
+        protected Limo() {}
 
 
         public Limo(string merk, string type, decimal eersteUurPrijs, decimal nightLifeArrangementPrijs,
