@@ -12,12 +12,6 @@ namespace RentALimo.Business
         public DateTime Begin { get; internal set; }
         public DateTime Einde { get; internal set; }
 
-        //denkpiste
-        ////niet meer nodig
-        //public int NormaleUren { get; set; }
-        //public int AantalOverUren { get; set; }
-        //public int AantalNachtUren { get; set; }
-
         protected Periode() { }
 
         public Periode(DateTime begin, DateTime einde)
@@ -25,24 +19,7 @@ namespace RentALimo.Business
             Begin = begin;
             Einde = einde;
             Duur = einde - begin;
-            //IndelingInUren();
         }
-
-        //niet meer nodig
-        //private void IndelingInUren()
-        //{
-        //    //#nachturen berekenen
-        //    var copy = Begin;
-        //    do
-        //    {
-        //        copy = copy.AddHours(1);
-        //        if (copy.Hour >= 22 || copy.Hour >= 0 && copy.Hour <= 6)
-        //        {
-        //            AantalNachtUren += 1;
-        //        }
-
-        //    } while (copy < Einde);
-        //}
 
         public bool RespecteertMaxDuur()
         {
@@ -53,42 +30,7 @@ namespace RentALimo.Business
             else return true;
         }
 
-        //public bool IsGeldig(Arrangement arr)
-        //{
-        //    switch (arr)
-        //    {
-        //        case Arrangement.Airport:
-        //            {
-
-        //            }
-        //            break;
-        //        case Arrangement.Business:
-        //            {
-
-        //            }
-        //            break;
-        //        case Arrangement.NightLife:
-        //            {
-
-        //            }
-        //            break;
-        //        case Arrangement.Wedding:
-        //            {
-        ////                werkt dit??
-        ////                dit houdt nog geen rekening met het tijden OP het uur
-        ////                testen of startuur tussen 07y en 15u is &of totaletijd onder het maximum blijft
-        //                if (DateTime.Compare(Begin, new DateTime(Begin.Year, Begin.Month, Begin.Day, 7, 0, 0)) > 0
-        //                    && DateTime.Compare(Begin, new DateTime(Begin.Year, Begin.Month, Begin.Day, 15, 0, 0)) < 0
-        //                    && Duur.Hours < MaximaleDuur)
-        //                {
-        //                    return true;
-        //                }
-        //                else return false;
-        //            }
-        //    }
-
-
-        //schrappen?
+            //schrappen?
         public bool BevatOverUren(Arrangement arr)
         {
             bool bevatOveruren = false;
@@ -99,13 +41,6 @@ namespace RentALimo.Business
             }
             return bevatOveruren;
         }
-
-        //schrappen?
-        //public bool BevatNachtUren()
-        //{
-
-        //}
-
         
     }
 }
