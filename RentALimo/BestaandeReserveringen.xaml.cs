@@ -69,8 +69,12 @@ namespace RentALimo
             {
                 resResultaat.ReserveringenResultaatDataGrid.ItemsSource = repo.ReserveringenMetAlleGegevens(GeselecteerdeKlant,GeselecteerdeLimo,StartDatum,EindDatum,Arrangement);
             }
+            else if (GeselecteerdeKlant == null && GeselecteerdeLimo == null)
+            {
+                resResultaat.ReserveringenResultaatDataGrid.ItemsSource = repo.OphalenAlleReserveringen();
+            }
 
-            resResultaat.ShowDialog();
+                resResultaat.ShowDialog();
         }
     }
 }

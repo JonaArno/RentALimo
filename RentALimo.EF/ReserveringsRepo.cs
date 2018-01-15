@@ -90,6 +90,13 @@ namespace RentALimo.EF
         public IEnumerable<Reservering> ReserveringenMetAlleGegevens(Klant klant, Limo limo, DateTime startDatum, DateTime eindDatum,
             Arrangement arrangement)
         {
+            DateTime dt = eindDatum;
+
+            if (eindDatum != DateTime.MaxValue)
+            {
+                dt = eindDatum.AddDays(1);
+            }
+
             return Context.Set<Reservering>()
                 .Include(r => r.Limo)
                 .Include(r => r.Klant)
@@ -97,9 +104,17 @@ namespace RentALimo.EF
                             r.Limo.WagenId == limo.WagenId &&
                             r.Periode.Begin >= startDatum &&
                             //AddDays nodig anders missen we alle uren na 0h die dag
-                            r.Periode.Einde < eindDatum.AddDays(1) &&
+                            r.Periode.Einde < dt &&
                             r.Arrangement == arrangement)
                 .OrderBy(res => res.Periode.Begin)
+                .ToList();
+        }
+
+        public IEnumerable<Reservering> OphalenAlleReserveringen()
+        {
+            return Context.Set<Reservering>()
+                .Include(res => res.Klant)
+                .Include(res => res.Limo)
                 .ToList();
         }
 

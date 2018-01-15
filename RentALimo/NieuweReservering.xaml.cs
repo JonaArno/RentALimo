@@ -171,18 +171,25 @@ namespace RentALimo
 
                             else
                             {
-                                //volgende twee lijnen ergens anders steken?
-                                var prb = new PrijsBerekening((Limo)BeschikbareWagensListView.SelectedItem, arr, evtKorting,
-                                    repo.AantalReserveringenVoorKlantInJaar(kl, DateTime.Now.Year), start, eind);
+                                try
+                                {
+                                    //volgende twee lijnen ergens anders steken?
+                                    var prb = new PrijsBerekening((Limo)BeschikbareWagensListView.SelectedItem, arr, evtKorting,
+                                        repo.AantalReserveringenVoorKlantInJaar(kl, DateTime.Now.Year), start, eind);
 
-                                BedrExclBtwVoorEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwVoorEventingKorting;
-                                AangerekendeEvtKrtValueLabel.Content = prb.PrijsInfo.AangerekendeEventingKorting;
-                                BedrExclBtwNaEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
-                                BtwBedragValueLabel.Content = prb.PrijsInfo.BtwBedrag;
-                                TotaalbedragInclBtwValueLabel.Content = prb.PrijsInfo.TotaalTeBetalenBedrag;
+                                    BedrExclBtwVoorEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwVoorEventingKorting;
+                                    AangerekendeEvtKrtValueLabel.Content = prb.PrijsInfo.AangerekendeEventingKorting;
+                                    BedrExclBtwNaEvtKrtValueLabel.Content = prb.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
+                                    BtwBedragValueLabel.Content = prb.PrijsInfo.BtwBedrag;
+                                    TotaalbedragInclBtwValueLabel.Content = prb.PrijsInfo.TotaalTeBetalenBedrag;
+                                }
+                                catch (InvalidOperationException exception)
+                                {
+                                    MessageBox.Show(exception.Message);
+                                }
+                                
                             }
                         }
-
                     }
 
                     else

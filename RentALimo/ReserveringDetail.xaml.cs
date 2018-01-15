@@ -39,6 +39,9 @@ namespace RentALimo
             BedragVoorBtwValueLabel.Content = Reservering.PrijsInfo.BedragExclusiefBtwNaEventingKorting;
             BtwBedragValueLabel.Content = Reservering.PrijsInfo.BtwBedrag;
             TotaleBedragValueLabel.Content = Reservering.PrijsInfo.TotaalTeBetalenBedrag;
+            DagUrenValueLabel.Content = Reservering.PrijsInfo.AantalGewoneUren;
+            NachtUrenValueLabel.Content = Reservering.PrijsInfo.AantalNachtUren;
+            OverUrenValueLabel.Content = Reservering.PrijsInfo.AantalOverUren;
         }
 
         private void OnCloseWindowButtonClick(object sender, RoutedEventArgs e)

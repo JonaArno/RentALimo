@@ -40,6 +40,7 @@ namespace RentALimo
         private void OnBevestigGeselecteerdeKlantClick(object sender, RoutedEventArgs e)
         {
             BestaandeReserveringen.GeselecteerdeKlant = (Klant) KlantenOverzicht.SelectedItem;
+            BestaandeReserveringen.KlantLabel.Foreground = Brushes.Black;
             BestaandeReserveringen.KlantValueLabel.Content = BestaandeReserveringen.GeselecteerdeKlant;
             this.Close();
         }

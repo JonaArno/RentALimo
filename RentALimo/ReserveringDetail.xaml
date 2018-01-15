@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentALimo"
         mc:Ignorable="d"
-        Title="Detail Reservering" Height="600" Width="500">
+        Title="Detail Reservering" Height="700" Width="500">
     <Grid>
         <Label Content="Gegevens" HorizontalAlignment="Left" Margin="44,22,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Name="KlantLabel" Content="Klant:" HorizontalAlignment="Left" Margin="69,53,0,0" VerticalAlignment="Top"/>
@@ -35,7 +35,14 @@
         <Label Name="BtwBedragValueLabel" Content="" HorizontalAlignment="Left" Margin="292,465,0,0" VerticalAlignment="Top" Width="125"/>
         <Label Name="TotaleBedragLabel" Content="Totale bedrag:" HorizontalAlignment="Left" Margin="69,491,0,0" VerticalAlignment="Top"/>
         <Label Name="TotaleBedragValueLabel" Content="" HorizontalAlignment="Left" Margin="292,496,0,0" VerticalAlignment="Top" Width="136"/>
-        <Button Name="CloseWindowButton" Content="Sluiten" HorizontalAlignment="Left" Margin="396,538,0,0" VerticalAlignment="Top" Width="75" Click="OnCloseWindowButtonClick"/>
+        <Label Name="UurverdelingLabel" Content="Uurverdeling" HorizontalAlignment="Left" Margin="44,537,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Name="DagUrenLabel" Content="Daguren:" HorizontalAlignment="Left" Margin="69,568,0,0" VerticalAlignment="Top"/>
+        <Label Name="DagUrenValueLabel" Content="" HorizontalAlignment="Left" Margin="170,568,0,0" VerticalAlignment="Top" Width="51"/>
+        <Label Name="NachtUrenLabel" Content="Nachturen:" HorizontalAlignment="Left" Margin="292,568,0,0" VerticalAlignment="Top"/>
+        <Label Name="NachtUrenValueLabel" Content="" HorizontalAlignment="Left" Margin="390,568,0,0" VerticalAlignment="Top" Width="57"/>
+        <Label Name="OverUrenLabel" Content="Overuren:" HorizontalAlignment="Left" Margin="69,599,0,0" VerticalAlignment="Top"/>
+        <Label Name="OverUrenValueLabel" Content="" HorizontalAlignment="Left" Margin="150,599,0,0" VerticalAlignment="Top" Width="86"/>
+        <Button Name="CloseWindowButton" Content="Sluiten" HorizontalAlignment="Left" Margin="407,639,0,0" VerticalAlignment="Top" Width="75" Click="OnCloseWindowButtonClick"/>
 
 
 

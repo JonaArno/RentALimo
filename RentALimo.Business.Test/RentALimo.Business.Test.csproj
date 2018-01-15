@@ -54,6 +54,7 @@
     <Compile Include="PeriodeFixture.cs" />
     <Compile Include="KlantFixture.cs" />
     <Compile Include="PrijsBerekeningFixture.cs" />
+    <Compile Include="LimoFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RentALimo.Business\RentALimo.Business.csproj">

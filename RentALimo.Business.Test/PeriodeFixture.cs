@@ -20,37 +20,12 @@ namespace RentALimo.Business.Test
         [TestMethod]
         public void GeldigePeriodeDuurWerkt()
         {
-
-        }
-
-        [TestMethod]
-        public void TijdsDuurKanNietNegatief()
-        {
             var startTijd = new DateTime(2017, 12, 15, 05, 0, 0);
-            var eindTijd = new DateTime(2017, 12, 15, 04, 0, 0);
-        }
+            var eindTijd = new DateTime(2017, 12, 15, 12, 0, 0);
+            var periode = new Periode(startTijd, eindTijd);
 
-        [TestMethod]
-        public void WeddingStartTijdKanNietVoorMinUur()
-        {
-
-        }
-
-        [TestMethod]
-        public void WeddingStartTijdKanNietNaMaxUur()
-        {
-
-        }
-
-        [TestMethod]
-        public void NightlifeStartTijdKanNietVoorMinUur()
-        {
-
-        }
-
-        [TestMethod]
-        public void NightlifeTijdKanNietNaMaxUur()
-        {
+            var expected = true;
+            Assert.AreEqual(expected, periode.IsGeldig());
 
         }
 
@@ -82,11 +57,7 @@ namespace RentALimo.Business.Test
             Assert.AreEqual(expected, per.BevatOverUren(arr));
         }
 
-        [TestMethod]
-        public void PerUurArrangementHeeftGeenOveruren()
-        {
-
-        }
+  
 
     }
 }

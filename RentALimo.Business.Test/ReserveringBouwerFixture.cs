@@ -22,7 +22,7 @@ namespace RentALimo.Business.Test
             var expected = true;
             var result = target.IsGeldigStartUur(Arrangement.Wedding, new DateTime(2018, 01, 4, 7, 0, 0));
 
-            Assert.AreEqual(expected,result);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -70,14 +70,16 @@ namespace RentALimo.Business.Test
 
             Assert.AreEqual(expected, result);
         }
-
-      
-
     }
 
     internal class NepRepo : IReserveringRepo
     {
         public List<Reservering> Reserveringen { get; set; } = new List<Reservering>();
+
+        public int ReserveringenVoorLimoInPeriode(Limo limo, DateTime beginMetMarge, DateTime eindeMetMarge)
+        {
+            throw new NotImplementedException();
+        }
 
         public int AantalReserveringenVoorKlantInJaar(Klant klant, int jaar)
         {
@@ -99,19 +101,44 @@ namespace RentALimo.Business.Test
             Reserveringen.Add(reservering);
         }
 
+        public Reservering LaatsteReserveringVoorLimo(Limo limo, DateTime periodeBegin)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Reservering VolgendeReserveringVoorLimo(Limo limo, DateTime periodeEinde)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Reservering> AlleReserveringenVoorKlant(Klant klant)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Reservering> ReserveringenVoorLimoTussenDataBinnenArrangement(Limo limo, DateTime startDatum, DateTime eindDatum,
+            Arrangement arrangement)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Reservering> ReserveringenMetAlleGegevens(Klant klant, Limo limo, DateTime startDatum, DateTime eindDatum,
+            Arrangement arrangement)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Reservering OphalenReservering(Reservering res)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Klant> OphalenKlanten()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Limo> ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
-        {
-            throw new NotImplementedException();
-        }
 
-        IEnumerable<Reservering> IReserveringRepo.ReserveringenVoorLimoInPeriode(Limo limo, DateTime begin, DateTime einde)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

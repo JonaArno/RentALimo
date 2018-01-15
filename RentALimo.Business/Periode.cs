@@ -20,6 +20,13 @@ namespace RentALimo.Business
             Duur = einde - begin;
         }
 
+        public bool IsGeldig()
+        {
+            if (RespecteertMaxDuur() && Einde > Begin)
+                return true;
+            else return false;
+        }
+
         public bool RespecteertMaxDuur()
         {
             if (Duur > TimeSpan.FromHours(MaximaleDuur.Hours))

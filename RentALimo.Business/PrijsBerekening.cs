@@ -39,12 +39,30 @@ namespace RentALimo.Business
             {
                 PrijsPerUur.Add(teller, Limo.NightLifeArrangementPrijs);
 
+                if (!Periode.BevatOverUren(Arrangement.NightLife))
+                {
+                    UurOntleder(Periode.Begin, Periode.Einde);
+                }
+                else
+                {
+                    UurOntleder(Periode.Begin, Periode.Begin.AddHours(7));
+                }
+
                 if (Periode.BevatOverUren(Arrangement))
                 {
                     DateTime startTijd = Periode.Begin.AddHours(7);
                     while (startTijd < Periode.Einde)
                     {
                         PrijsPerUur.Add(teller + 1, NachtUurPrijs(Limo.EersteUurPrijs));
+                        PrijsInfo.AantalOverUren += 1;
+                        if (IsNachtUur(startTijd))
+                        {
+                            PrijsInfo.AantalNachtUren += 1;
+                        }
+                        else
+                        {
+                            PrijsInfo.AantalGewoneUren += 1;
+                        }
                         teller += 1;
                         startTijd = Periode.Begin.AddHours(7 + teller);
                     }
@@ -55,19 +73,32 @@ namespace RentALimo.Business
             {
                 PrijsPerUur.Add(teller, Limo.WeddingArrangementPrijs);
 
+                if (!Periode.BevatOverUren(Arrangement.Wedding))
+                {
+                    UurOntleder(Periode.Begin, Periode.Einde);
+                }
+                else
+                {
+                    UurOntleder(Periode.Begin, Periode.Begin.AddHours(7));
+                }
+
                 if (Periode.BevatOverUren(Arrangement))
                 {
                     DateTime startTijd = Periode.Begin.AddHours(7);
+
                     while (startTijd < Periode.Einde)
                     {
                         if (IsNachtUur(startTijd))
                         {
                             PrijsPerUur.Add(teller + 1, NachtUurPrijs(Limo.EersteUurPrijs));
+                            PrijsInfo.AantalNachtUren += 1;
                         }
                         else
                         {
                             PrijsPerUur.Add(teller + 1, TweedeUurPrijs(Limo.EersteUurPrijs));
                         }
+
+                        PrijsInfo.AantalOverUren += 1;
                         teller += 1;
                         startTijd = Periode.Begin.AddHours(7 + teller);
 
@@ -100,12 +131,11 @@ namespace RentALimo.Business
                         PrijsInfo.AantalNachtUren += 1;
                     }
 
-                    else if (IsOverUur(huidigeTijd))
+                    else
                     {
                         PrijsPerUur.Add(teller, TweedeUurPrijs(Limo.EersteUurPrijs));
-                        PrijsInfo.AantalOverUren += 1;
+                        PrijsInfo.AantalGewoneUren += 1;
                     }
-
                     teller += 1;
                 }
             }
@@ -116,7 +146,17 @@ namespace RentALimo.Business
             }
 
             //eventingkorting berekenen en toekennen aan PrijsInfowaarde
-            PrijsInfo.AangerekendeEventingKorting = (PrijsInfo.BedragExclusiefBtwVoorEventingKorting / 100) * (decimal)EventingKorting.KortingVoorAantal(AantalReserveringen);
+            //controle geldige eventingKorting
+
+            if (EventingKorting.IsGeldig())
+            {
+                PrijsInfo.AangerekendeEventingKorting = (PrijsInfo.BedragExclusiefBtwVoorEventingKorting / 100) * (decimal)EventingKorting.KortingVoorAantal(AantalReserveringen);
+            }
+            else
+            {
+                throw new InvalidOperationException("Eventingkorting niet geldig!");
+
+            }
 
             //Berekening BedragExclBtwNaEventingKorting
             PrijsInfo.BedragExclusiefBtwNaEventingKorting =
@@ -129,18 +169,25 @@ namespace RentALimo.Business
             PrijsInfo.TotaalTeBetalenBedrag = PrijsInfo.BedragExclusiefBtwNaEventingKorting + PrijsInfo.BtwBedrag;
         }
 
+        private void UurOntleder(DateTime periodeBegin, DateTime eindTijd)
+        {
+            while (periodeBegin < eindTijd)
+            {
+                if (IsNachtUur(periodeBegin))
+                    PrijsInfo.AantalNachtUren += 1;
+                else
+                    PrijsInfo.AantalGewoneUren += 1;
+
+                periodeBegin = periodeBegin.AddHours(1);
+            }
+        }
+
 
         public decimal BerekenPrijsInclBtw(decimal prijsExclBtw)
         {
             return (prijsExclBtw / 100) * (100 + BtwPercentage);
         }
 
-        public bool IsNightLife()
-        {
-            bool returnWaarde = Arrangement == Arrangement.NightLife;
-            return returnWaarde;
-
-        }
 
         public bool IsEersteUur(DateTime tijdStip)
         {

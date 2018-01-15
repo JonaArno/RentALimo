@@ -34,5 +34,69 @@ namespace RentALimo.Business.Test
             Assert.AreEqual(target.KortingVoorAantal(2), 5.0);
         }
 
+        [TestMethod]
+        public void KleinerAantalNooitGrotereKorting()
+        {
+            var target = new EventingKorting("KleinerAantalNooitGrotereKorting");
+            target.Nieuw(1,20);
+            target.Nieuw(2, 10);
+
+            var expected = false;
+            var result =target.IsGeldig();
+            
+            Assert.AreEqual(expected,result);
+        }
+
+        [TestMethod]
+        public void MoetenGroterDanNulZijn()
+        {
+            var target = new EventingKorting("MoetenGroterDan0Zijn");
+            target.Nieuw(-2,-3);
+            const int expected = 0;
+            var result = target.Items.Count;
+            Assert.AreEqual(expected,result);
+        }
+
+        [TestMethod]
+        public void MaxKortingIs100()
+        {
+            var target = new EventingKorting("MaxKortingIs100");
+            target.Nieuw(3,101);
+            const int expected = 0;
+            var result = target.Items.Count;
+            Assert.AreEqual(expected,result);
+        }
+
+        [TestMethod]
+        public void AantalIsUniek()
+        {
+            var target = new EventingKorting("AantalIsUniek");
+            target.Nieuw(1,5);
+            target.Nieuw(1,6);
+            const int expected = 1;
+            var result = target.Items.Count;
+            Assert.AreEqual(expected,result);
+        }
+
+        [TestMethod]
+        public void KortingIsUniek()
+        {
+            var target = new EventingKorting("KortingIsUniek");
+            target.Nieuw(1, 5);
+            target.Nieuw(2, 5);
+            const int expected = 1;
+            var result = target.Items.Count;
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void GroterIsKleinerKanNiet()
+        {
+            var target = new EventingKorting("GroterIsKleinerKanNiet");
+            target.Nieuw(1,10);
+            target.Nieuw(3,3);
+            var expected = false;
+            Assert.AreEqual(expected,target.IsGeldig());
+        }
     }
 }

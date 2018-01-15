@@ -79,6 +79,12 @@ namespace RentALimo
         {
 
             BestaandeReserveringen.GeselecteerdeLimo = (Limo)BeschikbareLimosListView.SelectedItem;
+
+            BestaandeReserveringen.LimoLabel.Foreground = Brushes.Black;
+            BestaandeReserveringen.ArrangementLabel.Foreground = Brushes.Black;
+            BestaandeReserveringen.StartDatumLabel.Foreground = Brushes.Black;
+            BestaandeReserveringen.EindDatumLabel.Foreground = Brushes.Black;
+
             BestaandeReserveringen.LimoValueLabel.Content = BestaandeReserveringen.GeselecteerdeLimo;
 
             BestaandeReserveringen.Arrangement = (Arrangement)ArrangementComboBox.SelectionBoxItem;
