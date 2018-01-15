@@ -13,7 +13,6 @@ namespace RentALimo.Business
 
         protected KlantCategorie() { }
 
-        //moet eventingKorting wel op deze wijze geïnstantieerd worden?
         public KlantCategorie(string naam,EventingKorting eventingKorting)
         {
             Naam = naam;
