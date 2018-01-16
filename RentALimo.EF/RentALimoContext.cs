@@ -19,7 +19,6 @@ namespace RentALimo.EF
             {
                 Database.Create();
 
-                //beste plaats?
                 var pop = new Populator(new PopuleerRepo());
                 pop.Populeer();
             }
