@@ -101,8 +101,10 @@ namespace RentALimo.Business
         //van aanpassen tijd kunnen twee methods gemaakt worden (refactoring)
         public bool LimoIsVrij()
         {
+            var returnWaarde = false;
+
             var vorige = _repo.LaatsteReserveringVoorLimo(Limo, Periode.Begin);
-            var volgende = _repo.VolgendeReserveringVoorLimo(Limo, Periode.Einde);
+            var volgende = _repo.VolgendeReserveringVoorLimo(Limo, Periode.Begin);
 
             DateTime gecorrigeerdHuidigeReservatieStart = new DateTime();
             DateTime gecorrigeerdHuidigeReservatieEinde = new DateTime();
@@ -135,10 +137,12 @@ namespace RentALimo.Business
                 //aanpassen huidige eindTijd
                 if (this.EindLocatie == volgende.StartLocatie)
                 {
+                    gecorrigeerdHuidigeReservatieStart = this.Periode.Begin;
                     gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(4);
                 }
                 else if (this.EindLocatie != volgende.StartLocatie)
                 {
+                    gecorrigeerdHuidigeReservatieStart = this.Periode.Begin;
                     gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde.AddHours(6);
                 }
             }
@@ -149,10 +153,12 @@ namespace RentALimo.Business
                 if (vorige.EindLocatie == this.StartLocatie)
                 {
                     gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-4);
+                    gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde;
                 }
                 else if (vorige.EindLocatie != this.StartLocatie)
                 {
                     gecorrigeerdHuidigeReservatieStart = this.Periode.Begin.AddHours(-6);
+                    gecorrigeerdHuidigeReservatieEinde = this.Periode.Einde;
                 }
             }
 
@@ -163,7 +169,13 @@ namespace RentALimo.Business
             }
 
             int overlappendeReserveringen = _repo.ReserveringenVoorLimoInPeriode(Limo, gecorrigeerdHuidigeReservatieStart, gecorrigeerdHuidigeReservatieEinde);
-            return overlappendeReserveringen == 0;
+
+            if (overlappendeReserveringen == 0)
+            {
+                returnWaarde = true;
+            }
+
+            return returnWaarde;
         }
 
     }

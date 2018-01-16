@@ -4,7 +4,6 @@ namespace RentALimo.Business
 {
     public class Periode
     {
-        //public static readonly int MaximaleDuur = 11;
         public static readonly TimeSpan MaximaleDuur = new TimeSpan(11,0,0);
 
         public TimeSpan Duur { get; internal set; }

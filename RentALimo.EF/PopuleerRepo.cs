@@ -26,7 +26,6 @@ namespace RentALimo.EF
             Context.SaveChanges();      
         }
 
-        //hieronder ook WagenPrijsItems
         public void NieuweKlanten(IEnumerable<Klant> klanten)
         {
             Context.Set<Klant>().AddRange(klanten);
@@ -38,8 +37,13 @@ namespace RentALimo.EF
             Context.Set<Limo>().AddRange(limos);
             Context.SaveChanges();
         }
-        
-        //nog dingen toe te voegen? 
+
+        public void NieuweReserveringen(IEnumerable<Reservering> reserveringen)
+        {
+            Context.Set<Reservering>().AddRange(reserveringen);
+            Context.SaveChanges();
+        }
+
        
     }
 }

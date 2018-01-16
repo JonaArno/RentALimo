@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RentALimo.Business;
 
 namespace RentALimo.Populeer
@@ -50,8 +51,8 @@ namespace RentALimo.Populeer
             bedrijf.Nieuw(6,9);
             eventingKortingLijst.Add(bedrijf);
             var belangrijkeParticulier = new EventingKorting("Belangrijke Particulier");
-            belangrijkeParticulier.Nieuw(3,5);
-            belangrijkeParticulier.Nieuw(5,7);
+            belangrijkeParticulier.Nieuw(2,5);
+            belangrijkeParticulier.Nieuw(4,7);
             belangrijkeParticulier.Nieuw(7,10);
             belangrijkeParticulier.Nieuw(10,15);
             eventingKortingLijst.Add(belangrijkeParticulier);
@@ -85,10 +86,30 @@ namespace RentALimo.Populeer
             };
             Repo.NieuweKlanten(klantenLijst);
 
-            // Categorieen
-            // Klanten
-            // ....
 
+            var reserveringLijst = new List<Reservering>
+            {
+                new Reservering(Arrangement.Wedding,
+                    new Periode(new DateTime(2018, 01, 13, 9, 0, 0), new DateTime(2018, 01, 13, 17, 0, 0)),
+                    Locatie.Antwerpen, Locatie.Gent, limoLijst[0], klantenLijst[0],
+                    new PrijsBerekening(limoLijst[0], Arrangement.Wedding,
+                        klantenLijst[0].KlantCategorie.EventingKorting, 0, new DateTime(2018, 01, 13, 9, 0, 0),
+                        new DateTime(2018, 01, 13, 17, 0, 0)).PrijsInfo),
+                new Reservering(Arrangement.NightLife,
+                    new Periode(new DateTime(2018, 01, 18, 23, 0, 0), new DateTime(2018, 01, 19, 06, 0, 0)),
+                    Locatie.Gent, Locatie.Gent, limoLijst[4], klantenLijst[0],
+                    new PrijsBerekening(limoLijst[0], Arrangement.NightLife,
+                        klantenLijst[0].KlantCategorie.EventingKorting, 1, new DateTime(2018, 01, 18, 23, 0, 0),
+                        new DateTime(2018, 01, 19, 06, 0, 0)).PrijsInfo),
+                new Reservering(Arrangement.Business,
+                    new Periode(new DateTime(2018, 01, 08, 23, 0, 0), new DateTime(2018, 01, 09, 06, 0, 0)),
+                    Locatie.Hasselt, Locatie.Gent, limoLijst[6], klantenLijst[0],
+                    new PrijsBerekening(limoLijst[0], Arrangement.Business,
+                        klantenLijst[0].KlantCategorie.EventingKorting, 2, new DateTime(2018, 01, 08, 23, 0, 0),
+                        new DateTime(2018, 01, 09, 06, 0, 0)).PrijsInfo),
+            };
+            Repo.NieuweReserveringen(reserveringLijst);
+            
 
         }
               

@@ -9,7 +9,6 @@ namespace RentALimo.Business
     public interface IOphaalRepo
     {
         IEnumerable<Klant> OphalenKlanten();
-        //IEnumerable<Klant> OphalenKlantenGrid();
         IEnumerable<Klant> OphalenKlantenMetFilter(string filter);
         IEnumerable<Limo> OphalenAlleLimos();
         Reservering OphalenLaatsteReserveringVanLimo(Limo limo, DateTime startDatum);

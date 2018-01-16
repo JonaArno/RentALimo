@@ -128,6 +128,11 @@ namespace RentALimo.Business.Test
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Reservering> OphalenAlleReserveringen()
+        {
+            throw new NotImplementedException();
+        }
+
         public Reservering OphalenReservering(Reservering res)
         {
             throw new NotImplementedException();

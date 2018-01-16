@@ -9,7 +9,6 @@ namespace RentALimo.Business
         public string Merk { get; set; }
 
         public string Type { get; set; }
-        //public WagenPrijs WagenPrijs { get; set; }
 
         public decimal EersteUurPrijs { get; set; }
         public decimal NightLifeArrangementPrijs { get; set; }
@@ -48,36 +47,14 @@ namespace RentALimo.Business
             else if (arr == Arrangement.NightLife)
             {
                 isMogelijk = NightLifeArrangementPrijs != 0;
-
             }
-
             return isMogelijk;
         }
 
 
-        ////w niet gebruikt
-        //public bool ReedsBeschikbaarNaLaatsteReservering(DateTime startNieuweReservering, Reservering laatsteReservering)
-        //{
-
-        //    bool reedsBeschikbaar = false;
-
-        //    if (laatsteReservering.StartLocatie != laatsteReservering.EindLocatie)
-        //    {
-        //        reedsBeschikbaar = startNieuweReservering > laatsteReservering.Periode.Einde.AddHours(6);
-        //    }
-
-        //    else if (laatsteReservering.StartLocatie == laatsteReservering.EindLocatie)
-        //    {
-        //        reedsBeschikbaar = startNieuweReservering > laatsteReservering.Periode.Einde.AddHours(4);
-        //    }
-
-        //    return reedsBeschikbaar;
-        //}
-
         public override string ToString()
         {
             return $"{Merk} {Type}";
-
         }
     }
 }

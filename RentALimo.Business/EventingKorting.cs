@@ -9,7 +9,6 @@ namespace RentALimo.Business
         public string Naam { get; set; }
         public ICollection<EventingKortingItem> Items { get; protected set; } = new SortedSet<EventingKortingItem>();
         
-        // default ctor nodig voor persistentie
         protected EventingKorting() { }
 
         public EventingKorting(string naam)

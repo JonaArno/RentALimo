@@ -18,9 +18,9 @@ namespace RentALimo.EF
         {
             List<Reservering> lookup = Context.Set<Reservering>()
                                             .Where(r => r.Limo.WagenId == limo.WagenId &&
-                                                        r.Periode.Begin >= beginMetMarge &&
-                                                        r.Periode.Einde <= eindeMetMarge)
-                                            .ToList();
+                                                        r.Periode.Begin < eindeMetMarge &&
+                                                         beginMetMarge < r.Periode.Einde)
+                                                        .ToList();
             return lookup.Count;
         }
 
@@ -39,28 +39,25 @@ namespace RentALimo.EF
 
         public Reservering LaatsteReserveringVoorLimo(Limo limo, DateTime periodeBegin)
         {
-            //ordent dit wel van klein naar groot?
-            List<Reservering> res = Context.Set<Reservering>()
-                                    .Include(r => r.Limo)
-                                    .Where(r => r.Limo.WagenId == limo.WagenId)
-                                    .Where(r => r.Periode.Einde <= periodeBegin)
-                                    .OrderBy(r => r.Periode.Einde)
-                                    .ToList();
+            return Context.Set<Reservering>()
+                .Include(r => r.Limo)
+                .Where(r => r.Limo.WagenId == limo.WagenId &&
+                            r.Periode.Einde <= periodeBegin)
+                .OrderBy(r => r.Periode.Einde)
+                .ToList()
+                .LastOrDefault();
 
-            return res.FirstOrDefault();
         }
 
-        public Reservering VolgendeReserveringVoorLimo(Limo limo, DateTime periodeEinde)
+        public Reservering VolgendeReserveringVoorLimo(Limo limo, DateTime periodeBegin)
         {
-            //ordening ok?
-            List<Reservering> res = Context.Set<Reservering>()
+            return Context.Set<Reservering>()
                 .Include(r => r.Limo)
-                .Where(r => r.Limo.WagenId == limo.WagenId)
-                .Where(r => r.Periode.Begin >= periodeEinde)
+                .Where(r => r.Limo.WagenId == limo.WagenId &&
+                            r.Periode.Begin >= periodeBegin)
                 .OrderBy(r => r.Periode.Begin)
-                .ToList();
-
-            return res.FirstOrDefault();
+                .ToList()
+                .FirstOrDefault();
         }
 
         public IEnumerable<Reservering> AlleReserveringenVoorKlant(Klant klant)
